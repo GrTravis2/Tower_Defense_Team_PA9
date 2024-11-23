@@ -38,13 +38,7 @@
 *.vscode
 *.vcxproj
 *.vs
+/x64
+/Tower_Defense_Team_PA9/x64
 
-# ingrid 
-/Debug
-/Release
-.vs/
-*.vcxproj.user
-*.vcxproj.filters
-*.log
-ipch/
-.vs/Tower_Defense_Team_PA9/v17/.suo
+
