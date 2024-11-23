@@ -52,6 +52,9 @@ const std::string wordPool[]{
 	"walnut",
 	"yo",
 	"queue", // ;)
-	"algorithm"
+	"algorithm",
+	"nerd",
+	"sorcerer",
+	
 };
 
