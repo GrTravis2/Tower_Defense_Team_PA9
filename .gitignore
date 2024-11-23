@@ -33,8 +33,9 @@
 
 # Gavin added these
 /ARM64
-/x86_64
 /Tower_Defense_Team_PA9/ARM64
-/Tower_Defense_Team_PA9/x86_64
+/Tower_Defense_Team_PA9/2.6.2
+*.vscode
+*.vcxproj
 
 
