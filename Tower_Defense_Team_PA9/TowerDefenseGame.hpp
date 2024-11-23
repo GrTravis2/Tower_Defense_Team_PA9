@@ -53,6 +53,8 @@ const std::string wordPool[]{
 	"yo",
 	"queue", // ;)
 	"algorithm",
+	"nerd",
+	"sorcerer",
 	"carrot",
 };
 
