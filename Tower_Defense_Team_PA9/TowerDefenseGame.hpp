@@ -49,8 +49,9 @@ I will start the arrays but we will have to fill as we go!
 */
 
 const std::string wordPool[]{
-	"rub",
+	"walnut",
 	"yo",
 	"queue", // ;)
+	"algorithm"
 };
 
