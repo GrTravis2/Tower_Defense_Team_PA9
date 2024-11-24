@@ -47,7 +47,7 @@ private:
 public:
 	inputClass();
 
-	void processEvent(sf::Event& event);
+	void processEvent(sf::Event& event); // allows for continuous input processing
 	void clearInput();
 	void printInput();
 

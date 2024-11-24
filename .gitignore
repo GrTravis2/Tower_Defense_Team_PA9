@@ -38,4 +38,13 @@
 *.vscode
 *.vcxproj
 
+# ingrid 
+/Debug
+/Release
+.vs/
+*.vcxproj.user
+*.vcxproj.filters
+*.log
+ipch/
+
 

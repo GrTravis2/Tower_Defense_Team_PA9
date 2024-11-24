@@ -1,6 +1,5 @@
 #include "inputClass.hpp"
 #include "testCases.hpp"
-
 #include <SFML/Graphics.hpp>
 
 int main(void) {

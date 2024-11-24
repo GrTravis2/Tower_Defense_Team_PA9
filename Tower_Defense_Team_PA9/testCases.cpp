@@ -13,6 +13,9 @@ void testCases::testContinuousKeyInput()
 	{
 		cout << "Test successful, keyboard event adds a to current input" << endl;
 	}
-
+	else
+	{
+		cout << "Test failed, simulated key press did not add to current input as expected" << endl;
+	}
 
 }

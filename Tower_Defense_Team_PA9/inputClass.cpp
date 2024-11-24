@@ -26,7 +26,7 @@ void inputClass::processEvent(sf::Event& event) // this allows for key presses t
 		}
 		else if (event.key.code == sf::Keyboard::BackSpace)
 		{
-			if (!currentInput.empty())
+			if (!currentInput.empty()) // if the current input isnt empty 
 			{
 				currentInput.pop_back();
 			}
@@ -46,7 +46,7 @@ void inputClass::clearInput()
 
 void inputClass::printInput()
 {
-	cout << "Word: " << currentInput << endl;
+	cout << "Word entered: " << currentInput << endl;
 }
 
 string inputClass::getCurrentInput()
