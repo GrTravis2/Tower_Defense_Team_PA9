@@ -1,5 +1,5 @@
-
-
+#include "inputClass.hpp"
+#include "testCases.hpp"
 #include <SFML/Graphics.hpp>
 
 int main(void) {
@@ -8,19 +8,30 @@ int main(void) {
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 
-	while (window.isOpen()) {
-
+	testCases testContinuous;
+	testContinuous.testContinuousKeyInput();
+	
+	/*while (window.isOpen()) 
+	{
+		
 		sf::Event event;
 		while(window.pollEvent(event)) {
 
 			if (event.type == sf::Event::Closed) { window.close(); }
 		}
 
+		
+	
+
 		window.clear();
 		window.draw(shape);
 		window.display();
-
+		
 	}
+*/
 
+
+
+	
 	return 0;
 }

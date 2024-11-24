@@ -13,6 +13,7 @@ private:
 	int wordTimer; //count up timer for word update
 	int wordTimerMax; // value word will update when timer reaches
 	std::string wordOptions[3]; //word options to type
+	int points;
 	
 	//helpers
 
@@ -20,12 +21,17 @@ private:
 
 public:
 	//constructor
+	Player();
 
 	//destructor
 
 	//getters
+	std::string getInput() const;
+
+	int getPoints() const;
 
 	//setters
+	void setPoints(int newPoints);
 
 	//public funcs
 
