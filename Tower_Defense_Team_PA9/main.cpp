@@ -13,7 +13,7 @@ int main(void) {
 	testCases testContinuous;
 	testContinuous.testContinuousKeyInput();
 	
-	/*while (window.isOpen()) 
+	while (window.isOpen()) 
 	{
 		
 		sf::Event event;
@@ -30,7 +30,7 @@ int main(void) {
 		window.display();
 		
 	}
-*/
+
 
 
 
