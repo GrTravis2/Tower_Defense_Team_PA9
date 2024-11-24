@@ -10,7 +10,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "player.hpp"
+#include "Player.hpp"
 
 using std::string;
 using std::endl;
