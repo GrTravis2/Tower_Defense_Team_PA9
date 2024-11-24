@@ -5,7 +5,7 @@
 class Player : public Entity {
 private:
 	//player specific data
-	enum playerID mplayerID;
+	int mplayerID;
 	//network stuff??
 
 	//typing specific data
@@ -34,6 +34,8 @@ public:
 	void setPoints(int newPoints);
 
 	//public funcs
+
+	void processInput();
 
 	
 };
