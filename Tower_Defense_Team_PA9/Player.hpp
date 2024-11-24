@@ -5,7 +5,7 @@
 class Player : public Entity {
 private:
 	//player specific data
-	enum playerID;
+	enum playerID mplayerID;
 	//network stuff??
 
 	//typing specific data
@@ -29,12 +29,7 @@ public:
 
 	//public funcs
 
-	void processInput();// -> for handling keyboard event process!
-
-	void updateWords();// -> for handling word and bonus options!
-
-	//updates shape positions, checks for intersections, and then draws all!
-	void updateEntities();
+	
 };
 
 enum playerID {

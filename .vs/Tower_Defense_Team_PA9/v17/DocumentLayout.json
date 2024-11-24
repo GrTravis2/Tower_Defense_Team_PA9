@@ -11,6 +11,30 @@
       "RelativeMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|solutionrelative:Tower_Defense_Team_PA9\\TowerDefenseGame.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\Player.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|solutionrelative:Tower_Defense_Team_PA9\\Player.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\NPC.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|solutionrelative:Tower_Defense_Team_PA9\\NPC.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\NPC.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|solutionrelative:Tower_Defense_Team_PA9\\NPC.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|solutionrelative:Tower_Defense_Team_PA9\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\Entity.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|solutionrelative:Tower_Defense_Team_PA9\\Entity.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\Entity.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|solutionrelative:Tower_Defense_Team_PA9\\Entity.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\TowerDefenseGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{B78EB45F-025E-49C3-B12B-6D1D3D0E15F0}|Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9.vcxproj|solutionrelative:Tower_Defense_Team_PA9\\TowerDefenseGame.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -22,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,7 +54,56 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
+              "Title": "TowerDefenseGame.hpp",
+              "DocumentMoniker": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\TowerDefenseGame.hpp",
+              "RelativeDocumentMoniker": "Tower_Defense_Team_PA9\\TowerDefenseGame.hpp",
+              "ToolTip": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\TowerDefenseGame.hpp",
+              "RelativeToolTip": "Tower_Defense_Team_PA9\\TowerDefenseGame.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-19T21:20:24.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Player.cpp",
+              "DocumentMoniker": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\Player.cpp",
+              "RelativeDocumentMoniker": "Tower_Defense_Team_PA9\\Player.cpp",
+              "ToolTip": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\Player.cpp",
+              "RelativeToolTip": "Tower_Defense_Team_PA9\\Player.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-23T18:20:00.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Entity.cpp",
+              "DocumentMoniker": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\Entity.cpp",
+              "RelativeDocumentMoniker": "Tower_Defense_Team_PA9\\Entity.cpp",
+              "ToolTip": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\Entity.cpp",
+              "RelativeToolTip": "Tower_Defense_Team_PA9\\Entity.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-23T18:06:35.819Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Entity.hpp",
+              "DocumentMoniker": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\Entity.hpp",
+              "RelativeDocumentMoniker": "Tower_Defense_Team_PA9\\Entity.hpp",
+              "ToolTip": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\Entity.hpp",
+              "RelativeToolTip": "Tower_Defense_Team_PA9\\Entity.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-23T17:55:15.468Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "TowerDefenseGame.cpp",
               "DocumentMoniker": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\TowerDefenseGame.cpp",
               "RelativeDocumentMoniker": "Tower_Defense_Team_PA9\\TowerDefenseGame.cpp",
@@ -42,27 +115,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TowerDefenseGame.hpp",
-              "DocumentMoniker": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\TowerDefenseGame.hpp",
-              "RelativeDocumentMoniker": "Tower_Defense_Team_PA9\\TowerDefenseGame.hpp",
-              "ToolTip": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\TowerDefenseGame.hpp",
-              "RelativeToolTip": "Tower_Defense_Team_PA9\\TowerDefenseGame.hpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-19T21:20:24.125Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\main.cpp",
               "RelativeDocumentMoniker": "Tower_Defense_Team_PA9\\main.cpp",
               "ToolTip": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\main.cpp",
               "RelativeToolTip": "Tower_Defense_Team_PA9\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-19T21:19:33.492Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NPC.cpp",
+              "DocumentMoniker": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\NPC.cpp",
+              "RelativeDocumentMoniker": "Tower_Defense_Team_PA9\\NPC.cpp",
+              "ToolTip": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\NPC.cpp",
+              "RelativeToolTip": "Tower_Defense_Team_PA9\\NPC.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-23T18:42:38.802Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NPC.hpp",
+              "DocumentMoniker": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\NPC.hpp",
+              "RelativeDocumentMoniker": "Tower_Defense_Team_PA9\\NPC.hpp",
+              "ToolTip": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\NPC.hpp",
+              "RelativeToolTip": "Tower_Defense_Team_PA9\\NPC.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-23T18:40:08.819Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Player.hpp",
+              "DocumentMoniker": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\Player.hpp",
+              "RelativeDocumentMoniker": "Tower_Defense_Team_PA9\\Player.hpp",
+              "ToolTip": "C:\\Mac\\Home\\Documents\\School\\WSU CPT\\F24\\CPT 122\\assignment\\pa9\\Tower_Defense_Team_PA9\\Tower_Defense_Team_PA9\\Player.hpp",
+              "RelativeToolTip": "Tower_Defense_Team_PA9\\Player.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2024-11-23T18:06:51.493Z",
               "EditorCaption": ""
             }
           ]
