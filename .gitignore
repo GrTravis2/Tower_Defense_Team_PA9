@@ -37,6 +37,8 @@
 /Tower_Defense_Team_PA9/2.6.2
 *.vscode
 *.vcxproj
+/x64
+/Tower_Defense_Team_PA9/x64
 
 # ingrid 
 /Debug
