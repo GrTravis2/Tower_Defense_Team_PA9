@@ -12,7 +12,8 @@ int main(void) {
 	testCases testContinuous;
 	testContinuous.testContinuousKeyInput();
 
-
+	TowerDefenseGame app;
+	app.run();
 
 
 	

@@ -11,9 +11,9 @@
 
 class TowerDefenseGame {
 private:
-	Player* mPlayers[4];
+	Player* mPlayers;
 	Player* mHostPlayer;
-	std::list<Entity*> mMasterList; //list of entities on the heap, should this be pub??
+	std::list<Entity*>* mMasterList; //list of entities on the heap, should this be pub??
 	sf::RenderWindow* mGameWindow;//?????? will need to check I got right.. Public as well?
 
 	//helpers
@@ -59,7 +59,7 @@ We talked about having all of the word choices and bonuses here!
 I will start the arrays but we will have to fill as we go!
 */
 
-const std::string wordPool[]{
+const std::string wordPool[] = {
 	"walnut",
 	"yo",
 	"queue", // ;)
