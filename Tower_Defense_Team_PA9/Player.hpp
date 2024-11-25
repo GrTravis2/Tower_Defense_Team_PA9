@@ -17,8 +17,6 @@ private:
 	
 	//helpers
 
-	void printMenu() const;// for join/create game
-
 public:
 	//constructor
 	Player();

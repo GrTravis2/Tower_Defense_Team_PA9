@@ -14,25 +14,25 @@ private:
 
 public:
 	
-	////constructor
-	//Entity();
-	//Entity(
-	//	const int& HP,
-	//	const sf::CircleShape& body);
-	//
+	//constructor
+	Entity();
+	Entity(
+		const int& HP,
+		const sf::CircleShape& body);
+	
 
-	////destructor
-	//~Entity();
+	//destructor
+	~Entity();
 
-	////getters
-	//int getHP() const;
-	////dont think we want one for shape? leaving empty for now
+	//getters
+	int getHP() const;
+	//dont think we want one for shape? leaving empty for now
 
-	////setters
-	//void setHP(const int& newHP);
+	//setters
+	void setHP(const int& newHP);
 
-	////public
-	////move function? -> should be in SFML class
+	//public
+	//move function? -> should be in SFML class
 
 
 };

@@ -1,14 +1,23 @@
 #pragma once
 
 #include <list>
+#include <iostream>
+
 #include "Player.hpp"
+#include "Entity.hpp"
+
+#define WINDOW_WIDTH 1000
+#define WINDOW_HEIGHT 1000
 
 class TowerDefenseGame {
 private:
 	Player* mPlayers[4] = {};
 	Player* mHostPlayer;
 	std::list<Entity*> mMasterList; //list of entities on the heap, should this be pub??
-	sf::Window mGameWindow;//?????? will need to check I got right.. Public as well?
+	sf::RenderWindow* mGameWindow;//?????? will need to check I got right.. Public as well?
+
+	//helpers
+	void printMultiplayerMenu() const;// for join/create game
 	
 public:
 
