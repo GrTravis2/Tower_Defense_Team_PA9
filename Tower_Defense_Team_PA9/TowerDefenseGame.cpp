@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "TowerDefenseGame.hpp"
+#include "NPC.hpp"
 
 //constructor
 	TowerDefenseGame() {// -> start default and add thru setters?
@@ -38,6 +39,36 @@
 
 
 	//public
+
+    //start the game!
+    void run() {
+        // hard code 1 player - 3 NPC for now revisit if time
+        dynamic_cast<NPC*>(->mPlayers[1]);
+        dynamic_cast<NPC*>(->mPlayers[2]);
+        dynamic_cast<NPC*>(->mPlayers[3]);
+
+        //set up any other initializing code here!!!
+        sf::Event event;
+
+        //consider adding || here for the game over condition!
+        while (this->mGameWindow.isOpen()) {// check for window close
+            
+            //read in action, see if it will close window!
+            while (this->mGameWindow.pollEvent(event)) {
+                if(event.type == sf::Event::Closed) { this->mGameWindow.close(); }
+            }
+
+            //check for changes to word choices:
+            this->updateWords();
+
+            //read player input will modify list if word is complete:
+            this->processInput();
+
+            //step shape positions, checks for intersections and draws all
+            this->updateEntities();
+        }
+
+    }
 
 	void processInput() {// -> for handling keyboard event process!
 

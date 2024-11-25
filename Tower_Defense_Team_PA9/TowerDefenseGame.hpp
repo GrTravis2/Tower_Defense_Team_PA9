@@ -11,7 +11,7 @@
 
 class TowerDefenseGame {
 private:
-	Player* mPlayers[4] = {};
+	Player* mPlayers[4];
 	Player* mHostPlayer;
 	std::list<Entity*> mMasterList; //list of entities on the heap, should this be pub??
 	sf::RenderWindow* mGameWindow;//?????? will need to check I got right.. Public as well?
@@ -38,6 +38,8 @@ public:
 
 
 	//public
+
+	void run();
 
 	void processInput();// -> for handling keyboard event process!
 
