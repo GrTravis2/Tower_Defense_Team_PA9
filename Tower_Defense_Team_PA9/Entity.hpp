@@ -62,4 +62,7 @@ public:
 };
 
 //non-member
+
+//derives a vector that points between starting and ending entities
+//with magnitude speed!
 sf::Vector2f computeDirection(const Entity& start, const Entity& end, const float& speed);

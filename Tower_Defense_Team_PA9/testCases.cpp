@@ -1,6 +1,16 @@
 #include "testCases.hpp"
 
-
+//public run tests only!
+void testCases::runTests() {
+	std::cout
+	<< "--------- START TESTS --------- " << std::endl
+	<< "testContinuousKeyInput() pass: : " << testContinuousKeyInput() << std::endl
+	<< "testComputeDirection() pass: " << testComputeDirection() << std::endl
+	<< "testGetandSetHP() pass: " << testGetandSetHP() << std::endl
+	<< "testIsDead() pass: " << testIsDead() << std::endl
+	<< "testAttackUntilDead() pass: " << testAttackUntilDead() << std::endl
+	<< "--------- END TESTS --------- " << std::endl;
+}
 
 //private -> actual tests:
 
@@ -30,19 +40,43 @@ bool testCases::testContinuousKeyInput()
 //entity tests
 bool testCases::testComputeDirection() {
 	bool ok = false;
+	float tol = 0.001; // precision issues, adding tolerance for some leeway
 
+	//
 	Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)));
 	Entity two(5, sf::RectangleShape(sf::Vector2f(1,1)));
+	one.mBody.setPosition(sf::Vector2f(0,0));
+	two.mBody.setPosition(sf::Vector2f(1,1));
+	
 
-	sf::Vector2f out = computeDirection(one, two, 1);
+	sf::Vector2f out = computeDirection(one, two, sqrt(2));
 
-	if (out.x == one.mBody.getPoint(0).x && out.y == one.mBody.getPoint(0).y) {
+	if (//check x, y pos in an acceptable range
+		out.x <= two.mBody.getPosition().x + tol
+		&&
+		out.x >= two.mBody.getPosition().x - tol
+		&&
+		out.y <= two.mBody.getPosition().y + tol
+		&&
+		out.y >= two.mBody.getPosition().y - tol
+		) {
 
-		Entity three(5, sf::RectangleShape(sf::Vector2f(5,5)));
+		Entity three(5, sf::RectangleShape(sf::Vector2f(1,1)));
+		three.mBody.setPosition(5,5);
 
-		out = computeDirection(one, three, 1);
-		if (out.x == 1000 && out.y == 1000) {
-			// should never get here, verify vec formula T_T
+		out = computeDirection(one, three, sqrt(32));
+		int expectedX = 4;
+		int expectedY = 4;
+		if (
+			out.x <= expectedX + tol
+			&&
+			out.x >= expectedX - tol
+			&&
+			out.y <= expectedY + tol
+			&&
+			out.y >= expectedY - tol
+		) {
+			//woohoo! Vector math :D
 			ok = true;
 		}
 	}
@@ -128,14 +162,4 @@ bool testCases::testMapBonus() {
 	return false;
 }
 
-//public run tests only!
-void testCases::runTests() {
-	std::cout
-	<< "--------- START TESTS --------- " << std::endl
-	<< "testContinuousKeyInput() pass: : " << testContinuousKeyInput() << std::endl
-	<< "testComputeDirection() pass: " << testComputeDirection() << std::endl
-	<< "testGetandSetHP() pass: " << testGetandSetHP() << std::endl
-	<< "testIsDead() pass: " << testIsDead() << std::endl
-	<< "testAttackUnitlDead() pass: " << testAttackUntilDead() << std::endl
-	<< "--------- END TESTS --------- " << std::endl;
-}
+

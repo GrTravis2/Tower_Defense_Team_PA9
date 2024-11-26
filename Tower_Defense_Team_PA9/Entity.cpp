@@ -53,14 +53,14 @@ bool Entity::isDead() const {
 //helpers
 sf::Vector2f computeDirection(const Entity& start, const Entity& end, const float& speed) {
     sf::Vector2f vecStart = start.mBody.getPosition();
-    sf::Vector2f vecEnd = start.mBody.getPosition();
+    sf::Vector2f vecEnd = end.mBody.getPosition();
     float xComp = vecEnd.x - vecStart.x;// need to double check my vec formulas
     float yComp = vecEnd.y - vecStart.y;// i have no internet
     float mag = sqrt(pow(xComp, 2) + pow(yComp, 2));
 
     sf::Vector2f vecResult;
-    vecResult.x = xComp / mag;
-    vecResult.y = yComp / mag;
+    vecResult.x = speed * (xComp / mag);
+    vecResult.y = speed * (yComp / mag);
 
     return vecResult;
 }
@@ -71,10 +71,10 @@ sf::Vector2f computeDirection(const Entity& start, const Entity& end, const floa
 //when two shapes intersect have them subtract HP's from each other
 //until one is "dead" (no HP)
 void attackUntilDead(Entity& lhs, Entity& rhs) {
-    int leftHP = lhs.getHP();
+    int leftHP = lhs.getHP();// read out current HPs
     int rightHP = rhs.getHP();
 
-    //do nothing while hps decrement until one is 0
+    //do nothing while hps decrement until at least one is 0
     while (leftHP != 0 && rightHP != 0) {
         --leftHP;
         --rightHP;

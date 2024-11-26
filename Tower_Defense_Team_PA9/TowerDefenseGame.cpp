@@ -107,6 +107,8 @@
 	//updates shape positions, checks for intersections, and then draws all!
 	void TowerDefenseGame::updateEntities() {
 
+        //iterator???? :D
+        //while (this->mMasterList->)
     }
 
     //private helpers

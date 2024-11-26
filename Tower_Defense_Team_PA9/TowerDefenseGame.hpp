@@ -43,11 +43,6 @@ public:
 	//input player and their ID (player1, player2, player3, player4)
 	void setPlayer(const int& playerID, const Player*& player);
 
-
-	//public
-
-	void run();
-
 	void processInput();// -> for handling keyboard event process!
 
 	void updateWords();// -> for handling word and bonus options!
@@ -58,6 +53,9 @@ public:
 	//updates shape positions, checks for intersections, and then draws all!
 	void updateEntities();
 
+	//public
+
+	void run();
 };
 
 //non-member data
