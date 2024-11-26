@@ -1,8 +1,11 @@
 #include "Player.hpp"
 
-Player::Player()
-{
-	
+//constructor
+	Player::Player(
+		const int& playerID,
+		
+	) {
+
 }
 
 std::string Player::getInput() const

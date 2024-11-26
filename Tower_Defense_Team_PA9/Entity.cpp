@@ -62,7 +62,7 @@ sf::Vector2f Entity::computeDirection(const Entity& start, const Entity& end, co
 //non-member
 
 //when two shapes intersect have them subtract HP's from each other
-//and "kill" one when it hits 0 HP
+//until one is "dead" (no HP)
 friend attackUntilDead(const Entity& lhs, const Entity& rhs) {
     int leftHP = lhs.getHP();
     int rightHP = rhs.getHP();
