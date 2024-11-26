@@ -42,6 +42,15 @@ void inputClass::processEvent(sf::Event& event) // this allows for key presses t
 
 void inputClass::clearInput()
 {
+	for (int i = 0; i < TOTAL_KEYS; i++)
+	{
+		stateOfKeys[i] = false;
+	}
+	for (int i = 0; i < TOTAL_MOUSE_BUTTONS; i++)
+	{
+		stateOfMouse[i] = false;
+	}
+	currentInput = "";
 }
 
 void inputClass::printInput()
@@ -52,4 +61,9 @@ void inputClass::printInput()
 string inputClass::getCurrentInput()
 {
 	return currentInput;
+}
+
+bool inputClass::getIsKeyPressed(sf::Keyboard::Key& key)
+{	
+	return stateOfKeys[key];
 }

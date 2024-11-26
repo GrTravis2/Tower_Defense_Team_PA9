@@ -5,6 +5,6 @@ class testCases
 {
 public:
 	void testContinuousKeyInput();
-
+	void testClearInput();
 
 };

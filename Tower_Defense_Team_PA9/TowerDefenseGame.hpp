@@ -56,5 +56,6 @@ const std::string wordPool[]{
 	"nerd",
 	"sorcerer",
 	"carrot",
+	"cowboy",
 };
 

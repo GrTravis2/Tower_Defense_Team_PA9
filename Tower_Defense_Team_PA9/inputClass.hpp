@@ -50,8 +50,8 @@ public:
 	void processEvent(sf::Event& event); // allows for continuous input processing
 	void clearInput();
 	void printInput();
-
 	string getCurrentInput();
+	bool getIsKeyPressed(sf::Keyboard::Key& key);
 	
 	
 	

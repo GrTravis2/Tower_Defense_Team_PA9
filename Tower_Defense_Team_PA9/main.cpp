@@ -8,8 +8,10 @@ int main(void) {
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
 
-	testCases testContinuous;
+	testCases testContinuous, testClear;
 	testContinuous.testContinuousKeyInput();
+	testClear.testClearInput();
+	
 	
 	while (window.isOpen()) 
 	{
