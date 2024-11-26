@@ -9,14 +9,14 @@
 
 int main(void) {
 
-	testCases testContinuous;
-	testContinuous.testContinuousKeyInput();
+	testCases t;
+	t.runTests();
 
-	TowerDefenseGame app;
-	app.run();
+	//TowerDefenseGame app;
+	//app.run();
 
-	sf::CircleShape circle(5.f);
-	circle.move()
+	//sf::CircleShape circle(5.f);
+	//circle.move()
 
 
 	

@@ -2,10 +2,14 @@
 
 //public run tests only!
 void runTests() {
+	testCases t;
 	std::cout
 	<< "--------- START TESTS --------- " << std::endl
-	<< "testContinuousKeyInput pass: : " << testContinuousKeyInput() << std::endl
-	<< ""
+	<< "testContinuousKeyInput() pass: : " << t.testContinuousKeyInput() << std::endl
+	<< "testComputeDirection() pass: " << t.testComputeDirection() << std::endl
+	<< "testGetandSetHP() pass: " << t.testGetandSetHP() << std::endl
+	<< "testIsDead() pass: " << t.testIsDead() << std::endl
+	<< "testAttackUnitlDead() pass: " << t.testAttackUntilDead() << std::endl
 	<< "--------- END TESTS --------- " << std::endl;
 }
 
@@ -35,41 +39,101 @@ bool testCases::testContinuousKeyInput()
 }
 
 //entity tests
-	bool testComputeDirection() {
+	bool testCases::testComputeDirection() {
 		bool ok = false;
 
-		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)) );
-		Entity two(5, sf::RectangleShape(sf::Vector2f(1,1)) );
+		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)), ZERO_VEC, ZERO_VEC, 0);
+		Entity two(5, sf::RectangleShape(sf::Vector2f(1,1)), ZERO_VEC, ZERO_VEC, 0);
 
+		sf::Vector2f out = computeDirection(one, two);
 
+		if (out.x == one.x && out.y == one.y) {
+
+			Entity three(5, sf::RectangleShape(sf::Vector2f(5,5)), ZERO_VEC, ZERO_VEC, 0);
+
+			out = computeDirection(one, three);
+			if (out.x == 1000 && out.y == 1000) {
+				// should never get here, verify vec formula T_T
+				ok = true;
+			}
+		}
+
+		return ok;
 	}
 
-	bool testGetHP() {
+	bool testCases::testGetandSetHP() {
+		bool ok = false;
 
+		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)), ZERO_VEC, ZERO_VEC, 0);
+
+		if (one.getHP() == 5) {
+			one.setHP(25);
+
+			if (one.getHP() == 25) {
+
+				one.setHP(7);
+				if (one.getHP() == 7) {ok = true;}
+			}
+		}
+
+		return ok;
 	}
 
-	bool testsetHP() {
+	bool testCases::testIsDead() {
+		bool ok = false;
 
+		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)), ZERO_VEC, ZERO_VEC, 0);
+
+		if (one.isDead() == false) {
+
+			one.setHP(0);
+
+			if (one.isDead() == true) {
+
+				one.setHP(-50);
+
+				if (one.isDead() == true) {ok = true;}
+			}
+		}
+
+		return ok;
 	}
 
-	bool testIsDead() {
+	bool testCases::testAttackUntilDead() {
+		bool ok = false;
 
-	}
+		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)), ZERO_VEC, ZERO_VEC, 0);
+		Entity two(5, sf::RectangleShape(sf::Vector2f(1,1)), ZERO_VEC, ZERO_VEC, 0);
 
-	bool testAttackUntilDead() {
+		attackUntilDead(one, two);
+		if (one.isDead() && two.isDead()) {
 
+			one.setHP(5);
+			two.setHP(4);
+			attackUntilDead(one, two);
+
+			if (one.getHP() == 1 && two.isDead()) {
+
+				one.setHP(6);
+				two.setHP(7);
+				attackUntilDead(one, two);
+				if (one.isDead() && two.getHP() == 1) {ok = true;}
+			}
+		}
+
+		return ok;
 	}
 
 	//TowerDefenseGame tests
-	bool testGetPlayer() {
+	bool testCases::testGetPlayer() {
 
 	}
 
-	bool getHostPlayer() {
+	bool testCases::getHostPlayer() {
 
 	}
 
 	//bool testRun(); //-> not needed calls main funcs
-	bool testMapBonus() {
+	bool testCases::testMapBonus() {
 
 	}

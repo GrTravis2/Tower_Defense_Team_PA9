@@ -84,19 +84,19 @@
 
         switch (bonus) {
             case spawn1:// -> insert one gnome at back!
-                pNew = new Entity(1, sf::CircleShape(5.f));
+                //pNew = new Entity(1, sf::CircleShape(5.f));
                 if (pNew != nullptr) {
                     this->mMasterList->push_back(pNew);
                 }
                 break;
             case spawn5:// -> make 5 gnomes and insert at back of list
                 for(int i = 0; i < 5; i++) {
-                    pNew = new Entity(1, sf::CircleShape(5.f));
+                    //pNew = new Entity(1, sf::CircleShape(5.f));
                     this->mMasterList->push_back(pNew);
                 }
                 break;
             case spawnBigGnome:// -> add one big gnome!
-                pNew = new Entity(5, sf::CircleShape(10.f));
+                //pNew = new Entity(5, sf::CircleShape(10.f));
                 this->mMasterList->push_back(pNew);
                 break;
             default:

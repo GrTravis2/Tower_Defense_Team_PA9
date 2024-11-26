@@ -9,7 +9,7 @@ Entity::Entity(
     const sf::RectangleShape& body,// -> pass shape constructor
     const Entity& start,// -> spawning tower ref
     const Entity& end,// -> target tower ref
-    const float& speed,// -> define constant in wrapper by type
+    const float& speed// -> define constant in wrapper by type
     ) {
     this->mHealthPoints = HP;
     this->mBody = body;
@@ -44,7 +44,7 @@ bool Entity::isDead() const {
 }
 
 //helpers
-sf::Vector2f Entity::computeDirection(const Entity& start, const Entity& end, const int& speed) {
+sf::Vector2f computeDirection(const Entity& start, const Entity& end, const int& speed) {
     sf::Vector2f vecStart = start.mBody.getPosition();
     sf::Vector2f vecEnd = start.mBody.getPosition();
     float xComp = vecEnd.x - vecStart.x;// need to double check my vec formulas
@@ -63,7 +63,7 @@ sf::Vector2f Entity::computeDirection(const Entity& start, const Entity& end, co
 
 //when two shapes intersect have them subtract HP's from each other
 //until one is "dead" (no HP)
-friend attackUntilDead(const Entity& lhs, const Entity& rhs) {
+void attackUntilDead(Entity& lhs, Entity& rhs) {
     int leftHP = lhs.getHP();
     int rightHP = rhs.getHP();
 

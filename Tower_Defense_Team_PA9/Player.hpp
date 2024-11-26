@@ -26,10 +26,15 @@ public:
 	//constructor
 	Player(
 		const int& playerID,
-		
+		const int& HP,
+		const sf::RectangleShape& body,
+		const Entity& start,
+		const Entity& end,
+		const float& speed
 	);
 
 	//destructor
+	~Player();
 
 	//getters
 	std::string getInput() const;

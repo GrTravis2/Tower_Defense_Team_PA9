@@ -4,15 +4,17 @@
 
 #include <SFML/Graphics.hpp>
 
+const sf::Vector2f ZERO_VEC(0,0);
+
 
 class Entity {
 private:
 	int mHealthPoints; //create helper function that computes changes in HP.
-	sf:Vector2f mDirection;// -> controls direction and speed, set once at init!
+	sf::Vector2f mDirection;// -> controls direction and speed, set once at init!
 	
 
 	//helpers
-	void computeDirection(const Entity& start, const Entity& end, const float& speed);
+	
 
 public:
 
@@ -28,7 +30,7 @@ public:
 		const sf::RectangleShape& body,// -> pass shape constructor
 		const Entity& start,// -> spawning tower ref
 		const Entity& end,// -> target tower ref
-		const int& speed,// -> define constant in wrapper by type
+		const float& speed// -> define constant in wrapper by type
 		);
 	
 
@@ -49,7 +51,10 @@ public:
 
 	//when two shapes intersect have them subtract HP's from each other
 	//and "kill" one when it hits 0 HP
-	friend attackUntilDead(const Entity& lhs, const Entity& rhs);
+	friend void attackUntilDead(Entity& lhs, Entity& rhs);
 
 
 };
+
+//non-member
+sf::Vector2f computeDirection(const Entity& start, const Entity& end, const float& speed);

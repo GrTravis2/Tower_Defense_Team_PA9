@@ -13,9 +13,8 @@ private:
 	bool testContinuousKeyInput();
 
 	//entity tests
-	bool  testComputeDirection();
-	bool testGetHP();
-	bool testsetHP();
+	bool testComputeDirection();
+	bool testGetandSetHP();
 	bool testIsDead();
 	bool testAttackUntilDead();
 
@@ -24,6 +23,6 @@ private:
 	bool getHostPlayer();
 	//bool testRun(); //-> not needed calls main funcs
 	bool testMapBonus();
-	
+
 
 };

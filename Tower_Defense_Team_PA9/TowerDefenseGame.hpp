@@ -11,7 +11,7 @@
 #define WINDOW_HEIGHT 1000
 
 //path and movement constants
-constexpr PLAYER1_POS = 
+//constexpr PLAYER1_POS = 
 
 /* Leaving space for constexpr, need to generate unit vectors for each path
 */
