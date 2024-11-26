@@ -1,4 +1,4 @@
-# Prerequisites
+j# Prerequisites
 *.d
 
 # Compiled Object files
@@ -40,7 +40,9 @@
 /x64
 /Tower_Defense_Team_PA9/x64
 *.vs
-/main.dSYM
+*.dSYM
+main
+*.zig
 
 # ingrid 
 /Debug
