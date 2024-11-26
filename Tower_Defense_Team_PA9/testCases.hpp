@@ -7,7 +7,7 @@ class testCases
 public:
 	void runTests();
 
-
+private:
 	//inputClass tests
 	bool testContinuousKeyInput();
 
@@ -20,11 +20,7 @@ public:
 	//TowerDefenseGame tests
 	bool testGetPlayer();
 	bool getHostPlayer();
-	//bool testRun(); //-> not needed calls main funcs
+	//bool testRun(); // -> not needed calls main funcs
 	bool testMapBonus();
-private:
-
 	
-
-
 };

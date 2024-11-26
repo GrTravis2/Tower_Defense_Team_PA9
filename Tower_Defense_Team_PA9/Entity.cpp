@@ -51,7 +51,7 @@ bool Entity::isDead() const {
 }
 
 //helpers
-sf::Vector2f computeDirection(const Entity& start, const Entity& end, const int& speed) {
+sf::Vector2f computeDirection(const Entity& start, const Entity& end, const float& speed) {
     sf::Vector2f vecStart = start.mBody.getPosition();
     sf::Vector2f vecEnd = start.mBody.getPosition();
     float xComp = vecEnd.x - vecStart.x;// need to double check my vec formulas
@@ -75,13 +75,16 @@ void attackUntilDead(Entity& lhs, Entity& rhs) {
     int rightHP = rhs.getHP();
 
     //do nothing while hps decrement until one is 0
-    while (leftHP-- != 0 && rightHP-- != 0) {;}
+    while (leftHP != 0 && rightHP != 0) {
+        --leftHP;
+        --rightHP;
+    }
     
     //update HPs
     lhs.setHP(leftHP);
     rhs.setHP(rightHP);
 
     //check for dead entity here or in main?
-    // -> do in main! can do during main loop and cleaup at same time
+    // -> do in main loop! can do during main loop and cleaup at same time
 
 }
