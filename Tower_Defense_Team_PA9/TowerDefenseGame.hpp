@@ -6,8 +6,15 @@
 #include "Player.hpp"
 #include "Entity.hpp"
 
+//window size constants
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 1000
+
+//path and movement constants
+constexpr PLAYER1_POS = 
+
+/* Leaving space for constexpr, need to generate unit vectors for each path
+*/
 
 class TowerDefenseGame {
 private:
