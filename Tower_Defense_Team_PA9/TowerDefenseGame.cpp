@@ -6,7 +6,7 @@
 
 //constructor
 	TowerDefenseGame::TowerDefenseGame() {// -> start default and add thru setters?
-        this->mPlayers = new Player[4];
+        this->mPlayers = nullptr;//new Player[4];
         this->mHostPlayer = &(this->mPlayers[0]); //points at first player
         this->mMasterList = new std::list<Entity*>();
         this->mGameWindow = new sf::RenderWindow(

@@ -4,7 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 
-const sf::Vector2f ZERO_VEC(0,0);
+//const sf::Vector2f ZERO_VEC(0,0);
 
 
 class Entity {
@@ -25,7 +25,11 @@ public:
 	//Also not sure if we should make the shape public? it already has protected methods so should be ok??
 	
 	//constructor
-	Entity(
+	Entity(// -> for static entities (players)
+		const int& HP,
+		const sf::RectangleShape& body
+	);
+	Entity(// -> for entities that move along a vector!
 		const int& HP, // -> obj HP, when it hits 0 will get deleted!
 		const sf::RectangleShape& body,// -> pass shape constructor
 		const Entity& start,// -> spawning tower ref

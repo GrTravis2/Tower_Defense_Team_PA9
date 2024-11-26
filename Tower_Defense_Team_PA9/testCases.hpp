@@ -7,7 +7,6 @@ class testCases
 public:
 	void runTests();
 
-private:
 
 	//inputClass tests
 	bool testContinuousKeyInput();
@@ -23,6 +22,9 @@ private:
 	bool getHostPlayer();
 	//bool testRun(); //-> not needed calls main funcs
 	bool testMapBonus();
+private:
+
+	
 
 
 };

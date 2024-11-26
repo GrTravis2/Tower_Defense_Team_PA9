@@ -2,14 +2,13 @@
 
 //public run tests only!
 void runTests() {
-	testCases t;
 	std::cout
 	<< "--------- START TESTS --------- " << std::endl
-	<< "testContinuousKeyInput() pass: : " << t.testContinuousKeyInput() << std::endl
-	<< "testComputeDirection() pass: " << t.testComputeDirection() << std::endl
-	<< "testGetandSetHP() pass: " << t.testGetandSetHP() << std::endl
-	<< "testIsDead() pass: " << t.testIsDead() << std::endl
-	<< "testAttackUnitlDead() pass: " << t.testAttackUntilDead() << std::endl
+	<< "testContinuousKeyInput() pass: : " << testContinuousKeyInput() << std::endl
+	<< "testComputeDirection() pass: " << testComputeDirection() << std::endl
+	<< "testGetandSetHP() pass: " << testGetandSetHP() << std::endl
+	<< "testIsDead() pass: " << testIsDead() << std::endl
+	<< "testAttackUnitlDead() pass: " << testAttackUntilDead() << std::endl
 	<< "--------- END TESTS --------- " << std::endl;
 }
 
@@ -42,16 +41,16 @@ bool testCases::testContinuousKeyInput()
 	bool testCases::testComputeDirection() {
 		bool ok = false;
 
-		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)), ZERO_VEC, ZERO_VEC, 0);
-		Entity two(5, sf::RectangleShape(sf::Vector2f(1,1)), ZERO_VEC, ZERO_VEC, 0);
+		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)));
+		Entity two(5, sf::RectangleShape(sf::Vector2f(1,1)));
 
-		sf::Vector2f out = computeDirection(one, two);
+		sf::Vector2f out = computeDirection(one, two, 1);
 
-		if (out.x == one.x && out.y == one.y) {
+		if (out.x == one.mBody.getPoint(0).x && out.y == one.mBody.getPoint(0).y) {
 
-			Entity three(5, sf::RectangleShape(sf::Vector2f(5,5)), ZERO_VEC, ZERO_VEC, 0);
+			Entity three(5, sf::RectangleShape(sf::Vector2f(5,5)));
 
-			out = computeDirection(one, three);
+			out = computeDirection(one, three, 1);
 			if (out.x == 1000 && out.y == 1000) {
 				// should never get here, verify vec formula T_T
 				ok = true;
@@ -64,7 +63,7 @@ bool testCases::testContinuousKeyInput()
 	bool testCases::testGetandSetHP() {
 		bool ok = false;
 
-		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)), ZERO_VEC, ZERO_VEC, 0);
+		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)));
 
 		if (one.getHP() == 5) {
 			one.setHP(25);
@@ -82,7 +81,7 @@ bool testCases::testContinuousKeyInput()
 	bool testCases::testIsDead() {
 		bool ok = false;
 
-		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)), ZERO_VEC, ZERO_VEC, 0);
+		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)));
 
 		if (one.isDead() == false) {
 
@@ -102,8 +101,8 @@ bool testCases::testContinuousKeyInput()
 	bool testCases::testAttackUntilDead() {
 		bool ok = false;
 
-		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)), ZERO_VEC, ZERO_VEC, 0);
-		Entity two(5, sf::RectangleShape(sf::Vector2f(1,1)), ZERO_VEC, ZERO_VEC, 0);
+		Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)));
+		Entity two(5, sf::RectangleShape(sf::Vector2f(1,1)));
 
 		attackUntilDead(one, two);
 		if (one.isDead() && two.isDead()) {

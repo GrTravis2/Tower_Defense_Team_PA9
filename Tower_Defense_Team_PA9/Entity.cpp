@@ -4,6 +4,13 @@
 //need to add before it will build :-)
 
 //constructor
+Entity::Entity(// -> for static entities (players)
+		const int& HP,
+		const sf::RectangleShape& body
+	) {
+    this->mHealthPoints = HP;
+    this->mBody = body;
+}
 Entity::Entity(
     const int& HP, // -> obj HP, when it hits 0 will get deleted!
     const sf::RectangleShape& body,// -> pass shape constructor
