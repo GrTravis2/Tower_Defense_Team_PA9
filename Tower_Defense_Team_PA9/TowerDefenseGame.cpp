@@ -6,13 +6,28 @@
 
 //constructor
 	TowerDefenseGame::TowerDefenseGame() {// -> start default and add thru setters?
-        this->mPlayers = nullptr;//new Player[4];
-        this->mHostPlayer = &(this->mPlayers[0]); //points at first player
         this->mMasterList = new std::list<Entity*>();
         this->mGameWindow = new sf::RenderWindow(
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
             "Tower Defense!!"
             );
+
+        //figure out how many Players/NPCs
+        this->setupGame();
+    }
+
+    //setup game
+	void TowerDefenseGame::setupGame() {
+        bool setupComplete = false;
+        int choice = -1;
+        sf::Texture image;
+        //image.loadFromFile("assets/player.png"); //empty texture until we have art
+
+        this->printMultiplayerMenu();
+        std::cin >> 
+        while (setupComplete != true) {
+
+        }
     }
 
 	//destructor
@@ -57,7 +72,7 @@
         clock_t next = now + (CLOCKS_PER_SEC / MAX_FPS);
 
 
-        /* ***MAIN GAME LOOP!!*** */
+        /* ***MAIN GAME LOOP START!!*** */
 
         // loop while game window is open and game is still running
         while (this->mGameWindow->isOpen() && this->GameComplete() == false) {
@@ -83,8 +98,10 @@
             while (clock() < next) {;}// -> do nothing until we hit frame rate
 
             now = clock();// -> clock end of loop
-            next = now + (CLOCKS_PER_SEC / MAX_FPS);// -> get time for next loop end
+            next = now + (CLOCKS_PER_SEC / MAX_FPS);// -> get clock for next loop end
         }
+
+        /* ***MAIN GAME LOOP END!!*** */
 
         //clean up before returning to main:
 
@@ -151,5 +168,6 @@
 	void TowerDefenseGame::printMultiplayerMenu() const {// for join/create game
         std::cout
             << "1. Local Game " << std::endl
-            << "2. Multiplayer Game " << std::endl;
+            << "2. Multiplayer Game " << std::endl
+            << "Please enter choice: ";
     }

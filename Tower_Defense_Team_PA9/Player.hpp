@@ -5,6 +5,7 @@
 
 #define PLAYER_BODY_WIDTH 10.f
 #define PLAYER_SPEED 0.f
+#define PLAYER_HP 30
 
 class Player : public Entity {
 private:
@@ -17,21 +18,25 @@ private:
 	int wordTimer; //count up timer for word update
 	int wordTimerMax; // value word will update when timer reaches
 	std::string wordOptions[3]; //word options to type
-	int points;//**What will this be doing?? -Gavin
+	int points;//**What will this be doing? -Gavin
 	
 	//helpers
 
 public:
 
 	//constructor
+	// Player(
+	// 	const int& playerID,
+	// 	const int& HP, //should be fixed...
+	// 	const sf::RectangleShape& body, //should be fixed
+	// 	const Entity& start, //not needed
+	// 	const Entity& end, //not needed
+	// 	const float& speed //not needed
+	// );
 	Player(
 		const int& playerID,
-		const int& HP,
-		const sf::RectangleShape& body,
-		const Entity& start,
-		const Entity& end,
-		const float& speed
-	);
+
+	) : Entity(PLAYER_HP, );
 
 	//destructor
 	~Player();
