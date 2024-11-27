@@ -1,20 +1,27 @@
 #pragma once
 
 #include <list>
+#include <ctime>
 #include <iostream>
 
 #include "Player.hpp"
 #include "Entity.hpp"
 
+//Game Constants!!
+
 //window size constants
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 1000
 
-//path and movement constants
-//constexpr PLAYER1_POS = 
+//player info
+#define MAX_PLAYERS 4
 
-/* Leaving space for constexpr, need to generate unit vectors for each path
-*/
+//Time constants
+#define MAX_FPS 60 //frames per second
+
+//path and movement constants
+//right now position/direction are based on enitity locations!
+
 
 class TowerDefenseGame {
 private:
@@ -52,6 +59,9 @@ public:
 
 	//updates shape positions, checks for intersections, and then draws all!
 	void updateEntities();
+
+	//checks game conditions for if they are over
+	bool GameComplete() const;
 
 	//public
 

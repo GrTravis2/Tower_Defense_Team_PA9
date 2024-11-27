@@ -50,8 +50,17 @@
         //set up any other initializing code here!!!
         sf::Event event;
 
-        //consider adding || here for the game over condition!
-        while (this->mGameWindow->isOpen()) {// check for window close
+        // starting time
+        clock_t now = clock();
+
+        // # of clocks until 1/60 sec has passed since now
+        clock_t next = now + (CLOCKS_PER_SEC / MAX_FPS);
+
+
+        /* ***MAIN GAME LOOP!!*** */
+
+        // loop while game window is open and game is still running
+        while (this->mGameWindow->isOpen() && this->GameComplete() == false) {
             
             //read in action, see if it will close window!
             while (this->mGameWindow->pollEvent(event)) {
@@ -59,6 +68,7 @@
             }
 
             //check for changes to word choices:
+            //can this also take care of word visuals?
             this->updateWords();
 
             //read player input will modify list if word is complete:
@@ -66,7 +76,19 @@
 
             //step shape positions, checks for intersections and draws all
             this->updateEntities();
+
+            //is it worth scanning for player input while we wait out clock?
+            // -> leaving wait loop empty for now, letting Ingrid/Arni make the call
+
+            while (clock() < next) {;}// -> do nothing until we hit frame rate
+
+            now = clock();// -> clock end of loop
+            next = now + (CLOCKS_PER_SEC / MAX_FPS);// -> get time for next loop end
         }
+
+        //clean up before returning to main:
+
+        //so far nothing dynamic to clean up!
 
     }
 
@@ -109,6 +131,20 @@
 
         //iterator???? :D
         //while (this->mMasterList->)
+    }
+
+    //checks game conditions for if they are over
+	bool TowerDefenseGame::GameComplete() const {
+        bool done = false;
+
+        if (
+        this->mPlayers->getHP() < 0
+        &&
+        this->mPlayers[1]->getHP() < 0
+        ) 
+        { done = true; }
+
+        return done;
     }
 
     //private helpers
