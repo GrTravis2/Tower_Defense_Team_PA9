@@ -6,21 +6,22 @@
 //constructor
 Entity::Entity(// -> for static entities (players)
 		const int& HP,
-		const sf::RectangleShape& body
+		const sf::Sprite& body
 	) {
     this->mHealthPoints = HP;
     this->mBody = body;
 }
 Entity::Entity(
     const int& HP, // -> obj HP, when it hits 0 will get deleted!
-    const sf::RectangleShape& body,// -> pass shape constructor
+    const sf::Sprite& body,// -> pass shape constructor
     const Entity& start,// -> spawning tower ref
     const Entity& end,// -> target tower ref
     const float& speed// -> define constant in wrapper by type
     ) {
     this->mHealthPoints = HP;
-    this->mBody = body;
-    this->mDirection = computeDirection(start, end, 0.1);
+    this->mBody = body;//init body with reference to body
+    this->mBody.setPosition(start.mBody.getPosition());// start at spawning player
+    this->mDirection = computeDirection(start, end, 0.1); //set direction vec
 }
 	
 

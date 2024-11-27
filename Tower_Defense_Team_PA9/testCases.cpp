@@ -43,8 +43,8 @@ bool testCases::testComputeDirection() {
 	float tol = 0.001; // precision issues, adding tolerance for some leeway
 
 	//
-	Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)));
-	Entity two(5, sf::RectangleShape(sf::Vector2f(1,1)));
+	Entity one(5, sf::Sprite(sf::Vector2f(1,1)));
+	Entity two(5, sf::Sprite(sf::Vector2f(1,1)));
 	one.mBody.setPosition(sf::Vector2f(0,0));
 	two.mBody.setPosition(sf::Vector2f(1,1));
 	
@@ -61,7 +61,7 @@ bool testCases::testComputeDirection() {
 		out.y >= two.mBody.getPosition().y - tol
 		) {
 
-		Entity three(5, sf::RectangleShape(sf::Vector2f(1,1)));
+		Entity three(5, sf::Sprite(sf::Vector2f(1,1)));
 		three.mBody.setPosition(5,5);
 
 		out = computeDirection(one, three, sqrt(32));
@@ -87,7 +87,7 @@ bool testCases::testComputeDirection() {
 bool testCases::testGetandSetHP() {
 	bool ok = false;
 
-	Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)));
+	Entity one(5, sf::Sprite(sf::Vector2f(1,1)));
 
 	if (one.getHP() == 5) {
 		one.setHP(25);
@@ -105,7 +105,7 @@ bool testCases::testGetandSetHP() {
 bool testCases::testIsDead() {
 	bool ok = false;
 
-	Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)));
+	Entity one(5, sf::Sprite(sf::Vector2f(1,1)));
 
 	if (one.isDead() == false) {
 
@@ -124,9 +124,10 @@ bool testCases::testIsDead() {
 
 bool testCases::testAttackUntilDead() {
 	bool ok = false;
+	
 
-	Entity one(5, sf::RectangleShape(sf::Vector2f(1,1)));
-	Entity two(5, sf::RectangleShape(sf::Vector2f(1,1)));
+	Entity one(5, sf::Sprite(sf::Vector2f(1,1)));
+	Entity two(5, sf::Sprite(sf::Vector2f(1,1)));
 
 	attackUntilDead(one, two);
 	if (one.isDead() && two.isDead()) {

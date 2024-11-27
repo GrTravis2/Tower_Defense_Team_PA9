@@ -20,11 +20,12 @@
 	void TowerDefenseGame::setupGame() {
         bool setupComplete = false;
         int choice = -1;
-        sf::Texture image;
-        //image.loadFromFile("assets/player.png"); //empty texture until we have art
 
         this->printMultiplayerMenu();
-        std::cin >> 
+        std::cin >> choice;
+        if (choice == 1) {//local game, 3 NPC
+            this->mPlayer1 = new Player()
+        }
         while (setupComplete != true) {
 
         }

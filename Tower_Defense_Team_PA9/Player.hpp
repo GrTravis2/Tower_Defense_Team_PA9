@@ -36,7 +36,7 @@ public:
 	Player(
 		const int& playerID,
 
-	) : Entity(PLAYER_HP, );
+	) : Entity();
 
 	//destructor
 	~Player();
@@ -62,3 +62,5 @@ enum Bonus {
 	spawn5,
 	spawnBigGnome,
 };
+
+const std::string FILE = "mushroomHouse.png";
