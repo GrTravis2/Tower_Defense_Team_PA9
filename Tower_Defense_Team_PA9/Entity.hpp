@@ -1,7 +1,6 @@
 #pragma once
 
 #include <math.h>
-
 #include <SFML/Graphics.hpp>
 
 
@@ -20,7 +19,7 @@ private:
 public:
 
 	//pubic to access shape methods
-	sf::RectangleShape mBody; //placeholder for whatever visual component we have for the entity
+	sf::Sprite mBody; //placeholder for whatever visual component we have for the entity
 	//We also talked about adding some stats here, maybe should go into derived class for more custom stats?
 	//I think the shape will also wrap position and movement functions with it! But we should verify the docs
 	//Also not sure if we should make the shape public? it already has protected methods so should be ok??
@@ -28,11 +27,11 @@ public:
 	//constructor
 	Entity(// -> for static entities (players)
 		const int& HP,
-		const sf::RectangleShape& body
+		const sf::Sprite& body
 	);
 	Entity(// -> for entities that move along a vector!
 		const int& HP, // -> obj HP, when it hits 0 will get deleted!
-		const sf::RectangleShape& body,// -> pass shape constructor
+		const sf::Sprite& body,// -> pass shape constructor
 		const Entity& start,// -> spawning tower ref
 		const Entity& end,// -> target tower ref
 		const float& speed// -> define constant in wrapper by type

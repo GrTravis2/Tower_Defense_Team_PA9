@@ -1,27 +1,43 @@
 #pragma once
 
 #include <list>
+#include <ctime>
 #include <iostream>
+#include <SFML/Graphics.hpp>
 
 #include "Player.hpp"
+#include "NPC.hpp"
 #include "Entity.hpp"
+#include "SpriteManager.hpp"
+
+//Game Constants!!
 
 //window size constants
 #define WINDOW_WIDTH 1000
 #define WINDOW_HEIGHT 1000
 
-//path and movement constants
-//constexpr PLAYER1_POS = 
+//player info
+#define MAX_PLAYERS 4
+#define P1_XPOS 0
+#define P1_YPOS 0
+//other place 
 
-/* Leaving space for constexpr, need to generate unit vectors for each path
-*/
+//Time constants
+#define MAX_FPS 60 //frames per second
+
+//path and movement constants
+//right now position/direction are based on enitity locations!
 
 class TowerDefenseGame {
 private:
-	Player* mPlayers;
-	Player* mHostPlayer;
-	std::list<Entity*>* mMasterList; //list of entities on the heap, should this be pub??
-	sf::RenderWindow* mGameWindow;//?????? will need to check I got right.. Public as well?
+	Player* mPlayer1;// players, might as well be hard coded :D
+	Player* mPlayer2;
+	Player* mPlayer3;
+	Player* mPlayer4;
+	Player* mHostPlayer;// leaving uncoupled for now in case networking
+	std::list<Entity*>* mMasterList; // all objects to update
+	sf::RenderWindow* mGameWindow;// view window (does drawing)
+	SpriteManager* spawner; //spawns sprite types
 
 	//helpers
 	void printMultiplayerMenu() const;// for join/create game
@@ -52,6 +68,12 @@ public:
 
 	//updates shape positions, checks for intersections, and then draws all!
 	void updateEntities();
+
+	//checks game conditions for if they are over
+	bool GameComplete() const;
+
+	//setup game
+	void setupGame();
 
 	//public
 
