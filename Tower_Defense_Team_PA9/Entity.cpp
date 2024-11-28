@@ -10,6 +10,7 @@ Entity::Entity(// -> for static entities (players)
 	) {
     this->mHealthPoints = HP;
     this->mBody = body;
+    this->mDirection = sf::Vector2f(0.0, 0.0);
 }
 Entity::Entity(
     const int& HP, // -> obj HP, when it hits 0 will get deleted!

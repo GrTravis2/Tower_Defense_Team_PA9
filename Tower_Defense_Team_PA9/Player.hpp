@@ -17,7 +17,7 @@ private:
 	std::string input; //string that holds current input
 	int wordTimer; //count up timer for word update
 	int wordTimerMax; // value word will update when timer reaches
-	std::string wordOptions[3]; //word options to type
+	std::string wordOptions[4]; //word options to type
 	int points;//**What will this be doing? -Gavin
 	
 	//helpers
@@ -25,18 +25,11 @@ private:
 public:
 
 	//constructor
-	// Player(
-	// 	const int& playerID,
-	// 	const int& HP, //should be fixed...
-	// 	const sf::RectangleShape& body, //should be fixed
-	// 	const Entity& start, //not needed
-	// 	const Entity& end, //not needed
-	// 	const float& speed //not needed
-	// );
 	Player(
 		const int& playerID,
-
-	) : Entity();
+		const int& HP,
+		const sf::Sprite& body
+		);
 
 	//destructor
 	~Player();
@@ -62,5 +55,3 @@ enum Bonus {
 	spawn5,
 	spawnBigGnome,
 };
-
-const std::string FILE = "mushroomHouse.png";

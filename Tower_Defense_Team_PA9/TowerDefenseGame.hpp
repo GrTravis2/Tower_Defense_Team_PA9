@@ -3,9 +3,12 @@
 #include <list>
 #include <ctime>
 #include <iostream>
+#include <SFML/Graphics.hpp>
 
 #include "Player.hpp"
+#include "NPC.hpp"
 #include "Entity.hpp"
+#include "SpriteManager.hpp"
 
 //Game Constants!!
 
@@ -15,6 +18,9 @@
 
 //player info
 #define MAX_PLAYERS 4
+#define P1_XPOS 0
+#define P1_YPOS 0
+//other place 
 
 //Time constants
 #define MAX_FPS 60 //frames per second
@@ -31,7 +37,7 @@ private:
 	Player* mHostPlayer;// leaving uncoupled for now in case networking
 	std::list<Entity*>* mMasterList; // all objects to update
 	sf::RenderWindow* mGameWindow;// view window (does drawing)
-	sf::SpriteManager spawner; //spawns sprite types
+	SpriteManager* spawner; //spawns sprite types
 
 	//helpers
 	void printMultiplayerMenu() const;// for join/create game

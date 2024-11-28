@@ -1,7 +1,6 @@
 #pragma once
 
 #include <math.h>
-
 #include <SFML/Graphics.hpp>
 
 

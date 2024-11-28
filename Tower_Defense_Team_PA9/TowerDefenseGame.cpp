@@ -1,8 +1,5 @@
 
-#include <SFML/Graphics.hpp>
-
 #include "TowerDefenseGame.hpp"
-#include "NPC.hpp"
 
 //constructor
 	TowerDefenseGame::TowerDefenseGame() {// -> start default and add thru setters?
@@ -11,6 +8,7 @@
             sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
             "Tower Defense!!"
             );
+        this->spawner = new SpriteManager();
 
         //figure out how many Players/NPCs
         this->setupGame();
@@ -24,23 +22,46 @@
         this->printMultiplayerMenu();
         std::cin >> choice;
         if (choice == 1) {//local game, 3 NPC
-            this->mPlayer1 = new Player()
+            this->mPlayer1 = new Player(1, 30, this->spawner->getMushroomTower());
+            this->mPlayer2 = new NPC(2, this->spawner->getMushroomTower(), easy);
+            this->mPlayer3 = new NPC(3, this->spawner->getMushroomTower(), easy);
+            this->mPlayer4 = new NPC(4, this->spawner->getMushroomTower(), easy);
         }
         while (setupComplete != true) {
-
+            setupComplete = true;// place holder
         }
     }
 
 	//destructor
 	TowerDefenseGame::~TowerDefenseGame() {
-        delete this->mPlayers;
+        delete this->mPlayer1;
+        delete this->mPlayer2;
+        delete this->mPlayer3;
+        delete this->mPlayer4;
         delete this->mMasterList;
         delete this->mGameWindow;
     }
 
 	//getters
 	Player* TowerDefenseGame::getPlayer(const int& playerID) const {
-        return &(this->mPlayers[playerID]);//return a ptr!
+        Player* result = nullptr;
+        switch (playerID) {
+            case 1:
+                result = this->mPlayer1;
+                break;
+            case 2:
+                result = this->mPlayer2;
+                break;
+            case 3:
+                result = this->mPlayer3;
+                break;
+            case 4:
+                result = this->mPlayer4;
+                break;
+            default:
+                // :D broke
+                break;
+        }
     }
 	Player* TowerDefenseGame::getHostPlayer() const {
         return this->mHostPlayer;
@@ -156,9 +177,9 @@
         bool done = false;
 
         if (
-        this->mPlayers->getHP() < 0
+        this->mPlayer1->getHP() < 0
         &&
-        this->mPlayers[1]->getHP() < 0
+        this->mPlayer2->getHP() < 0
         ) 
         { done = true; }
 

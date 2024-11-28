@@ -1,10 +1,11 @@
-
+#pragma once
 
 #include <SFML/Graphics.hpp>
 
 class SpriteManager {
 private:
     sf::Sprite* gnome;
+    sf::Sprite* bigGnome;
     sf::Sprite* mushroomTower;
 
     //helpers
@@ -27,6 +28,6 @@ public:
 
     //copy sprites
     sf::Sprite getGnome();
-
+    sf::Sprite getBigGnome();
     sf::Sprite getMushroomTower();
 };

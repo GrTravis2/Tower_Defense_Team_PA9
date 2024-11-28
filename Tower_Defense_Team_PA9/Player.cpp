@@ -4,12 +4,20 @@
 Player::Player(
 	const int& playerID,
 	const int& HP,
-	const sf::RectangleShape& body,
-	const Entity& start,
-	const Entity& end,
-	const float& speed
-) : Entity(HP, body, start, end, speed) {
+	const sf::Sprite& body
+) : Entity(HP, body) {
 	this->mplayerID = playerID;
+	
+
+	//filling extra values with garbage, set later!
+	this->input = "";
+	this->wordTimer = -1;
+	this->wordTimerMax = -1;
+	this->wordOptions[0] = "";
+	this->wordOptions[1] = "";
+	this->wordOptions[2] = "";
+	this->wordOptions[3] = "";
+	this->points = -1;
 }
 
 //destructor
