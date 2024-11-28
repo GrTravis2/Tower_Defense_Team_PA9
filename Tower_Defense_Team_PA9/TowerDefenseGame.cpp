@@ -79,10 +79,6 @@
 
     //start the game!
     void TowerDefenseGame::run() {
-        // hard code 1 player - 3 NPC for now revisit if time
-        //dynamic_cast<NPC*>(->mPlayers[1]);
-        //dynamic_cast<NPC*>(->mPlayers[2]);
-        //dynamic_cast<NPC*>(->mPlayers[3]);
 
         //set up any other initializing code here!!!
         sf::Event event;
@@ -168,8 +164,49 @@
 	//updates shape positions, checks for intersections, and then draws all!
 	void TowerDefenseGame::updateEntities() {
 
+        //over write screen for next iteration
+        this->mGameWindow->clear(sf::Color::Black);
+
         //iterator???? :D
-        //while (this->mMasterList->)
+        for (// move through length of list and do stuff!
+            std::list<Entity*>::iterator iter = this->mMasterList->begin();
+            iter != this->mMasterList->end();
+            ++iter
+            ) {
+            // check if element is already dead before processing
+            if (iter->isDead()) {
+                this->mMasterList->erase(iter); // remove from list
+                delete iter; // deallocate memory
+            }
+            else { // entity is not dead, needs to check conflict, move, and draw  
+
+                //first check for conflicting shapes, needs inner loop!
+                for (
+                    std::list<Entity*>::iterator j = this->mMasterList->begin();
+                    j != this->mMasterList->end();
+                    ++j
+                ) {
+                    
+                    //check if iter element is intersecting with all other shapes
+                    // -> if it is subtract HPs from each other!
+                    if (iter->mBody.getGlobalBounds().intersects(j->getGlobalBounds())) {
+                        attackUntilDead(*iter, *j);
+                    }
+                }
+
+                //move this element by mDirection vec!
+
+                iter->mBody->move(iter->mDirection);
+
+                // now draw element to screen, consider moving thru to another
+                // loop if it makes the rendering of entities choppy!
+                this->mGameWindow->draw(*iter);// -> draw it and display at loop exit!
+            }
+
+        }
+
+        // output contents of list to screen!
+        this->mGameWindow->display();
     }
 
     //checks game conditions for if they are over
@@ -180,6 +217,10 @@
         this->mPlayer1->getHP() < 0
         &&
         this->mPlayer2->getHP() < 0
+        &&
+        this->mPlayer3->getHP() < 0
+        &&
+        this->mPlayer4->getHP() < 0
         ) 
         { done = true; }
 
