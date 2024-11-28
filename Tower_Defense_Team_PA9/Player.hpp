@@ -1,11 +1,15 @@
+#pragma once
 
 #include <string>
 #include "Entity.hpp"
 
+#define PLAYER_BODY_WIDTH 10.f
+#define PLAYER_SPEED 0.f
+
 class Player : public Entity {
 private:
 	//player specific data
-	int mPlayerID;
+	int mplayerID;
 	//network stuff??
 
 	//typing specific data
@@ -13,17 +17,24 @@ private:
 	int wordTimer; //count up timer for word update
 	int wordTimerMax; // value word will update when timer reaches
 	std::string wordOptions[3]; //word options to type
-	int points;
+	int points;//**What will this be doing?? -Gavin
 	
 	//helpers
 
-	void printMenu() const;// for join/create game
-
 public:
+
 	//constructor
-	Player();
+	Player(
+		const int& playerID,
+		const int& HP,
+		const sf::RectangleShape& body,
+		const Entity& start,
+		const Entity& end,
+		const float& speed
+	);
 
 	//destructor
+	~Player();
 
 	//getters
 	std::string getInput() const;
@@ -35,21 +46,10 @@ public:
 
 	//public funcs
 
-	void processInput();// -> for handling keyboard event process!
+	void processInput();
 
-	void updateWords();// -> for handling word and bonus options!
-
-	//updates shape positions, checks for intersections, and then draws all!
-	void updateEntities();
+	
 };
-
-/*
-enum playerID {
-	player1,
-	player2,
-	player3,
-	player4,
-};*/
 
 //we can give these more specific names when we lock down the bonuses
 enum Bonus {
