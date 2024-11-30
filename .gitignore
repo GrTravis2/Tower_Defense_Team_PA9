@@ -52,9 +52,4 @@ main
 *.vcxproj.filters
 *.log
 ipch/
-.vs/Tower_Defense_Team_PA9/v17/.suo
-.vs/Tower_Defense_Team_PA9/FileContentIndex/993d0cf7-d682-4840-9530-ee480371e7a8.vsidx
-.vs/Tower_Defense_Team_PA9/FileContentIndex/b02b5634-4f65-4c4c-a7c2-8201b3dfa9ed.vsidx
-.vs/Tower_Defense_Team_PA9/v17/.suo
-.vs/Tower_Defense_Team_PA9/v17/Browse.VC.db
-.vs/Tower_Defense_Team_PA9/v17/Browse.VC.db-shm
+
