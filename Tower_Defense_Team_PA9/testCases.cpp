@@ -27,11 +27,11 @@ bool testCases::testContinuousKeyInput()
 	if (testInput.getCurrentInput() == "a")
 	{
 		success = true;
-		cout << "Test successful, keyboard event adds a to current input" << endl;
+		//cout << "Test successful, keyboard event adds a to current input" << endl;
 	}
 	else
 	{
-		cout << "Test failed, simulated key press did not add to current input as expected" << endl;
+		//cout << "Test failed, simulated key press did not add to current input as expected" << endl;
 	}
 
 	return success;
@@ -160,6 +160,13 @@ bool testCases::getHostPlayer() {
 
 bool testCases::testMapBonus() {
 	return false;
+}
+
+void testCases::testProcessInput()
+{
+
+	
+
 }
 
 

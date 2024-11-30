@@ -22,5 +22,7 @@ private:
 	bool getHostPlayer();
 	//bool testRun(); // -> not needed calls main funcs
 	bool testMapBonus();
+
+	void testProcessInput();
 	
 };

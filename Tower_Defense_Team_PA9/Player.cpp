@@ -1,5 +1,6 @@
 #include "Player.hpp"
 
+
 //constructor
 Player::Player(
 	const int& playerID,
@@ -17,9 +18,9 @@ Player::~Player() {
 	//nothing for now...
 }
 
-std::string Player::getInput() const
+std::string Player::getInput() 
 {
-	return this->input;
+	return input.getCurrentInput();
 }
 
 int Player::getPoints() const
@@ -34,5 +35,12 @@ void Player::setPoints(int newPoints)
 
 void Player::processInput()
 {
-	// :o
+	for (int i = 0; i < 4; i++)
+	{
+		if (input.getCurrentInput() == wordOptions[i])
+		{
+			
+		}
+	}
+	
 }

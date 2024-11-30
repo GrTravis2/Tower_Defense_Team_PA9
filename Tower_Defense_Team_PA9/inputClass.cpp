@@ -63,7 +63,4 @@ string inputClass::getCurrentInput()
 	return currentInput;
 }
 
-bool inputClass::getIsKeyPressed(sf::Keyboard::Key& key)
-{	
-	return stateOfKeys[key];
-}
+

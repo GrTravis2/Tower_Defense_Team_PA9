@@ -10,7 +10,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "Player.hpp"
+
 
 using std::string;
 using std::endl;
@@ -51,7 +51,8 @@ public:
 	void clearInput();
 	void printInput();
 	string getCurrentInput();
-	bool getIsKeyPressed(sf::Keyboard::Key& key);
+
+	bool crossCheckInput();
 	
 	
 	

@@ -2,6 +2,7 @@
 
 #include <string>
 #include "Entity.hpp"
+#include "inputClass.hpp"
 
 #define PLAYER_BODY_WIDTH 10.f
 #define PLAYER_SPEED 0.f
@@ -13,10 +14,10 @@ private:
 	//network stuff??
 
 	//typing specific data
-	std::string input; //string that holds current input
+	inputClass input; // current input class that holds string + state of keys/mouse
 	int wordTimer; //count up timer for word update
 	int wordTimerMax; // value word will update when timer reaches
-	std::string wordOptions[3]; //word options to type
+	std::string wordOptions[4]; //word options to type //  added 4th box for wildcard - Ingrid
 	int points;//**What will this be doing?? -Gavin
 	
 	//helpers
@@ -37,7 +38,7 @@ public:
 	~Player();
 
 	//getters
-	std::string getInput() const;
+	std::string getInput();
 
 	int getPoints() const;
 
@@ -47,6 +48,7 @@ public:
 	//public funcs
 
 	void processInput();
+
 
 	
 };
