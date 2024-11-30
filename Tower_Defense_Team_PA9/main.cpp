@@ -11,6 +11,8 @@ int main(void) {
 
 	testCases t;
 	t.runTests();
+	TowerDefenseGame test;
+	test.run();
 
 	//TowerDefenseGame app;
 	//app.run();

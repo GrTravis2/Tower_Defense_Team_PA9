@@ -10,7 +10,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "Player.hpp"
+
 
 using std::string;
 using std::endl;
@@ -50,8 +50,9 @@ public:
 	void processEvent(sf::Event& event); // allows for continuous input processing
 	void clearInput();
 	void printInput();
-
 	string getCurrentInput();
+
+	bool crossCheckInput();
 	
 	
 	
