@@ -1,4 +1,4 @@
-# Prerequisites
+j# Prerequisites
 *.d
 
 # Compiled Object files
@@ -37,6 +37,12 @@
 /Tower_Defense_Team_PA9/2.6.2
 *.vscode
 *.vcxproj
+/x64
+/Tower_Defense_Team_PA9/x64
+*.vs
+*.dSYM
+main
+*.zig
 
 # ingrid 
 /Debug

@@ -1,35 +1,22 @@
+
+
+#include <SFML/Graphics.hpp>
+
+
 #include "inputClass.hpp"
 #include "testCases.hpp"
-#include <SFML/Graphics.hpp>
+#include "TowerDefenseGame.hpp"
 
 int main(void) {
 
-	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML Works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	testCases t;
+	t.runTests();
 
-	testCases testContinuous;
-	testContinuous.testContinuousKeyInput();
-	
-	/*while (window.isOpen()) 
-	{
-		
-		sf::Event event;
-		while(window.pollEvent(event)) {
+	//TowerDefenseGame app;
+	//app.run();
 
-			if (event.type == sf::Event::Closed) { window.close(); }
-		}
-
-		
-	
-
-		window.clear();
-		window.draw(shape);
-		window.display();
-		
-	}
-*/
-
+	//sf::CircleShape circle(5.f);
+	//circle.move()
 
 
 	

@@ -2,6 +2,12 @@
 
 #include "Player.hpp"
 
+enum difficulty {
+	easy,
+	medium,
+	hard,
+	evil,
+};
 class NPC : public Player {
 
 private:
@@ -14,8 +20,14 @@ private:
 public:
 
 	//constructor
+	NPC(
+		const int& playerID,
+		const sf::Sprite& body,
+		const difficulty& diff
+		);
 
 	//destructor
+	~NPC();
 
 	//getters
 
@@ -25,9 +37,3 @@ public:
 
 };
 
-enum difficulty {
-	easy,
-	medium,
-	hard,
-	evil,
-};
