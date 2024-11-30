@@ -36,6 +36,10 @@ int Entity::getHP() const {
     return this->mHealthPoints;
 }
 
+sf::Vector2f Entity::getDirection() const {
+    return this->mDirection;
+}
+
 //setters
 void Entity::setHP(const int& newHP) {
     this->mHealthPoints = newHP;

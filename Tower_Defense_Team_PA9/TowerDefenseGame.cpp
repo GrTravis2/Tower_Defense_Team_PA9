@@ -2,235 +2,238 @@
 #include "TowerDefenseGame.hpp"
 
 //constructor
-	TowerDefenseGame::TowerDefenseGame() {// -> start default and add thru setters?
-        this->mMasterList = new std::list<Entity*>();
-        this->mGameWindow = new sf::RenderWindow(
-            sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
-            "Tower Defense!!"
-            );
-        this->spawner = new SpriteManager();
+TowerDefenseGame::TowerDefenseGame() {// -> start default and add thru setters?
+    this->mMasterList = new std::list<Entity*>();
+    this->mGameWindow = new sf::RenderWindow(
+        sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT),
+        "Tower Defense!!"
+        );
+    this->spawner = new SpriteManager();
 
-        //figure out how many Players/NPCs
-        this->setupGame();
+    //figure out how many Players/NPCs
+    this->setupGame();
+}
+
+//setup game
+void TowerDefenseGame::setupGame() {
+    bool setupComplete = false;
+    int choice = -1;
+
+    this->printMultiplayerMenu();
+    std::cin >> choice;
+    if (choice == 1) {//local game, 3 NPC
+        this->mPlayer1 = new Player(1, 30, this->spawner->getMushroomTower());
+        this->mPlayer2 = new NPC(2, this->spawner->getMushroomTower(), easy);
+        this->mPlayer3 = new NPC(3, this->spawner->getMushroomTower(), easy);
+        this->mPlayer4 = new NPC(4, this->spawner->getMushroomTower(), easy);
+    }
+    while (setupComplete != true) {
+        setupComplete = true;// place holder, need adding player sequence
+    }
+}
+
+//destructor
+TowerDefenseGame::~TowerDefenseGame() {
+    delete this->mPlayer1;
+    delete this->mPlayer2;
+    delete this->mPlayer3;
+    delete this->mPlayer4;
+    delete this->mMasterList;
+    delete this->mGameWindow;
+}
+
+//getters
+Player* TowerDefenseGame::getPlayer(const int& playerID) const {
+    Player* result = nullptr;
+    switch (playerID) {
+        case 1:
+            result = this->mPlayer1;
+            break;
+        case 2:
+            result = this->mPlayer2;
+            break;
+        case 3:
+            result = this->mPlayer3;
+            break;
+        case 4:
+            result = this->mPlayer4;
+            break;
+        default:
+            // :D broke
+            break;
     }
 
-    //setup game
-	void TowerDefenseGame::setupGame() {
-        bool setupComplete = false;
-        int choice = -1;
+    return result;
+}
 
-        this->printMultiplayerMenu();
-        std::cin >> choice;
-        if (choice == 1) {//local game, 3 NPC
-            this->mPlayer1 = new Player(1, 30, this->spawner->getMushroomTower());
-            this->mPlayer2 = new NPC(2, this->spawner->getMushroomTower(), easy);
-            this->mPlayer3 = new NPC(3, this->spawner->getMushroomTower(), easy);
-            this->mPlayer4 = new NPC(4, this->spawner->getMushroomTower(), easy);
-        }
-        while (setupComplete != true) {
-            setupComplete = true;// place holder
-        }
-    }
+Player* TowerDefenseGame::getHostPlayer() const {
+    return this->mHostPlayer;
+}
 
-	//destructor
-	TowerDefenseGame::~TowerDefenseGame() {
-        delete this->mPlayer1;
-        delete this->mPlayer2;
-        delete this->mPlayer3;
-        delete this->mPlayer4;
-        delete this->mMasterList;
-        delete this->mGameWindow;
-    }
+//setters
 
-	//getters
-	Player* TowerDefenseGame::getPlayer(const int& playerID) const {
-        Player* result = nullptr;
-        switch (playerID) {
-            case 1:
-                result = this->mPlayer1;
-                break;
-            case 2:
-                result = this->mPlayer2;
-                break;
-            case 3:
-                result = this->mPlayer3;
-                break;
-            case 4:
-                result = this->mPlayer4;
-                break;
-            default:
-                // :D broke
-                break;
-        }
-    }
-	Player* TowerDefenseGame::getHostPlayer() const {
-        return this->mHostPlayer;
-    }
-
-	//setters
-
-	//input player and their ID (player1, player2, player3, player4)
-	//void TowerDefenseGame::setPlayer(const int& playerID, const Player*& player) {
-    //    this->(mPlayers + playerID - 1);//return a ptr with ptr arithmetic >:)
-    //}
+//input player and their ID (player1, player2, player3, player4)
+//void TowerDefenseGame::setPlayer(const int& playerID, const Player*& player) {
+//    this->(mPlayers + playerID - 1);//return a ptr with ptr arithmetic >:)
+//}
 
 
-	//public
+//public
 
-    //start the game!
-    void TowerDefenseGame::run() {
+//start the game!
+void TowerDefenseGame::run() {
 
-        //set up any other initializing code here!!!
-        sf::Event event;
+    //set up any other initializing code here!!!
+    sf::Event event;
 
-        // starting time
-        clock_t now = clock();
+    // starting time
+    clock_t now = clock();
 
-        // # of clocks until 1/60 sec has passed since now
-        clock_t next = now + (CLOCKS_PER_SEC / MAX_FPS);
+    // # of clocks until 1/60 sec has passed since now
+    clock_t next = now + (CLOCKS_PER_SEC / MAX_FPS);
 
 
-        /* ***MAIN GAME LOOP START!!*** */
+    /* ***MAIN GAME LOOP START!!*** */
 
-        // loop while game window is open and game is still running
-        while (this->mGameWindow->isOpen() && this->GameComplete() == false) {
-            
-            //read in action, see if it will close window!
-            while (this->mGameWindow->pollEvent(event)) {
-                if(event.type == sf::Event::Closed) { this->mGameWindow->close(); }
-            }
-
-            //check for changes to word choices:
-            //can this also take care of word visuals?
-            this->updateWords();
-
-            //read player input will modify list if word is complete:
-            this->processInput();
-
-            //step shape positions, checks for intersections and draws all
-            this->updateEntities();
-
-            //is it worth scanning for player input while we wait out clock?
-            // -> leaving wait loop empty for now, letting Ingrid/Arni make the call
-
-            while (clock() < next) {;}// -> do nothing until we hit frame rate
-
-            now = clock();// -> clock end of loop
-            next = now + (CLOCKS_PER_SEC / MAX_FPS);// -> get clock for next loop end
+    // loop while game window is open and game is still running
+    while (this->mGameWindow->isOpen() && this->GameComplete() == false) {
+        
+        //read in action, see if it will close window!
+        while (this->mGameWindow->pollEvent(event)) {
+            if(event.type == sf::Event::Closed) { this->mGameWindow->close(); }
         }
 
-        /* ***MAIN GAME LOOP END!!*** */
+        //check for changes to word choices:
+        //can this also take care of word visuals?
+        this->updateWords();
 
-        //clean up before returning to main:
+        //read player input will modify list if word is complete:
+        this->processInput();
 
-        //so far nothing dynamic to clean up!
+        //step shape positions, checks for intersections and draws all
+        this->updateEntities();
 
+        //is it worth scanning for player input while we wait out clock?
+        // -> leaving wait loop empty for now, letting Ingrid/Arni make the call
+
+        while (clock() < next) {;}// -> do nothing until we hit frame rate
+
+        now = clock();// -> clock end of loop
+        next = now + (CLOCKS_PER_SEC / MAX_FPS);// -> get clock for next loop end
     }
 
-	void TowerDefenseGame::processInput() {// -> for handling keyboard event process!
+    /* ***MAIN GAME LOOP END!!*** */
 
-    }
+    //clean up before returning to main:
 
-	void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
+    //so far nothing dynamic to clean up!
 
-    }
+}
 
-	// takes bonus enum and adds bonus entity(s) to master list
-	void TowerDefenseGame::mapBonus(enum Bonus& bonus) {
-        Entity* pNew = nullptr;
+void TowerDefenseGame::processInput() {// -> for handling keyboard event process!
 
-        switch (bonus) {
-            case spawn1:// -> insert one gnome at back!
-                //pNew = new Entity(1, sf::CircleShape(5.f));
-                if (pNew != nullptr) {
-                    this->mMasterList->push_back(pNew);
-                }
-                break;
-            case spawn5:// -> make 5 gnomes and insert at back of list
-                for(int i = 0; i < 5; i++) {
-                    //pNew = new Entity(1, sf::CircleShape(5.f));
-                    this->mMasterList->push_back(pNew);
-                }
-                break;
-            case spawnBigGnome:// -> add one big gnome!
-                //pNew = new Entity(5, sf::CircleShape(10.f));
+}
+
+void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
+
+}
+
+// takes bonus enum and adds bonus entity(s) to master list
+void TowerDefenseGame::mapBonus(enum Bonus& bonus) {
+    Entity* pNew = nullptr;
+
+    switch (bonus) {
+        case spawn1:// -> insert one gnome at back!
+            //pNew = new Entity(1, sf::CircleShape(5.f));
+            if (pNew != nullptr) {
                 this->mMasterList->push_back(pNew);
-                break;
-            default:
-                std::cout << "how did you do this??" << std::endl;
-        }
+            }
+            break;
+        case spawn5:// -> make 5 gnomes and insert at back of list
+            for(int i = 0; i < 5; i++) {
+                //pNew = new Entity(1, sf::CircleShape(5.f));
+                this->mMasterList->push_back(pNew);
+            }
+            break;
+        case spawnBigGnome:// -> add one big gnome!
+            //pNew = new Entity(5, sf::CircleShape(10.f));
+            this->mMasterList->push_back(pNew);
+            break;
+        default:
+            std::cout << "how did you do this??" << std::endl;
     }
+}
 
-	//updates shape positions, checks for intersections, and then draws all!
-	void TowerDefenseGame::updateEntities() {
+//updates shape positions, checks for intersections, and then draws all!
+void TowerDefenseGame::updateEntities() {
 
-        //over write screen for next iteration
-        this->mGameWindow->clear(sf::Color::Black);
+    //over write screen for next iteration
+    this->mGameWindow->clear(sf::Color::Black);
 
-        //iterator???? :D
-        for (// move through length of list and do stuff!
-            std::list<Entity*>::iterator iter = this->mMasterList->begin();
-            iter != this->mMasterList->end();
-            ++iter
+    //iterator???? :D
+    for (// move through length of list and do stuff!
+        std::list<Entity*>::iterator iter = this->mMasterList->begin();
+        iter != this->mMasterList->end();
+        ++iter
+        ) {
+        // check if element is already dead before processing
+        if ((*iter)->isDead()) {
+            this->mMasterList->erase(iter); // remove from list
+            delete *iter; // deallocate memory
+        }
+        else { // entity is not dead, needs to check conflict, move, and draw  
+
+            //first check for conflicting shapes, needs inner loop!
+            for (
+                std::list<Entity*>::iterator j = this->mMasterList->begin();
+                j != this->mMasterList->end();
+                ++j
             ) {
-            // check if element is already dead before processing
-            if (iter->isDead()) {
-                this->mMasterList->erase(iter); // remove from list
-                delete iter; // deallocate memory
-            }
-            else { // entity is not dead, needs to check conflict, move, and draw  
-
-                //first check for conflicting shapes, needs inner loop!
-                for (
-                    std::list<Entity*>::iterator j = this->mMasterList->begin();
-                    j != this->mMasterList->end();
-                    ++j
-                ) {
-                    
-                    //check if iter element is intersecting with all other shapes
-                    // -> if it is subtract HPs from each other!
-                    if (iter->mBody.getGlobalBounds().intersects(j->getGlobalBounds())) {
-                        attackUntilDead(*iter, *j);
-                    }
+                
+                //check if iter element is intersecting with all other shapes
+                // -> if it is subtract HPs from each other!
+                if ((*iter)->mBody.getGlobalBounds().intersects((*j)->mBody.getGlobalBounds())) {
+                    attackUntilDead(**iter, **j);
                 }
-
-                //move this element by mDirection vec!
-
-                iter->mBody->move(iter->mDirection);
-
-                // now draw element to screen, consider moving thru to another
-                // loop if it makes the rendering of entities choppy!
-                this->mGameWindow->draw(*iter);// -> draw it and display at loop exit!
             }
 
+            //move this element by mDirection vec!
+
+            (*iter)->mBody.move((*iter)->getDirection());
+
+            // now draw element to screen, consider moving thru to another
+            // loop if it makes the rendering of entities choppy!
+            this->mGameWindow->draw((*iter)->mBody);// -> draw it and display at loop exit!
         }
 
-        // output contents of list to screen!
-        this->mGameWindow->display();
     }
 
-    //checks game conditions for if they are over
-	bool TowerDefenseGame::GameComplete() const {
-        bool done = false;
+    // output contents of list to screen!
+    this->mGameWindow->display();
+}
 
-        if (
-        this->mPlayer1->getHP() < 0
-        &&
-        this->mPlayer2->getHP() < 0
-        &&
-        this->mPlayer3->getHP() < 0
-        &&
-        this->mPlayer4->getHP() < 0
-        ) 
-        { done = true; }
+//checks game conditions for if they are over
+bool TowerDefenseGame::GameComplete() const {
+    bool done = false;
 
-        return done;
-    }
+    if (
+    this->mPlayer1->getHP() < 0
+    &&
+    this->mPlayer2->getHP() < 0
+    &&
+    this->mPlayer3->getHP() < 0
+    &&
+    this->mPlayer4->getHP() < 0
+    ) 
+    { done = true; }
 
-    //private helpers
-	void TowerDefenseGame::printMultiplayerMenu() const {// for join/create game
-        std::cout
-            << "1. Local Game " << std::endl
-            << "2. Multiplayer Game " << std::endl
-            << "Please enter choice: ";
-    }
+    return done;
+}
+
+//private helpers
+void TowerDefenseGame::printMultiplayerMenu() const {// for join/create game
+    std::cout
+        << "1. Local Game " << std::endl
+        << "2. Multiplayer Game " << std::endl
+        << "Please enter choice: ";
+}
