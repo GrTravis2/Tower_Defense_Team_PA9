@@ -1,4 +1,4 @@
-
+#include <iostream>
 #include "TowerDefenseGame.hpp"
 
 //constructor
@@ -62,7 +62,10 @@
                 // :D broke
                 break;
         }
+
+        return result; // Gavin I had to add this sorry if it ruins your day - Ingrid
     }
+
 	Player* TowerDefenseGame::getHostPlayer() const {
         return this->mHostPlayer;
     }
@@ -85,8 +88,10 @@
         //dynamic_cast<NPC*>(->mPlayers[3]);
 
         //set up any other initializing code here!!!
-        sf::Event event;
-
+       
+       sf::Event event;
+       
+    
         // starting time
         clock_t now = clock();
 
@@ -101,38 +106,50 @@
             
             //read in action, see if it will close window!
             while (this->mGameWindow->pollEvent(event)) {
-                if(event.type == sf::Event::Closed) { this->mGameWindow->close(); }
-            }
 
+                if(event.type == sf::Event::Closed) { this->mGameWindow->close(); }
+
+                if (event.type == sf::Event::TextEntered)
+                {
+                    processInput();
+                }
+
+            }
+            
             //check for changes to word choices:
             //can this also take care of word visuals?
-            this->updateWords();
+            //this->updateWords();
 
             //read player input will modify list if word is complete:
-            this->processInput();
+            //this->processInput();
 
             //step shape positions, checks for intersections and draws all
-            this->updateEntities();
+            //this->updateEntities();
 
+            
             //is it worth scanning for player input while we wait out clock?
             // -> leaving wait loop empty for now, letting Ingrid/Arni make the call
 
-            while (clock() < next) {;}// -> do nothing until we hit frame rate
+            while (clock() < next) { ; }// -> do nothing until we hit frame rate
 
             now = clock();// -> clock end of loop
             next = now + (CLOCKS_PER_SEC / MAX_FPS);// -> get clock for next loop end
         }
-
-        /* ***MAIN GAME LOOP END!!*** */
+        
+        ///* ***MAIN GAME LOOP END!!*** */
 
         //clean up before returning to main:
 
         //so far nothing dynamic to clean up!
 
+
+        
+
     }
 
 	void TowerDefenseGame::processInput() {// -> for handling keyboard event process!
 
+        mPlayer1->updateInput();
     }
 
 	void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
@@ -185,6 +202,20 @@
 
         return done;
     }
+    
+    string* getWordChoices()
+    {
+        int randomNumber = (std::rand() % (sizeof(wordPool) / sizeof(wordPool[0])));
+        string wordChoicesArr[3];
+        for (int i = 0; i < 3; i++)
+        {
+            wordChoicesArr[i] = wordPool[randomNumber];
+        }
+
+        return wordChoicesArr;
+    }
+
+    
 
     //private helpers
 	void TowerDefenseGame::printMultiplayerMenu() const {// for join/create game
@@ -193,3 +224,4 @@
             << "2. Multiplayer Game " << std::endl
             << "Please enter choice: ";
     }
+

@@ -1,8 +1,6 @@
-#ifndef INPUT_CLASS
-#define INPUT_CLASS
+#pragma once
 
-#define TOTAL_KEYS 256
-#define TOTAL_MOUSE_BUTTONS 5
+
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -40,28 +38,18 @@ private:
 	
 	
 	string currentInput;
-	bool stateOfKeys[TOTAL_KEYS];
-	bool stateOfMouse[TOTAL_MOUSE_BUTTONS];
-
+	
 
 public:
 	inputClass();
 
-	void processEvent(sf::Event& event); // allows for continuous input processing
+	void updateInput();
 	void clearInput();
 	void printInput();
 	string getCurrentInput();
-
-	bool crossCheckInput();
-	
-	
-	
-
-	
-
+	void setNewChoices();
 
 };
 
 
 
-#endif // !INPUT_CLASS

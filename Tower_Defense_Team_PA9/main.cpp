@@ -9,10 +9,14 @@
 
 int main(void) {
 
+	std::srand(std::time(nullptr)); // seed for random number
+
+
 	testCases t;
 	t.runTests();
 	TowerDefenseGame test;
 	test.run();
+
 
 	//TowerDefenseGame app;
 	//app.run();
