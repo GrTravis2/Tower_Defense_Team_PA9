@@ -1,13 +1,22 @@
 
+#include <ctime>
 
 #include "inputClass.hpp"
 #include "Entity.hpp"
+#include "SpriteManager.hpp"
 class testCases
 {
 public:
 	void runTests();
 
+	//default constructor + destructor :(
+	testCases();
+	~testCases();
+
 private:
+	//data stuff
+	SpriteManager* s;
+
 	//inputClass tests
 	bool testContinuousKeyInput();
 
@@ -16,6 +25,9 @@ private:
 	bool testGetandSetHP();
 	bool testIsDead();
 	bool testAttackUntilDead();
+
+	// SpriteManager tests
+	bool testLoadSprite();
 
 	//TowerDefenseGame tests
 	bool testGetPlayer();

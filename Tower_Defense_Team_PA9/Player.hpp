@@ -12,9 +12,11 @@ private:
 	//player specific data
 	int mplayerID;
 	//network stuff??
-
+	
+	
 	//typing specific data
-	inputClass input; // current input class that holds string + state of keys/mouse
+	inputClass playerInput; // current input class that holds string + state of keys/mouse
+
 	int wordTimer; //count up timer for word update
 	int wordTimerMax; // value word will update when timer reaches
 	std::string wordOptions[4]; //word options to type //  added 4th box for wildcard - Ingrid
@@ -25,14 +27,21 @@ private:
 public:
 
 	//constructor
+	
+
+
 	Player(
 		const int& playerID,
 		const int& HP,
-		const sf::RectangleShape& body,
+		const sf::Sprite& body,
 		const Entity& start,
 		const Entity& end,
 		const float& speed
 	);
+
+	
+	//// added this because my compiler had an issue with the constructor 
+	//Player(const int& playerID, const int& HP, const sf::Sprite& body);
 
 	//destructor
 	~Player();
@@ -44,11 +53,14 @@ public:
 
 	//setters
 	void setPoints(int newPoints);
+	
 
 	//public funcs
-
-	void processInput();
-
+	void updateInput();
+	void clearInput();
+	bool processPlayerInput();
+	void setWordChoices();
+	void displayWords();
 
 	
 };

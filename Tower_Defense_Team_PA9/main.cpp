@@ -9,18 +9,17 @@
 
 int main(void) {
 
+	//testCases t;
+	//t.runTests();
+
+	std::srand(std::time(nullptr)); // seed for random number
+
+
 	testCases t;
 	t.runTests();
-	TowerDefenseGame test;
-	test.run();
 
-	//TowerDefenseGame app;
-	//app.run();
+	TowerDefenseGame app;
+	app.run();
 
-	//sf::CircleShape circle(5.f);
-	//circle.move()
-
-
-	
 	return 0;
 }
