@@ -86,12 +86,6 @@ Player* TowerDefenseGame::getHostPlayer() const {
 
 //setters
 
-//input player and their ID (player1, player2, player3, player4)
-//void TowerDefenseGame::setPlayer(const int& playerID, const Player*& player) {
-//    this->(mPlayers + playerID - 1);//return a ptr with ptr arithmetic >:)
-//}
-
-
 //public
 
 //start the game!
@@ -99,13 +93,6 @@ void TowerDefenseGame::run() {
 
     //set up any other initializing code here!!!
     sf::Event event;
-
-    // starting time
-    //clock_t now = clock();
-
-    // # of clocks until 1/60 sec has passed since now
-    //clock_t next = now + (CLOCKS_PER_SEC / MAX_FPS);
-
 
     /* ***MAIN GAME LOOP START!!*** */
 
@@ -127,13 +114,6 @@ void TowerDefenseGame::run() {
         //step shape positions, checks for intersections and draws all
         this->updateEntities();
 
-        //is it worth scanning for player input while we wait out clock?
-        // -> leaving wait loop empty for now, letting Ingrid/Arni make the call
-
-        //while (clock() < next) {;}// -> do nothing until we hit frame rate
-
-        //now = clock();// -> clock end of loop
-        //next = now + (CLOCKS_PER_SEC / MAX_FPS);// -> get clock for next loop end
     }
 
     /* ***MAIN GAME LOOP END!!*** */
