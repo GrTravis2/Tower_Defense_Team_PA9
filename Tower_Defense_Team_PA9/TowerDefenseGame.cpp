@@ -25,7 +25,7 @@ void TowerDefenseGame::setupGame() {
     if (choice == 1) {//local game, 3 NPC
 
         this->mPlayer1 = new Player(1, 30, this->spawner->getMushroomTower());
-        this->mPlayer1->mBody.setPosition(sf::Vector2f(P1_X, P1_Y)); 
+        this->mPlayer1->mBody.setPosition(sf::Vector2f(P1_X, P1_Y));
 
         this->mPlayer2 = new NPC(2, this->spawner->getMushroomTower(), easy);
         this->mPlayer2->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P2_X, P2_Y));
@@ -34,11 +34,16 @@ void TowerDefenseGame::setupGame() {
         this->mPlayer3->mBody.setPosition(sf::Vector2f(P3_X,WINDOW_HEIGHT + P3_Y));
 
         this->mPlayer4 = new NPC(4, this->spawner->getMushroomTower(), easy);
-        this->mPlayer4->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH+  P4_X,WINDOW_HEIGHT + P4_Y));
+        this->mPlayer4->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P4_X,WINDOW_HEIGHT + P4_Y));
     }
     while (setupComplete != true) {
         setupComplete = true;// place holder, need adding player sequence
     }
+
+    this->mMasterList->push_back(this->mPlayer1);
+    this->mMasterList->push_back(this->mPlayer2);
+    this->mMasterList->push_back(this->mPlayer3);
+    this->mMasterList->push_back(this->mPlayer4);
 }
 
 //destructor
@@ -96,10 +101,10 @@ void TowerDefenseGame::run() {
     sf::Event event;
 
     // starting time
-    clock_t now = clock();
+    //clock_t now = clock();
 
     // # of clocks until 1/60 sec has passed since now
-    clock_t next = now + (CLOCKS_PER_SEC / MAX_FPS);
+    //clock_t next = now + (CLOCKS_PER_SEC / MAX_FPS);
 
 
     /* ***MAIN GAME LOOP START!!*** */
@@ -125,10 +130,10 @@ void TowerDefenseGame::run() {
         //is it worth scanning for player input while we wait out clock?
         // -> leaving wait loop empty for now, letting Ingrid/Arni make the call
 
-        while (clock() < next) {;}// -> do nothing until we hit frame rate
+        //while (clock() < next) {;}// -> do nothing until we hit frame rate
 
-        now = clock();// -> clock end of loop
-        next = now + (CLOCKS_PER_SEC / MAX_FPS);// -> get clock for next loop end
+        //now = clock();// -> clock end of loop
+        //next = now + (CLOCKS_PER_SEC / MAX_FPS);// -> get clock for next loop end
     }
 
     /* ***MAIN GAME LOOP END!!*** */
@@ -201,7 +206,10 @@ void TowerDefenseGame::updateEntities() {
                 
                 //check if iter element is intersecting with all other shapes
                 // -> if it is subtract HPs from each other!
-                if ((*iter)->mBody.getGlobalBounds().intersects((*j)->mBody.getGlobalBounds())) {
+                if (
+                    (*iter)->mBody.getGlobalBounds().intersects((*j)->mBody.getGlobalBounds())
+                    &&
+                    iter != j) {
                     attackUntilDead(**iter, **j);
                 }
             }

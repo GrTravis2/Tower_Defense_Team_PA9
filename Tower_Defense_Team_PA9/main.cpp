@@ -9,11 +9,11 @@
 
 int main(void) {
 
-	testCases t;
-	t.runTests();
+	//testCases t;
+	//t.runTests();
 
-	//TowerDefenseGame app;
-	//app.run();
+	TowerDefenseGame app;
+	app.run();
 
 	return 0;
 }
