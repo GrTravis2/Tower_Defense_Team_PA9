@@ -82,8 +82,9 @@ bool Player::processPlayerInput()
 	
 }
 
-void Player::setWordChoices()
+void Player::setWord(int index, string newWord)
 {
+	wordOptions[index] = newWord;
 	
 }
 
@@ -93,6 +94,7 @@ void Player::displayWords()
 {
 	for (int i = 0; i < 3; i++)
 	{
+		cout << "\n";
 		cout << "Word #" << i + 1 << ":" << wordOptions[i] << endl;
 	}
 }

@@ -14,6 +14,7 @@
 
 //Game Constants!!
 
+
 //window size constants
 #define WINDOW_WIDTH 1500
 #define WINDOW_HEIGHT 1000
@@ -75,6 +76,12 @@ public:
 
 	//setters
 
+	void assign3Words();
+	void assignExtremeWord();
+	void assignSingleWord(int index);
+
+
+
 	//input player and their ID (player1, player2, player3, player4)
 	void setPlayer(const int& playerID, const Player*& player);
 
@@ -87,6 +94,7 @@ public:
 
 	//updates shape positions, checks for intersections, and then draws all!
 	void updateEntities();
+
 
 	//checks game conditions for if they are over
 	bool GameComplete() const;
@@ -123,10 +131,93 @@ const std::string wordPool[] = {
 	"break",
 	"time",
 	"gather",
-	"cougar"
+	"cougar",
+	"keyboard",
+	"pixel",
+	"render",
+	"challenge",
+	"python",
+	"loop",
+	"coffee",
+	"network",
+	"storage",
+	"dynamic",
+	"cascade",
+	"library",
+	"compile",
+	"crash",
+	"vector",
+	"debug",
+	"encrypt",
+	"function",
+	"texture",
+	"sprite",
+	"motion",
+	"scroll",
+	"quasar",
+	"galaxy",
+	"planet",
+	"wizard",
+	"syntax",
+	"kernel",
+	"buffer",
+	"stack",
+	"thread",
+	"syntax",
+	"visual",
+	"format",
+	"escape",
+	"engine",
+	"launch",
+	"module",
+	"binary",
+	"fusion",
+	"vertex",
+	"glyph",
+	"shader",
+	"circle",
+
 };
 
-string* getWordChoices();
+// 3000 iq big bonus words
+const string extremePool[] = {
+
+	"abyss",
+	"quixotic",
+	"zephyr",
+	"mnemonic",
+	"echelon",
+	"labyrinth",
+	"onomatopoeia",
+	"juxtaposition",
+	"effervescent",
+	"paradoxical",
+	"synecdoche",
+	"ephemeral",
+	"rendezvous",
+	"cataclysm",
+	"phenomenon",
+	"soliloquy",
+	"schism",
+	"vicissitude",
+	"penumbra",
+	"transcendence",
+	"serendipity",
+	"altruistic",
+	"idiosyncratic",
+	"proclivity",
+	"antithesis",
+	"catharsis",
+	"ineffable",
+	"ubiquitous",
+	"permutation",
+	"epistemology"
+};
 
 
+int generateRandomNumber();
+int generateExtremeNumber();
+
+string generateRandomWord();
+string generateExtremeWord();
 

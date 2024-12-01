@@ -60,50 +60,75 @@ TowerDefenseGame::~TowerDefenseGame() {
 Player* TowerDefenseGame::getPlayer(const int& playerID) const {
     Player* result = nullptr;
     switch (playerID) {
-        case 1:
-            result = this->mPlayer1;
-            break;
-        case 2:
-            result = this->mPlayer2;
-            break;
-        case 3:
-            result = this->mPlayer3;
-            break;
-        case 4:
-            result = this->mPlayer4;
-            break;
-        default:
-            // :D broke
-            break;
+    case 1:
+        result = this->mPlayer1;
+        break;
+    case 2:
+        result = this->mPlayer2;
+        break;
+    case 3:
+        result = this->mPlayer3;
+        break;
+    case 4:
+        result = this->mPlayer4;
+        break;
+    default:
+        // :D broke
+        break;
     }
+    return result;
+}
   
 //getters
-Player* TowerDefenseGame::getPlayer(const int& playerID) const {
-      Player* result = nullptr;
-      switch (playerID) {
-          case 1:
-              result = this->mPlayer1;
-              break;
-          case 2:
-              result = this->mPlayer2;
-              break;
-          case 3:
-              result = this->mPlayer3;
-              break;
-          case 4:
-              result = this->mPlayer4;
-              break;
-          default:
-              // :D broke
-              break;
-      }
-
-      return result; // Gavin I had to add this sorry if it ruins your day - Ingrid
-  }
+//Player* TowerDefenseGame::getPlayer(const int& playerID) const {
+//      Player* result = nullptr;
+//      switch (playerID) {
+//          case 1:
+//              result = this->mPlayer1;
+//              break;
+//          case 2:
+//              result = this->mPlayer2;
+//              break;
+//          case 3:
+//              result = this->mPlayer3;
+//              break;
+//          case 4:
+//              result = this->mPlayer4;
+//              break;
+//          default:
+//              // :D broke
+//              break;
+//      }
+//
+//      return result; // Gavin I had to add this sorry if it ruins your day - Ingrid
+//  }
 
 Player* TowerDefenseGame::getHostPlayer() const {
     return this->mHostPlayer;
 }
+
+void TowerDefenseGame::assign3Words()
+{
+    for (int i = 0; i < 3; i++)
+    {
+        string randomWord = generateRandomWord();
+        mPlayer1->setWord(i, randomWord);
+    }
+    mPlayer1->displayWords();
+}
+
+void TowerDefenseGame::assignExtremeWord()
+{
+    string extremeWord = generateExtremeWord();
+    mPlayer1->setWord(3, extremeWord);
+}
+
+void TowerDefenseGame::assignSingleWord(int index)
+{
+    string randomWord = generateRandomWord();
+    mPlayer1->setWord(index, randomWord);
+}
+
 
 
 //setters
@@ -151,6 +176,8 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
 }
 
 void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
+
+
 
 }
 
@@ -231,18 +258,6 @@ void TowerDefenseGame::updateEntities() {
     this->mGameWindow->display();
 }
     
-    string* getWordChoices()
-    {
-        int randomNumber = (std::rand() % (sizeof(wordPool) / sizeof(wordPool[0])));
-        string wordChoicesArr[3];
-        for (int i = 0; i < 3; i++)
-        {
-            wordChoicesArr[i] = wordPool[randomNumber];
-        }
-
-        return wordChoicesArr;
-    }
-
 //checks game conditions for if they are over
 bool TowerDefenseGame::GameComplete() const {
     bool done = false;
@@ -268,3 +283,32 @@ void TowerDefenseGame::printMultiplayerMenu() const {// for join/create game
         << "2. Multiplayer Game " << std::endl
         << "Please enter choice: ";
 }
+
+int generateRandomNumber()
+{
+    int arraySize = sizeof(wordPool) / sizeof(wordPool[0]);
+    int randomNumber = rand() % arraySize;
+    return randomNumber;
+}
+
+int generateExtremeNumber()
+{
+    int arraySize = sizeof(extremePool) / sizeof(extremePool[0]);
+    int randomNumber = rand() % arraySize;
+    return randomNumber;
+}
+
+string generateRandomWord()
+{
+    string randomWord = "";
+    randomWord = wordPool[generateRandomNumber()];
+    return randomWord;
+}
+
+string generateExtremeWord()
+{
+    string extremeWord = "";
+    extremeWord = extremePool[generateExtremeNumber()];
+    return extremeWord;
+}
+

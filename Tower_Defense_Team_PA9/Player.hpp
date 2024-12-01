@@ -41,7 +41,7 @@ public:
 
 	
 	//// added this because my compiler had an issue with the constructor 
-	//Player(const int& playerID, const int& HP, const sf::Sprite& body);
+	Player(const int& playerID, const int& HP, const sf::Sprite& body);
 
 	//destructor
 	~Player();
@@ -59,9 +59,9 @@ public:
 	void updateInput();
 	void clearInput();
 	bool processPlayerInput();
-	void setWordChoices();
+	void setWord(int index, string newWord);
 	void displayWords();
-
+	
 	
 };
 

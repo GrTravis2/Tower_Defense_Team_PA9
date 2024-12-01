@@ -15,11 +15,12 @@ int main(void) {
 	std::srand(std::time(nullptr)); // seed for random number
 
 
-	testCases t;
-	t.runTests();
+	/*testCases t;
+	t.runTests();*/
 
 	TowerDefenseGame app;
-	app.run();
+	//app.run();
+	app.assign3Words();
 
 	return 0;
 }
