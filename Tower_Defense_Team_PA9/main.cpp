@@ -15,10 +15,5 @@ int main(void) {
 	//TowerDefenseGame app;
 	//app.run();
 
-	//sf::CircleShape circle(5.f);
-	//circle.move()
-
-
-	
 	return 0;
 }

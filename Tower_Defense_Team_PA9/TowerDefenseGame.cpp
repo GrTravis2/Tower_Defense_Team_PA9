@@ -20,12 +20,21 @@ void TowerDefenseGame::setupGame() {
     int choice = -1;
 
     this->printMultiplayerMenu();
-    std::cin >> choice;
+    choice = 1;
+    //std::cin >> choice;
     if (choice == 1) {//local game, 3 NPC
+
         this->mPlayer1 = new Player(1, 30, this->spawner->getMushroomTower());
+        this->mPlayer1->mBody.setPosition(sf::Vector2f(P1_X, P1_Y)); 
+
         this->mPlayer2 = new NPC(2, this->spawner->getMushroomTower(), easy);
+        this->mPlayer2->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P2_X, P2_Y));
+
         this->mPlayer3 = new NPC(3, this->spawner->getMushroomTower(), easy);
+        this->mPlayer3->mBody.setPosition(sf::Vector2f(P3_X,WINDOW_HEIGHT + P3_Y));
+
         this->mPlayer4 = new NPC(4, this->spawner->getMushroomTower(), easy);
+        this->mPlayer4->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH+  P4_X,WINDOW_HEIGHT + P4_Y));
     }
     while (setupComplete != true) {
         setupComplete = true;// place holder, need adding player sequence

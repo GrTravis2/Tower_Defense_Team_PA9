@@ -3,46 +3,41 @@
 
 //constructor
 SpriteManager::SpriteManager() {//loads all textures from file
-    sf::Texture texture;
 
     //init gnome data
-    texture.loadFromFile("assets/gnome.png");
-    this->gnome = new sf::Sprite(texture);// -> set image
-    this->gnome->setScale(sf::Vector2f(1.0, 1.0));// -> scale size
-
-    //note that both gnomes share artwork, just different size. No texture reload!
-    this->bigGnome = new sf::Sprite(texture);// -> set image
-    this->bigGnome->setScale(sf::Vector2f(10.0, 10.0));// -> scale size
+    this->gnome = new sf::Texture();// -> get heap mem
+    this->gnome->loadFromFile("assets/gnome2.png");// -> set image
 
     //init mushroomTower
-    texture.loadFromFile("assets/mushroomHouse.png");
-    this->mushroomTower = new sf::Sprite(texture);// -> set image
-    this->gnome->setScale(sf::Vector2f(20.0, 20.0));// -> scale size
+    this->mushroomTower = new sf::Texture();// -> get heap mem
+    this->mushroomTower->loadFromFile("assets/mushroomHouse2.png");// -> set image
 }
 
 //destructor
 SpriteManager::~SpriteManager() {
     delete this->gnome;
-    delete this->bigGnome;
     delete this->mushroomTower;
 }
 
-//copy sprites from data member reference sprite
+//copy sprites from data member reference texture
 
 sf::Sprite SpriteManager::getGnome() {
-    sf::Sprite result(*this->gnome);
+    sf::Sprite result((*this->gnome));
+    result.setScale(0.05, 0.05);
 
     return result;
 }
 
 sf::Sprite SpriteManager::getBigGnome() {
-    sf::Sprite result(*this->bigGnome);
+    sf::Sprite result((*this->gnome));
+    result.setScale(0.15, 0.15);
 
     return result;
 }
 
 sf::Sprite SpriteManager::getMushroomTower() {
-    sf::Sprite result(*this->mushroomTower);
+    sf::Sprite result((*this->mushroomTower));
+    result.setScale(0.20, 0.20);
 
     return result;
 }

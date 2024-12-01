@@ -4,9 +4,8 @@
 
 class SpriteManager {
 private:
-    sf::Sprite* gnome;
-    sf::Sprite* bigGnome;
-    sf::Sprite* mushroomTower;
+    sf::Texture* gnome;
+    sf::Texture* mushroomTower;
 
     //helpers
 
