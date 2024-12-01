@@ -1,4 +1,5 @@
 
+#include <ctime>
 
 #include "inputClass.hpp"
 #include "Entity.hpp"
@@ -24,6 +25,9 @@ private:
 	bool testGetandSetHP();
 	bool testIsDead();
 	bool testAttackUntilDead();
+
+	// SpriteManager tests
+	bool testLoadSprite();
 
 	//TowerDefenseGame tests
 	bool testGetPlayer();

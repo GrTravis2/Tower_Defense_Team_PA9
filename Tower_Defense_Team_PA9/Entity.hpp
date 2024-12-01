@@ -43,7 +43,7 @@ public:
 
 	//getters
 	int getHP() const;
-	//dont think we want one for shape? leaving empty for now
+	sf::Vector2f getDirection() const;
 
 	//setters
 	void setHP(const int& newHP);

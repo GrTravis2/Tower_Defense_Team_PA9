@@ -15,14 +15,31 @@
 //Game Constants!!
 
 //window size constants
-#define WINDOW_WIDTH 1000
+#define WINDOW_WIDTH 1500
 #define WINDOW_HEIGHT 1000
 
-//player info
+// player info
 #define MAX_PLAYERS 4
-#define P1_XPOS 0
-#define P1_YPOS 0
-//other place 
+
+// Positions are relative to **Window Edges**
+// consider them shifts to the inside of the window
+// each corner!
+#define P1_X 60 // -> p1 Position
+#define P1_Y 70
+
+#define P2_X -60 // -> p2 position
+#define P2_Y 70
+
+#define P3_X 60 // -> p3 position
+#define P3_Y -50
+
+#define P4_X -60 // -> p4 position
+#define P4_Y -50
+/* Rough window layout
+   P1		P2
+
+   P3		P4
+*/
 
 //Time constants
 #define MAX_FPS 60 //frames per second

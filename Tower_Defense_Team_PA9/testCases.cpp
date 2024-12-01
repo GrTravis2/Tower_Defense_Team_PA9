@@ -9,6 +9,7 @@ void testCases::runTests() {
 	<< "testGetandSetHP() pass: " << testGetandSetHP() << std::endl
 	<< "testIsDead() pass: " << testIsDead() << std::endl
 	<< "testAttackUntilDead() pass: " << testAttackUntilDead() << std::endl
+	<< "testLoadSprite() pass: " << testLoadSprite() << std::endl
 	<< "--------- END TESTS --------- " << std::endl;
 }
 
@@ -156,6 +157,109 @@ bool testCases::testAttackUntilDead() {
 	}
 
 	return ok;
+}
+
+// SpriteManager tests
+bool testCases::testLoadSprite() {
+	bool ok = false;
+
+	sf::Event event;
+
+	SpriteManager s;
+	sf::RenderWindow window(
+        sf::VideoMode(1000, 1000),
+        "gnome sprite test"
+        );
+
+	// gnome from file
+	sf::Texture t; // load straight from file
+	t.loadFromFile("assets/gnome2.png");
+	sf::Sprite fileGnome(t); // -> check output
+
+	// ***CLOSE WINDOW TO ADVANCE THRU TEST***
+
+	while (window.isOpen()) {
+
+		while (window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		window.draw(fileGnome);
+		window.display();
+		window.clear(sf::Color::Black);
+	}
+	window.create(sf::VideoMode(1000, 1000), "mushroom sprite test");
+
+	// mushroom from file
+	t.loadFromFile("assets/mushroomHouse2.png");
+	sf::Sprite fileMushroom(t);
+
+	while (window.isOpen()) {
+
+		while (window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		window.draw(fileMushroom);
+		window.display();
+		window.clear(sf::Color::Black);
+	}
+	window.create(sf::VideoMode(1000, 1000), "copy gnome sprite test");
+
+	// create sprite from loaded gnome!
+	sf::Sprite copyGnome(s.getGnome());
+
+	while (window.isOpen()) {
+
+		while (window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		window.draw(copyGnome);
+		window.display();
+		window.clear(sf::Color::Black);
+	}
+	window.create(sf::VideoMode(1000, 1000), "copy mushroom sprite test");
+
+	// create sprite from loaded gnome!
+	sf::Sprite copyMushroom(s.getMushroomTower());
+
+	while (window.isOpen()) {
+
+		while (window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		window.draw(copyMushroom);
+		window.display();
+		window.clear(sf::Color::Black);
+		//step += step;
+		//while (clock() < step) {;}
+	}
+	window.create(sf::VideoMode(1000, 1000), "copy big gnome sprite test");
+
+	// create sprite from loaded gnome!
+	sf::Sprite copyBigGnome(s.getBigGnome());
+
+	while (window.isOpen()) {
+
+		while (window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+		window.draw(copyBigGnome);
+		window.display();
+		window.clear(sf::Color::Black);
+		//step += step;
+		//while (clock() < step) {;}
+	}
+
+	return true;// -> visual test good!
 }
 
 //TowerDefenseGame tests
