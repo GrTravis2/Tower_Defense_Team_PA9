@@ -1,8 +1,6 @@
-#ifndef INPUT_CLASS
-#define INPUT_CLASS
+#pragma once
 
-#define TOTAL_KEYS 256
-#define TOTAL_MOUSE_BUTTONS 5
+
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -10,7 +8,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include "Player.hpp"
+
 
 using std::string;
 using std::endl;
@@ -40,27 +38,18 @@ private:
 	
 	
 	string currentInput;
-	bool stateOfKeys[TOTAL_KEYS];
-	bool stateOfMouse[TOTAL_MOUSE_BUTTONS];
-
+	
 
 public:
 	inputClass();
 
-	void processEvent(sf::Event& event); // allows for continuous input processing
+	void updateInput();
 	void clearInput();
 	void printInput();
-
 	string getCurrentInput();
-	
-	
-	
-
-	
-
+	void setNewChoices();
 
 };
 
 
 
-#endif // !INPUT_CLASS

@@ -1,4 +1,4 @@
-
+#include <iostream>
 #include "TowerDefenseGame.hpp"
 
 //constructor
@@ -76,13 +76,35 @@ Player* TowerDefenseGame::getPlayer(const int& playerID) const {
             // :D broke
             break;
     }
+  
+//getters
+Player* TowerDefenseGame::getPlayer(const int& playerID) const {
+      Player* result = nullptr;
+      switch (playerID) {
+          case 1:
+              result = this->mPlayer1;
+              break;
+          case 2:
+              result = this->mPlayer2;
+              break;
+          case 3:
+              result = this->mPlayer3;
+              break;
+          case 4:
+              result = this->mPlayer4;
+              break;
+          default:
+              // :D broke
+              break;
+      }
 
-    return result;
-}
+      return result; // Gavin I had to add this sorry if it ruins your day - Ingrid
+  }
 
 Player* TowerDefenseGame::getHostPlayer() const {
     return this->mHostPlayer;
 }
+
 
 //setters
 
@@ -204,10 +226,22 @@ void TowerDefenseGame::updateEntities() {
         }
 
     }
-
+  
     // output contents of list to screen!
     this->mGameWindow->display();
 }
+    
+    string* getWordChoices()
+    {
+        int randomNumber = (std::rand() % (sizeof(wordPool) / sizeof(wordPool[0])));
+        string wordChoicesArr[3];
+        for (int i = 0; i < 3; i++)
+        {
+            wordChoicesArr[i] = wordPool[randomNumber];
+        }
+
+        return wordChoicesArr;
+    }
 
 //checks game conditions for if they are over
 bool TowerDefenseGame::GameComplete() const {

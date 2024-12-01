@@ -34,15 +34,15 @@ bool testCases::testContinuousKeyInput()
 	// simulating a key press 
 	event.type = sf::Event::KeyPressed;
 	event.key.code = sf::Keyboard::A;
-	testInput.processEvent(event);
-	if (testInput.getCurrentInput() == "a")
+	testInput.updateInput();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		success = true;
-		cout << "Test successful, keyboard event adds a to current input" << endl;
+		//cout << "Test successful, keyboard event adds a to current input" << endl;
 	}
 	else
 	{
-		cout << "Test failed, simulated key press did not add to current input as expected" << endl;
+		//cout << "Test failed, simulated key press did not add to current input as expected" << endl;
 	}
 
 	return success;
@@ -275,6 +275,13 @@ bool testCases::getHostPlayer() {
 
 bool testCases::testMapBonus() {
 	return false;
+}
+
+void testCases::testProcessInput()
+{
+
+	
+
 }
 
 

@@ -12,6 +12,12 @@ int main(void) {
 	//testCases t;
 	//t.runTests();
 
+	std::srand(std::time(nullptr)); // seed for random number
+
+
+	testCases t;
+	t.runTests();
+
 	TowerDefenseGame app;
 	app.run();
 
