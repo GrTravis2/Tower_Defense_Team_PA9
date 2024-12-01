@@ -2,46 +2,42 @@
 
 inputClass::inputClass()
 {
-	// initializing all key and mouse states to false using iteration
-	for (int i = 0; i < TOTAL_KEYS; i++)
-	{
-		stateOfKeys[i] = false;
-	}
-	for (int i = 0; i < TOTAL_MOUSE_BUTTONS; i++)
-	{
-		stateOfMouse[i] = false;
-	}
 	currentInput = "";
 }
 
-void inputClass::processEvent(sf::Event& event) // this allows for key presses to be monitored constantly 
+void inputClass::updateInput()
 {
-	if (event.type == sf::Event::KeyPressed)
-	{
-		stateOfKeys[event.key.code] = true; // marks pressed key to true
-		
-		if (event.key.code >= sf::Keyboard::A && event.key.code <= sf::Keyboard::Z)
-		{
-			currentInput += (char)('a' + (event.key.code - sf::Keyboard::A)); //offset based on ascii table 
+	bool backspacePressed = false;
+	for (int i = sf::Keyboard::A; i <= sf::Keyboard::Z; i++) // setting index to the key value of keyboard press A
+	{														// the loop goes on until you hit z
+		if (sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(i))) // casting the integer i to enum keyboard type, allowing it to be evaluated 
+		{																	// checks if "this" key is pressed
+			char inputChar = 'a' + (i - sf::Keyboard::A);	// i = int value of key
+			// calculated offset based on ascii values 
+
+			currentInput += inputChar;
+
 		}
-		else if (event.key.code == sf::Keyboard::BackSpace)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::BackSpace))
 		{
-			if (!currentInput.empty()) // if the current input isnt empty 
+			if (!backspacePressed && !currentInput.empty()) // if the current input isnt empty + bksp pressed
 			{
+				//cout << "A letter is supposed to be removed here" << endl;
 				currentInput.pop_back();
+				backspacePressed = true;
+			}
+			else
+			{
+				backspacePressed = false;
 			}
 		}
-		
 	}
-	else if (event.type == sf::Event::KeyReleased) // marks pressed key to false
-	{
-		stateOfKeys[event.key.code] = false;
-	}
-
 }
 
 void inputClass::clearInput()
 {
+	//cout << "Hi I'm clearInput() in the input class" << endl;
+	currentInput.clear();
 }
 
 void inputClass::printInput()
@@ -53,3 +49,14 @@ string inputClass::getCurrentInput()
 {
 	return currentInput;
 }
+
+void inputClass::setNewChoices()
+{
+
+}
+
+
+
+
+
+

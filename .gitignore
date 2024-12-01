@@ -47,9 +47,9 @@ main
 # ingrid 
 /Debug
 /Release
-.vs/
+/.vs
 *.vcxproj.user
 *.vcxproj.filters
 *.log
 ipch/
-.vs/Tower_Defense_Team_PA9/v17/.suo
+/.vs/Tower_Defense_Team_PA9/v17/.suo

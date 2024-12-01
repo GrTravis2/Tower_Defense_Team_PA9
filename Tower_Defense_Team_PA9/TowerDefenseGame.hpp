@@ -9,6 +9,8 @@
 #include "NPC.hpp"
 #include "Entity.hpp"
 #include "SpriteManager.hpp"
+#include "inputClass.hpp"
+
 
 //Game Constants!!
 
@@ -94,5 +96,20 @@ const std::string wordPool[] = {
 	"nerd",
 	"sorcerer",
 	"carrot",
+	"cowboy",
+	"synergy",
+	"frame",
+	"monitor",
+	"webcam",
+	"sanitize",
+	"pop",
+	"break",
+	"time",
+	"gather",
+	"cougar"
 };
+
+string* getWordChoices();
+
+
 
