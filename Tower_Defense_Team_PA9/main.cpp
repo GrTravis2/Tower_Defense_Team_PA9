@@ -19,8 +19,8 @@ int main(void) {
 	t.runTests();*/
 
 	TowerDefenseGame app;
-	//app.run();
-	app.assign3Words();
+	app.run();
+	//app.initialWordAssignments();
 
 	return 0;
 }

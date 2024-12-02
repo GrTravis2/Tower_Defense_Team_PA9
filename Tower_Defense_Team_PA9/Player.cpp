@@ -68,16 +68,20 @@ void Player::clearInput()
 bool Player::processPlayerInput()
 {
 	string currentInput = playerInput.getCurrentInput();
+
 	
 	for (int i = 0; i < 3; i++)
 	{
-		if (currentInput == wordOptions[i])
+		if (currentInput == wordOptions[i] && currentInput.length() < 4) // small bonus word  
 		{
-			cout << "Word matched!" << endl;
+			cout << "Small word matched!" << endl;
 			playerInput.clearInput();
-			return true; 
+			// call another function here to replace word
+			return 1; 
 		}
 	}
+
+	
 	return false;
 	
 }
@@ -92,10 +96,12 @@ void Player::setWord(int index, string newWord)
 
 void Player::displayWords()
 {
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 4; i++)
 	{
-		cout << "\n";
+		
 		cout << "Word #" << i + 1 << ":" << wordOptions[i] << endl;
+		cout << "\n";
 	}
+	
 }
 

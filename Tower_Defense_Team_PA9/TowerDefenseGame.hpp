@@ -76,9 +76,23 @@ public:
 
 	//setters
 
-	void assign3Words();
+	// word assignment stuff
+	// dont look this is all really ugly 
+	
+	// assigns all 4 players 3 regular value words
+	void assign3Words(); 
+
+	// assigns a single extreme word to the 4th index in player array
 	void assignExtremeWord();
+
+	// assigns a single word based on array index 
 	void assignSingleWord(int index);
+
+	// calls assign3Words()
+	void initialWordAssignments();
+
+	// assigns all 4 players an extreme word
+	void assignExtremeWords();
 
 
 

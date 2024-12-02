@@ -21,7 +21,7 @@ void TowerDefenseGame::setupGame() {
 
     this->printMultiplayerMenu();
     choice = 1;
-    //std::cin >> choice;
+    std::cin >> choice;
     if (choice == 1) {//local game, 3 NPC
 
         this->mPlayer1 = new Player(1, 30, this->spawner->getMushroomTower());
@@ -114,7 +114,32 @@ void TowerDefenseGame::assign3Words()
         string randomWord = generateRandomWord();
         mPlayer1->setWord(i, randomWord);
     }
-    mPlayer1->displayWords();
+    //cout << "****Player 1 words:" << endl;
+    //mPlayer1->displayWords();
+
+    for (int i = 0; i < 3; i++)
+    {
+        string randomWord = generateRandomWord();
+        mPlayer2->setWord(i, randomWord);
+    }
+    //cout << "***Player 2 words:" << endl;
+   // mPlayer2->displayWords();
+
+    for (int i = 0; i < 3; i++)
+    {
+        string randomWord = generateRandomWord();
+        mPlayer3->setWord(i, randomWord);
+    }
+    //cout << "***Player 3 words:" << endl;
+    //mPlayer3->displayWords();
+
+    for (int i = 0; i < 3; i++)
+    {
+        string randomWord = generateRandomWord();
+        mPlayer4->setWord(i, randomWord);
+    }
+    //cout << "***Player 4 words:" << endl;
+   // mPlayer4->displayWords();
 }
 
 void TowerDefenseGame::assignExtremeWord()
@@ -129,6 +154,24 @@ void TowerDefenseGame::assignSingleWord(int index)
     mPlayer1->setWord(index, randomWord);
 }
 
+void TowerDefenseGame::initialWordAssignments()
+{
+    assign3Words(); 
+    assignExtremeWords();
+}
+
+void TowerDefenseGame::assignExtremeWords()
+{
+    mPlayer1->setWord(3, generateExtremeWord());
+    mPlayer2->setWord(3, generateExtremeWord());
+    mPlayer3->setWord(3, generateExtremeWord());
+    mPlayer4->setWord(3, generateExtremeWord());
+    mPlayer1->displayWords();
+    /*mPlayer2->displayWords();
+    mPlayer3->displayWords();
+    mPlayer4->displayWords();*/
+}
+
 
 
 //setters
@@ -140,6 +183,7 @@ void TowerDefenseGame::run() {
 
     //set up any other initializing code here!!!
     sf::Event event;
+    initialWordAssignments();
 
     /* ***MAIN GAME LOOP START!!*** */
 
@@ -149,19 +193,27 @@ void TowerDefenseGame::run() {
         //read in action, see if it will close window!
         while (this->mGameWindow->pollEvent(event)) {
             if(event.type == sf::Event::Closed) { this->mGameWindow->close(); }
+            
+            // this reads in continuous input 
+            if (event.type == sf::Event::TextEntered)
+            {
+                mPlayer1->updateInput();
+            }
         }
+       
 
         //check for changes to word choices:
         //can this also take care of word visuals?
-        this->updateWords();
+        //this->updateWords();
 
         //read player input will modify list if word is complete:
         this->processInput();
 
         //step shape positions, checks for intersections and draws all
         this->updateEntities();
-
+       
     }
+    cout << "Current input in player class: " << mPlayer1->getInput() << endl;
 
     /* ***MAIN GAME LOOP END!!*** */
 
@@ -172,12 +224,22 @@ void TowerDefenseGame::run() {
 }
 
 void TowerDefenseGame::processInput() {// -> for handling keyboard event process!
-
+    
+    int determineBonus = generateRandomNumber();
+    int wordSolved = 0;
+    wordSolved = mPlayer1->processPlayerInput();
+    if (wordSolved == 1)
+    {
+        updateWords();
+        
+    }
+  
 }
 
 void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
 
-
+    assign3Words();
+    mPlayer1->displayWords();
 
 }
 
