@@ -75,27 +75,6 @@ public:
 	Player* getHostPlayer() const;
 
 	//setters
-
-	// word assignment stuff
-	// dont look this is all really ugly 
-	
-	// assigns all 4 players 3 regular value words
-	void assign3Words(); 
-
-	// assigns a single extreme word to the 4th index in player array
-	void assignExtremeWord();
-
-	// assigns a single word based on array index 
-	void assignSingleWord(int index);
-
-	// calls assign3Words()
-	void initialWordAssignments();
-
-	// assigns all 4 players an extreme word
-	void assignExtremeWords();
-
-
-
 	//input player and their ID (player1, player2, player3, player4)
 	void setPlayer(const int& playerID, const Player*& player);
 
@@ -109,6 +88,23 @@ public:
 	//updates shape positions, checks for intersections, and then draws all!
 	void updateEntities();
 
+	// word assignment stuff
+// dont look this is all really ugly 
+
+// assigns all 4 players 3 regular value words
+	void assign3Words();
+
+	// assigns a single extreme word to the 4th index in player array
+	void assignExtremeWord();
+
+	// assigns a single word based on array index 
+	void assignSingleWord(int index);
+
+	// calls assign3Words()
+	void initialWordAssignments();
+
+	// assigns all 4 players an extreme word
+	void assignExtremeWords();
 
 	//checks game conditions for if they are over
 	bool GameComplete() const;
@@ -231,7 +227,6 @@ const string extremePool[] = {
 
 int generateRandomNumber();
 int generateExtremeNumber();
-
 string generateRandomWord();
 string generateExtremeWord();
 

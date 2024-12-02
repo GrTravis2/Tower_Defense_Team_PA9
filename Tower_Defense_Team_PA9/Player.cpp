@@ -65,11 +65,10 @@ void Player::clearInput()
 	playerInput.clearInput();
 }
 
-bool Player::processPlayerInput()
+int Player::processPlayerInput()
 {
 	string currentInput = playerInput.getCurrentInput();
 
-	
 	for (int i = 0; i < 3; i++)
 	{
 		if (currentInput == wordOptions[i] && currentInput.length() < 4) // small bonus word  
@@ -84,7 +83,7 @@ bool Player::processPlayerInput()
 			playerInput.clearInput();
 			return 2;
 		}
-		else if (currentInput == wordOptions[i] && i == 3)
+		else if (currentInput == wordOptions[3])
 		{
 			cout << "X-treme word matched! 3 returned" << endl;
 			playerInput.clearInput();
@@ -93,15 +92,12 @@ bool Player::processPlayerInput()
 	}
 
 	return -1;
-	
 }
 
 void Player::setWord(int index, string newWord)
 {
 	wordOptions[index] = newWord;
 }
-
-
 
 void Player::displayWords()
 {

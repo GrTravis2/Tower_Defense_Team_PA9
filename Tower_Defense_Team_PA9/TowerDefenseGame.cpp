@@ -197,18 +197,18 @@ void TowerDefenseGame::run() {
             // this reads in continuous input 
             if (event.type == sf::Event::TextEntered)
             {
+
                 mPlayer1->updateInput();
+                this->processInput();
             }
         }
        
-       
-
         //check for changes to word choices:
         //can this also take care of word visuals?
         //this->updateWords();
 
         //read player input will modify list if word is complete:
-        this->processInput();
+        //this->processInput();
 
         //step shape positions, checks for intersections and draws all
         this->updateEntities();
@@ -230,6 +230,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
     int wordSolved = 0;
     wordSolved = mPlayer1->processPlayerInput();
 
+  
     if (wordSolved == 1)
     {
         if (determineBonus % 2 != 0) // if it's an odd number and small bonus 
@@ -272,8 +273,13 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
            
         }
     }
+    if (wordSolved > 0)
+    {
+        updateWords();
+    }
     
     wordSolved = 0;
+   
 }
 
 void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!

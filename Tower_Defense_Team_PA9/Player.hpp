@@ -48,20 +48,17 @@ public:
 
 	//getters
 	std::string getInput();
-
 	int getPoints() const;
 
 	//setters
 	void setPoints(int newPoints);
-	
 
 	//public funcs
 	void updateInput();
 	void clearInput();
-	bool processPlayerInput();
+	int processPlayerInput();
 	void setWord(int index, string newWord);
 	void displayWords();
-	
 	
 };
 

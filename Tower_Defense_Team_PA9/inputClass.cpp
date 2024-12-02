@@ -50,10 +50,6 @@ string inputClass::getCurrentInput()
 	return currentInput;
 }
 
-void inputClass::setNewChoices()
-{
-
-}
 
 
 

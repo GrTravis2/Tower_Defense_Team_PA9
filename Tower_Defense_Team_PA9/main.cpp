@@ -20,7 +20,7 @@ int main(void) {
 
 	TowerDefenseGame app;
 	app.run();
-	//app.initialWordAssignments();
+	
 
 	return 0;
 }
