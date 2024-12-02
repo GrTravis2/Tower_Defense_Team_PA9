@@ -74,22 +74,31 @@ bool Player::processPlayerInput()
 	{
 		if (currentInput == wordOptions[i] && currentInput.length() < 4) // small bonus word  
 		{
-			cout << "Small word matched!" << endl;
+			cout << "Small word matched! 1 returned" << endl;
 			playerInput.clearInput();
-			// call another function here to replace word
 			return 1; 
+		}
+		else if (currentInput == wordOptions[i] && currentInput.length() > 4)
+		{
+			cout << "Larger word matched! 2 returned" << endl;
+			playerInput.clearInput();
+			return 2;
+		}
+		else if (currentInput == wordOptions[i] && i == 3)
+		{
+			cout << "X-treme word matched! 3 returned" << endl;
+			playerInput.clearInput();
+			return 3;
 		}
 	}
 
-	
-	return false;
+	return -1;
 	
 }
 
 void Player::setWord(int index, string newWord)
 {
 	wordOptions[index] = newWord;
-	
 }
 
 
@@ -97,11 +106,9 @@ void Player::setWord(int index, string newWord)
 void Player::displayWords()
 {
 	for (int i = 0; i < 4; i++)
-	{
-		
+	{	
 		cout << "Word #" << i + 1 << ":" << wordOptions[i] << endl;
 		cout << "\n";
 	}
-	
 }
 

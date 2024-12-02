@@ -201,6 +201,7 @@ void TowerDefenseGame::run() {
             }
         }
        
+       
 
         //check for changes to word choices:
         //can this also take care of word visuals?
@@ -228,12 +229,51 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
     int determineBonus = generateRandomNumber();
     int wordSolved = 0;
     wordSolved = mPlayer1->processPlayerInput();
+
     if (wordSolved == 1)
     {
-        updateWords();
-        
+        if (determineBonus % 2 != 0) // if it's an odd number and small bonus 
+        {
+            // bonus tbd
+            
+        }
+        else
+        {
+            // even number and small bonus 
+            // bonus also tbd
+            
+        }
     }
-  
+    else if (wordSolved == 2)
+    {
+        if (determineBonus % 2 != 0) // if it's an odd number and larger bonus 
+        {
+            // bonus tbd
+        
+        }
+        else
+        {
+            // even number and larger bonus 
+            // bonus also tbd
+          
+        }
+    }
+    else if (wordSolved == 3)
+    {
+        if (determineBonus % 2 != 0) // if it's an odd number and x-treme bonus 
+        {
+            // bonus tbd
+         
+        }
+        else
+        {
+            // even number and x-treme bonus 
+            // bonus also tbd
+           
+        }
+    }
+    
+    wordSolved = 0;
 }
 
 void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
