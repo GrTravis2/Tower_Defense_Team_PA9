@@ -47,6 +47,7 @@ public:
 
 	//setters
 	void setHP(const int& newHP);
+	void setDirection(const sf::Vector2f& direction);
 
 	//public
 	//move function? -> should be in SFML class

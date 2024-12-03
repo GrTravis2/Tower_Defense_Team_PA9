@@ -14,6 +14,10 @@
 
 //Game Constants!!
 
+#define TOP_LEFT sf::Vector2f(0.f, 0.f)
+#define TOP_RIGHT sf::Vector2f(WINDOW_WIDTH, 0.f)
+#define BOTTOM_LEFT sf::Vector2f(0.f, WINDOW_HEIGHT)
+#define BOTTOM_RIGHT sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)
 
 //window size constants
 #define WINDOW_WIDTH 1500
