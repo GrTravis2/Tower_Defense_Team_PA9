@@ -1,14 +1,2 @@
-﻿  Entity.cpp
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Entity.cpp(25,53): warning C4305: 'argument': truncation from 'double' to 'const float'
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Entity.cpp(70,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  NPC.cpp
-  Player.cpp
-  TowerDefenseGame.cpp
-  main.cpp
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\main.cpp(15,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  testCases.cpp
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\testCases.cpp(54,12): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\testCases.cpp(63,52): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\testCases.cpp(78,42): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
-  Generating Code...
+﻿  TowerDefenseGame.cpp
   Tower_Defense_Team_PA9.vcxproj -> C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\x64\Debug\Tower_Defense_Team_PA9.exe

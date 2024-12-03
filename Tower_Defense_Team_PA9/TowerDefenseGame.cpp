@@ -353,7 +353,7 @@ void TowerDefenseGame::updateEntities() {
         ) {
         // check if element is already dead before processing
         if ((*iter)->isDead()) {
-            this->mMasterList->erase(iter); // remove from list
+            iter = this->mMasterList->erase(iter); // remove from list
             delete *iter; // deallocate memory
         }
         else { // entity is not dead, needs to check conflict, move, and draw  
