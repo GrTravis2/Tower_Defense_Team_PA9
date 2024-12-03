@@ -228,6 +228,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
         }
         else
         {
+            cout << "small hp bonus" << endl;
             // even number and small bonus 
             // bonus also tbd
             
@@ -243,6 +244,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
         }
         else
         {
+            cout << "reg hp bonus" << endl;
             // even number and larger bonus 
             // bonus also tbd
           
@@ -258,6 +260,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
         }
         else
         {
+            cout << "xtreme hp bonus" << endl;
             // even number and x-treme bonus 
             // bonus also tbd
            
@@ -269,7 +272,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
         
     }
     
-    wordSolved = 0;
+   
    
 }
 
@@ -287,7 +290,7 @@ void TowerDefenseGame::mapBonus(enum Bonus& bonus) {
     sf::Sprite gnomeSprite = spawner->getGnome();
     sf::Sprite bigGnomeSprite = spawner->getBigGnome();
     Entity target(1, sf::Sprite());
-    target.mBody.setPosition(BOTTOM_RIGHT);
+    target.mBody.setPosition(TOP_RIGHT);
 
     switch (bonus) {
         case spawn1:// -> insert one gnome at back!       
@@ -332,14 +335,17 @@ void TowerDefenseGame::updateEntities() {
 
     //iterator???? :D
     for (// move through length of list and do stuff!
-        std::list<Entity*>::iterator iter = this->mMasterList->begin();
+        std::list<Entity*>::iterator iter = this->mMasterList->begin(); 
         iter != this->mMasterList->end();
         ++iter
         ) {
         // check if element is already dead before processing
         if ((*iter)->isDead()) {
-            this->mMasterList->erase(iter); // remove from list
-            delete *iter; // deallocate memory
+            delete* iter; // deallocate memory
+            iter = this->mMasterList->erase(iter); // remove from list
+            
+            
+           
         }
         else { // entity is not dead, needs to check conflict, move, and draw  
 
@@ -368,9 +374,10 @@ void TowerDefenseGame::updateEntities() {
             // loop if it makes the rendering of entities choppy!
             this->mGameWindow->draw((*iter)->mBody);// -> draw it and display at loop exit!
         }
+   
 
     }
-  
+    
     // output contents of list to screen!
     this->mGameWindow->display();
 }
