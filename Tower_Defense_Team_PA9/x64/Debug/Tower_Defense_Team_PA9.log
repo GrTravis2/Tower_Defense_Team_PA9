@@ -1,27 +1,2 @@
-﻿  NPC.cpp
-  Player.cpp
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\NPC.cpp(8,15): error C2661: 'Player::Player': no overloaded function takes 3 arguments
-  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\NPC.cpp(8,15):
-  while trying to match the argument list '(const int, int, const sf::Sprite)'
-  
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Player.cpp(25,9): error C2511: 'Player::Player(const int &,const int &,const sf::Sprite &)': overloaded member function not found in 'Player'
-  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Player.hpp(10,7):
-  see declaration of 'Player'
-  
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Player.cpp(26,1): error C2550: 'Player::{ctor}': constructor initializer lists are only allowed on constructor definitions
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Player.cpp(27,2): error C2671: 'Player::{ctor}': static member functions do not have 'this' pointers
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Player.cpp(28,2): error C2671: 'Player::{ctor}': static member functions do not have 'this' pointers
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Player.cpp(29,2): error C2671: 'Player::{ctor}': static member functions do not have 'this' pointers
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Player.cpp(30,2): error C2671: 'Player::{ctor}': static member functions do not have 'this' pointers
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Player.cpp(31,2): error C2671: 'Player::{ctor}': static member functions do not have 'this' pointers
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Player.cpp(32,2): error C2671: 'Player::{ctor}': static member functions do not have 'this' pointers
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Player.cpp(33,2): error C2671: 'Player::{ctor}': static member functions do not have 'this' pointers
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Player.cpp(34,2): error C2671: 'Player::{ctor}': static member functions do not have 'this' pointers
-  TowerDefenseGame.cpp
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(25,40): error C2661: 'Player::Player': no overloaded function takes 3 arguments
-  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(25,40):
-  while trying to match the argument list '(int, int, sf::Sprite)'
-  
-  main.cpp
-C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\main.cpp(12,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
+﻿  TowerDefenseGame.cpp
+  Tower_Defense_Team_PA9.vcxproj -> C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\x64\Debug\Tower_Defense_Team_PA9.exe

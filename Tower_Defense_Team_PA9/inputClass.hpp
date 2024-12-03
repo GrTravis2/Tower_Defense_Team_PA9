@@ -47,7 +47,6 @@ public:
 	void clearInput();
 	void printInput();
 	string getCurrentInput();
-	void setNewChoices();
 
 };
 

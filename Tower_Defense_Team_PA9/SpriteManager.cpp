@@ -1,12 +1,19 @@
-
+#include <iostream>
 #include "SpriteManager.hpp"
 
 //constructor
 SpriteManager::SpriteManager() {//loads all textures from file
 
+    this->grass = new sf::Texture();
+    this->grass->loadFromFile("assets/grass.png");
+
     //init gnome data
     this->gnome = new sf::Texture();// -> get heap mem
     this->gnome->loadFromFile("assets/gnome2.png");// -> set image
+    if (this->gnome->loadFromFile("assets/gnome2.png"))
+    {
+        std::cout << "This loaded properly!" << std::endl;
+    }
 
     //init mushroomTower
     this->mushroomTower = new sf::Texture();// -> get heap mem
@@ -20,6 +27,15 @@ SpriteManager::~SpriteManager() {
 }
 
 //copy sprites from data member reference texture
+
+sf::Sprite SpriteManager::getGrass()
+{
+    sf::Sprite result((*this->grass));
+    result.setOrigin(0,0);
+    result.setScale(0.5, 0.5);
+
+    return result;
+}
 
 sf::Sprite SpriteManager::getGnome() {
     sf::Sprite result((*this->gnome));

@@ -14,6 +14,12 @@
 
 //Game Constants!!
 
+// these are defined in the player class but I'm redefining them here 
+#define TOP_LEFT sf::Vector2f(0.f, 0.f)
+#define TOP_RIGHT sf::Vector2f(WINDOW_WIDTH, 0.f)
+#define BOTTOM_LEFT sf::Vector2f(0.f, WINDOW_HEIGHT)
+#define BOTTOM_RIGHT sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)
+
 //window size constants
 #define WINDOW_WIDTH 1500
 #define WINDOW_HEIGHT 1000
@@ -74,7 +80,6 @@ public:
 	Player* getHostPlayer() const;
 
 	//setters
-
 	//input player and their ID (player1, player2, player3, player4)
 	void setPlayer(const int& playerID, const Player*& player);
 
@@ -83,10 +88,28 @@ public:
 	void updateWords();// -> for handling word and bonus options!
 
 	// takes bonus enum and adds bonus entity(s) to master list
-	void mapBonus(enum Bonus& bonus);
+	void mapBonus(enum Bonus& bonus, int targetPlayerID);
 
 	//updates shape positions, checks for intersections, and then draws all!
 	void updateEntities();
+
+	// word assignment stuff
+	// dont look this is all really ugly 
+
+// assigns all 4 players 3 regular value words
+	void assign3Words();
+
+	// assigns a single extreme word to the 4th index in player array
+	void assignExtremeWord();
+
+	// assigns a single word based on array index 
+	void assignSingleWord(int index);
+
+	// calls assign3Words()
+	void initialWordAssignments();
+
+	// assigns all 4 players an extreme word
+	void assignExtremeWords();
 
 	//checks game conditions for if they are over
 	bool GameComplete() const;
@@ -123,10 +146,92 @@ const std::string wordPool[] = {
 	"break",
 	"time",
 	"gather",
-	"cougar"
+	"cougar",
+	"keyboard",
+	"pixel",
+	"render",
+	"challenge",
+	"python",
+	"loop",
+	"coffee",
+	"network",
+	"storage",
+	"dynamic",
+	"cascade",
+	"library",
+	"compile",
+	"crash",
+	"vector",
+	"debug",
+	"encrypt",
+	"function",
+	"texture",
+	"sprite",
+	"motion",
+	"scroll",
+	"quasar",
+	"galaxy",
+	"planet",
+	"wizard",
+	"syntax",
+	"kernel",
+	"buffer",
+	"stack",
+	"thread",
+	"syntax",
+	"visual",
+	"format",
+	"escape",
+	"engine",
+	"launch",
+	"module",
+	"binary",
+	"fusion",
+	"vertex",
+	"glyph",
+	"shader",
+	"circle",
+
 };
 
-string* getWordChoices();
+// 3000 iq big bonus words
+const string extremePool[] = {
+
+	"abyss",
+	"quixotic",
+	"zephyr",
+	"mnemonic",
+	"echelon",
+	"labyrinth",
+	"onomatopoeia",
+	"juxtaposition",
+	"effervescent",
+	"paradoxical",
+	"synecdoche",
+	"ephemeral",
+	"rendezvous",
+	"cataclysm",
+	"phenomenon",
+	"soliloquy",
+	"schism",
+	"vicissitude",
+	"penumbra",
+	"transcendence",
+	"serendipity",
+	"altruistic",
+	"idiosyncratic",
+	"proclivity",
+	"antithesis",
+	"catharsis",
+	"ineffable",
+	"ubiquitous",
+	"permutation",
+	"epistemology"
+};
 
 
+int generateRandomNumber();
+int generateExtremeNumber();
+string generateRandomWord();
+string generateExtremeWord();
 

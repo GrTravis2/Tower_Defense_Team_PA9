@@ -4,8 +4,25 @@
 #include "Entity.hpp"
 #include "inputClass.hpp"
 
+
 #define PLAYER_BODY_WIDTH 10.f
 #define PLAYER_SPEED 0.f
+
+#define P1_X 60 // -> p1 Position
+#define P1_Y 70
+
+#define P2_X -60 // -> p2 position
+#define P2_Y 70
+
+#define P3_X 60 // -> p3 position
+#define P3_Y -50
+
+#define P4_X -60 // -> p4 position
+#define P4_Y -50
+
+//window size constants
+#define WINDOW_WIDTH 1500
+#define WINDOW_HEIGHT 1000
 
 class Player : public Entity {
 private:
@@ -41,25 +58,24 @@ public:
 
 	
 	//// added this because my compiler had an issue with the constructor 
-	//Player(const int& playerID, const int& HP, const sf::Sprite& body);
+	Player(const int& playerID, const int& HP, const sf::Sprite& body);
 
 	//destructor
 	~Player();
 
 	//getters
 	std::string getInput();
-
 	int getPoints() const;
+	sf::Vector2f getPlayerPosition(int playerID);
 
 	//setters
 	void setPoints(int newPoints);
-	
 
 	//public funcs
 	void updateInput();
 	void clearInput();
-	bool processPlayerInput();
-	void setWordChoices();
+	int processPlayerInput();
+	void setWord(int index, string newWord);
 	void displayWords();
 
 	
@@ -70,4 +86,7 @@ enum Bonus {
 	spawn1,
 	spawn5,
 	spawnBigGnome,
+	plus5HP,
+	plus10HP,
+	plus15HP
 };

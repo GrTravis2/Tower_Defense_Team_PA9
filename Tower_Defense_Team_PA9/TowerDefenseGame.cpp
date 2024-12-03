@@ -18,10 +18,10 @@ TowerDefenseGame::TowerDefenseGame() {// -> start default and add thru setters?
 void TowerDefenseGame::setupGame() {
     bool setupComplete = false;
     int choice = -1;
-
+    
     this->printMultiplayerMenu();
     choice = 1;
-    //std::cin >> choice;
+    std::cin >> choice;
     if (choice == 1) {//local game, 3 NPC
 
         this->mPlayer1 = new Player(1, 30, this->spawner->getMushroomTower());
@@ -60,50 +60,107 @@ TowerDefenseGame::~TowerDefenseGame() {
 Player* TowerDefenseGame::getPlayer(const int& playerID) const {
     Player* result = nullptr;
     switch (playerID) {
-        case 1:
-            result = this->mPlayer1;
-            break;
-        case 2:
-            result = this->mPlayer2;
-            break;
-        case 3:
-            result = this->mPlayer3;
-            break;
-        case 4:
-            result = this->mPlayer4;
-            break;
-        default:
-            // :D broke
-            break;
+    case 1:
+        result = this->mPlayer1;
+        break;
+    case 2:
+        result = this->mPlayer2;
+        break;
+    case 3:
+        result = this->mPlayer3;
+        break;
+    case 4:
+        result = this->mPlayer4;
+        break;
+    default:
+        // :D broke
+        break;
     }
+
+    return result;
+}
   
 //getters
-Player* TowerDefenseGame::getPlayer(const int& playerID) const {
-      Player* result = nullptr;
-      switch (playerID) {
-          case 1:
-              result = this->mPlayer1;
-              break;
-          case 2:
-              result = this->mPlayer2;
-              break;
-          case 3:
-              result = this->mPlayer3;
-              break;
-          case 4:
-              result = this->mPlayer4;
-              break;
-          default:
-              // :D broke
-              break;
-      }
-
-      return result; // Gavin I had to add this sorry if it ruins your day - Ingrid
-  }
+//Player* TowerDefenseGame::getPlayer(const int& playerID) const {
+//      Player* result = nullptr;
+//      switch (playerID) {
+//          case 1:
+//              result = this->mPlayer1;
+//              break;
+//          case 2:
+//              result = this->mPlayer2;
+//              break;
+//          case 3:
+//              result = this->mPlayer3;
+//              break;
+//          case 4:
+//              result = this->mPlayer4;
+//              break;
+//          default:
+//              // :D broke
+//              break;
+//      }
+//
+//      return result; // Gavin I had to add this sorry if it ruins your day - Ingrid
+//  }
 
 Player* TowerDefenseGame::getHostPlayer() const {
     return this->mHostPlayer;
 }
+
+void TowerDefenseGame::assign3Words()
+{
+    for (int i = 0; i < 3; i++)
+    {
+        string randomWord = generateRandomWord();
+        mPlayer1->setWord(i, randomWord);
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        string randomWord = generateRandomWord();
+        mPlayer2->setWord(i, randomWord);
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        string randomWord = generateRandomWord();
+        mPlayer3->setWord(i, randomWord);
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        string randomWord = generateRandomWord();
+        mPlayer4->setWord(i, randomWord);
+    }
+}
+
+void TowerDefenseGame::assignExtremeWord()
+{
+    string extremeWord = generateExtremeWord();
+    mPlayer1->setWord(3, extremeWord);
+}
+
+void TowerDefenseGame::assignSingleWord(int index)
+{
+    string randomWord = generateRandomWord();
+    mPlayer1->setWord(index, randomWord);
+}
+
+void TowerDefenseGame::initialWordAssignments()
+{
+    assign3Words(); 
+    assignExtremeWords();
+}
+
+void TowerDefenseGame::assignExtremeWords()
+{
+    mPlayer1->setWord(3, generateExtremeWord());
+    /*mPlayer2->setWord(3, generateExtremeWord());
+    mPlayer3->setWord(3, generateExtremeWord());
+    mPlayer4->setWord(3, generateExtremeWord());*/
+   
+ /*   mPlayer3->displayWords();
+    mPlayer4->displayWords();*/
+}
+
 
 
 //setters
@@ -115,6 +172,8 @@ void TowerDefenseGame::run() {
 
     //set up any other initializing code here!!!
     sf::Event event;
+    initialWordAssignments();
+    mPlayer1->displayWords();
 
     /* ***MAIN GAME LOOP START!!*** */
 
@@ -124,19 +183,23 @@ void TowerDefenseGame::run() {
         //read in action, see if it will close window!
         while (this->mGameWindow->pollEvent(event)) {
             if(event.type == sf::Event::Closed) { this->mGameWindow->close(); }
+            
+            // this reads in continuous input 
+            if (event.type == sf::Event::TextEntered)
+            {
+                // the updating and processing has to stay in this loop so that it
+                // reads all the player input continuously
+                mPlayer1->updateInput(); // captures all the input for player 1
+                this->processInput(); // processes afformentioned input
+            }
         }
-
-        //check for changes to word choices:
-        //can this also take care of word visuals?
-        this->updateWords();
-
-        //read player input will modify list if word is complete:
-        this->processInput();
+       
 
         //step shape positions, checks for intersections and draws all
         this->updateEntities();
-
+       
     }
+    cout << "Current input in player class: " << mPlayer1->getInput() << endl;
 
     /* ***MAIN GAME LOOP END!!*** */
 
@@ -147,32 +210,136 @@ void TowerDefenseGame::run() {
 }
 
 void TowerDefenseGame::processInput() {// -> for handling keyboard event process!
+    
+    Bonus smallBonus = spawn1,
+        regularBonus = spawn5,
+        xtremeBonus = spawnBigGnome,
+        add5 = plus5HP,
+        add10 = plus10HP,
+        add15 = plus15HP;
+    int determineBonus = generateRandomNumber();
+    int wordSolved = 0;
+    wordSolved = mPlayer1->processPlayerInput();
 
+    if (wordSolved == 1) // target is player 2
+    {
+        if (determineBonus % 2 != 0) // if it's an odd number 
+        {
+            // spawn bonus 
+            determineBonus = generateRandomNumber();
+            if (determineBonus % 2 != 0) // small spawn bonus if odd number
+            {
+                mapBonus(smallBonus, 2);
+            }
+            else // larger spawn bonus if even number 
+            {
+                mapBonus(regularBonus, 2);
+            }
+        }
+        else
+        {
+            cout << "small hp bonus" << endl;
+        }
+    }
+    else if (wordSolved == 2)
+    {
+        if (determineBonus % 2 != 0) 
+        {
+            determineBonus = generateRandomNumber();
+            if (determineBonus % 2 != 0) // small spawn bonus if odd number
+            {
+                mapBonus(smallBonus, 3);
+            }
+            else // larger spawn bonus if even number 
+            {
+                mapBonus(regularBonus, 3);
+            }
+        }
+        else
+        {
+            cout << "reg hp bonus" << endl;
+        }
+    }
+    else if (wordSolved == 3)
+    {
+        if (determineBonus % 2 != 0) 
+        {
+            determineBonus = generateRandomNumber();
+            if (determineBonus % 2 != 0) // small spawn bonus if odd number
+            {
+                mapBonus(smallBonus, 3);
+            }
+            else // larger spawn bonus if even number 
+            {
+                mapBonus(regularBonus, 3);
+            }
+        }
+        else
+        {
+            cout << "xtreme hp bonus" << endl;
+            // even number and x-treme bonus 
+            // bonus also tbd
+        }
+    }
+    else if (wordSolved == 4)
+    {
+        if (determineBonus % 2 != 0) 
+        {
+            //mapBonus(xtremeBonus);
+            // bonus tbd
+        }
+        else
+        {
+            //cout << "xtreme hp bonus" << endl;
+            // even number and x-treme bonus 
+            // bonus also tbd
+        }
+        }
+    if (wordSolved > 0)
+    {
+        updateWords();
+        
+    }
 }
 
 void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
 
+    assign3Words();
+    assignExtremeWord();
+    mPlayer1->displayWords();
+
 }
 
 // takes bonus enum and adds bonus entity(s) to master list
-void TowerDefenseGame::mapBonus(enum Bonus& bonus) {
+void TowerDefenseGame::mapBonus(enum Bonus& bonus, int targetPlayerID) {
     Entity* pNew = nullptr;
+    sf::Sprite gnomeSprite = spawner->getGnome();
+    sf::Sprite bigGnomeSprite = spawner->getBigGnome();
+    sf::Vector2f targetPos = getPlayer(targetPlayerID)->mBody.getPosition();
+    
 
     switch (bonus) {
-        case spawn1:// -> insert one gnome at back!
-            //pNew = new Entity(1, sf::CircleShape(5.f));
+        case spawn1:// -> insert one gnome at back!       
+            pNew = new Entity(1, gnomeSprite);
             if (pNew != nullptr) {
+                sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
+                pNew->setDirection(direction);
                 this->mMasterList->push_back(pNew);
             }
             break;
         case spawn5:// -> make 5 gnomes and insert at back of list
             for(int i = 0; i < 5; i++) {
-                //pNew = new Entity(1, sf::CircleShape(5.f));
-                this->mMasterList->push_back(pNew);
+                pNew = new Entity(1, gnomeSprite);
+                if (pNew != nullptr){
+                    sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
+                    pNew->setDirection(direction);
+                    this->mMasterList->push_back(pNew);
+                }
+                
             }
             break;
         case spawnBigGnome:// -> add one big gnome!
-            //pNew = new Entity(5, sf::CircleShape(10.f));
+            pNew = new Entity(5, bigGnomeSprite);
             this->mMasterList->push_back(pNew);
             break;
         default:
@@ -186,16 +353,27 @@ void TowerDefenseGame::updateEntities() {
     //over write screen for next iteration
     this->mGameWindow->clear(sf::Color::Black);
 
+    // load background
+    sf::Sprite grassSprite = this->spawner->getGrass();
+    this->mGameWindow->draw(grassSprite);
+
     //iterator???? :D
     for (// move through length of list and do stuff!
-        std::list<Entity*>::iterator iter = this->mMasterList->begin();
+        std::list<Entity*>::iterator iter = this->mMasterList->begin(); 
         iter != this->mMasterList->end();
-        ++iter
-        ) {
+        //++iter // the incrementation I think was messing with the loop so I put it down at the end - Ingrid
+        ) 
+        { // position vector determines if something is out of bounds and kills it if it is 
+        sf::Vector2f position = (*iter)->mBody.getPosition();
+        if ((position.x < -05.0f || position.x > WINDOW_WIDTH + 05.0f) ||
+            (position.y < -05.0f || position.y > WINDOW_HEIGHT + 05.0f)) {
+            (*iter)->setHP(0);
+        }
         // check if element is already dead before processing
         if ((*iter)->isDead()) {
-            this->mMasterList->erase(iter); // remove from list
-            delete *iter; // deallocate memory
+            delete* iter; // deallocate memory
+            iter = this->mMasterList->erase(iter); // remove from list
+        
         }
         else { // entity is not dead, needs to check conflict, move, and draw  
 
@@ -214,6 +392,7 @@ void TowerDefenseGame::updateEntities() {
                     iter != j) {
                     attackUntilDead(**iter, **j);
                 }
+               
             }
 
             //move this element by mDirection vec!
@@ -223,26 +402,17 @@ void TowerDefenseGame::updateEntities() {
             // now draw element to screen, consider moving thru to another
             // loop if it makes the rendering of entities choppy!
             this->mGameWindow->draw((*iter)->mBody);// -> draw it and display at loop exit!
+
+            ++iter; // only moves things forward if the entity is not dead 
         }
+   
 
     }
-  
+    
     // output contents of list to screen!
     this->mGameWindow->display();
 }
     
-    string* getWordChoices()
-    {
-        int randomNumber = (std::rand() % (sizeof(wordPool) / sizeof(wordPool[0])));
-        string wordChoicesArr[3];
-        for (int i = 0; i < 3; i++)
-        {
-            wordChoicesArr[i] = wordPool[randomNumber];
-        }
-
-        return wordChoicesArr;
-    }
-
 //checks game conditions for if they are over
 bool TowerDefenseGame::GameComplete() const {
     bool done = false;
@@ -268,3 +438,32 @@ void TowerDefenseGame::printMultiplayerMenu() const {// for join/create game
         << "2. Multiplayer Game " << std::endl
         << "Please enter choice: ";
 }
+
+int generateRandomNumber()
+{
+    int arraySize = sizeof(wordPool) / sizeof(wordPool[0]);
+    int randomNumber = rand() % arraySize;
+    return randomNumber;
+}
+
+int generateExtremeNumber()
+{
+    int arraySize = sizeof(extremePool) / sizeof(extremePool[0]);
+    int randomNumber = rand() % arraySize;
+    return randomNumber;
+}
+
+string generateRandomWord()
+{
+    string randomWord = "";
+    randomWord = wordPool[generateRandomNumber()];
+    return randomWord;
+}
+
+string generateExtremeWord()
+{
+    string extremeWord = "";
+    extremeWord = extremePool[generateExtremeNumber()];
+    return extremeWord;
+}
+

@@ -12,14 +12,16 @@ int main(void) {
 	//testCases t;
 	//t.runTests();
 
-	std::srand(std::time(nullptr)); // seed for random number
+	std::srand(std::time(NULL)); // seed for random number
 
 
-	testCases t;
-	t.runTests();
+
+	/*testCases t;
+	t.runTests();*/
 
 	TowerDefenseGame app;
 	app.run();
+	
 
 	return 0;
 }

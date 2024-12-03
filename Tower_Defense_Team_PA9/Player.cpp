@@ -50,6 +50,22 @@ int Player::getPoints() const
 	return this->points;
 }
 
+sf::Vector2f Player::getPlayerPosition(int playerID)
+{
+	sf::Vector2f centerWindow(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	switch (playerID)
+	{
+	case 1:
+		return sf::Vector2f(centerWindow.x + P1_X, centerWindow.y + P1_Y);
+	case 2:
+		return sf::Vector2f(centerWindow.x + P2_X, centerWindow.y + P2_Y);
+	case 3:
+		return sf::Vector2f(centerWindow.x + P3_X, centerWindow.y + P3_Y);
+	case 4:
+		return sf::Vector2f(centerWindow.x + P4_X, centerWindow.y + P4_Y);
+	}
+}
+
 void Player::setPoints(int newPoints)
 {
 	this->points = newPoints;
@@ -65,35 +81,48 @@ void Player::clearInput()
 	playerInput.clearInput();
 }
 
-bool Player::processPlayerInput()
+int Player::processPlayerInput()
 {
 	string currentInput = playerInput.getCurrentInput();
-	
+
 	for (int i = 0; i < 3; i++)
 	{
-		if (currentInput == wordOptions[i])
+		if (currentInput == wordOptions[0]) //target player 2 
 		{
-			cout << "Word matched!" << endl;
 			playerInput.clearInput();
-			return true; 
+			return 1; 
+		}
+		else if (currentInput == wordOptions[1]) // target player 3
+		{
+			playerInput.clearInput();
+			return 2;
+		}
+		else if (currentInput == wordOptions[2]) // target player 4
+		{
+			playerInput.clearInput();
+			return 3;
+		}
+		else if (currentInput == wordOptions[3]) // extreme word solved, random target?
+		{
+			playerInput.clearInput();
+			return 4;
 		}
 	}
-	return false;
-	
+
+	return -1;
 }
 
-void Player::setWordChoices()
+void Player::setWord(int index, string newWord)
 {
-	
+	wordOptions[index] = newWord;
 }
-
-
 
 void Player::displayWords()
 {
-	for (int i = 0; i < 3; i++)
-	{
+	for (int i = 0; i < 4; i++)
+	{	
 		cout << "Word #" << i + 1 << ":" << wordOptions[i] << endl;
+		cout << "\n";
 	}
 }
 
