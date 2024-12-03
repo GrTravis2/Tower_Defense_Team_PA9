@@ -15,6 +15,7 @@ private:
 
 public:
 
+    sf::Texture* grass;
     sf::Texture* gnome;
     sf::Texture* mushroomTower;
 
@@ -33,6 +34,7 @@ public:
     memory allocation!  */
 
     //copy sprites
+    sf::Sprite getGrass();
     sf::Sprite getGnome();
     sf::Sprite getBigGnome();
     sf::Sprite getMushroomTower();

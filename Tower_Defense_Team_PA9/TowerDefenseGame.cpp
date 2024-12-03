@@ -18,7 +18,7 @@ TowerDefenseGame::TowerDefenseGame() {// -> start default and add thru setters?
 void TowerDefenseGame::setupGame() {
     bool setupComplete = false;
     int choice = -1;
-
+    
     this->printMultiplayerMenu();
     choice = 1;
     std::cin >> choice;
@@ -153,12 +153,11 @@ void TowerDefenseGame::initialWordAssignments()
 void TowerDefenseGame::assignExtremeWords()
 {
     mPlayer1->setWord(3, generateExtremeWord());
-    mPlayer2->setWord(3, generateExtremeWord());
+    /*mPlayer2->setWord(3, generateExtremeWord());
     mPlayer3->setWord(3, generateExtremeWord());
-    mPlayer4->setWord(3, generateExtremeWord());
-    mPlayer1->displayWords();
-    /*mPlayer2->displayWords();
-    mPlayer3->displayWords();
+    mPlayer4->setWord(3, generateExtremeWord());*/
+   
+ /*   mPlayer3->displayWords();
     mPlayer4->displayWords();*/
 }
 
@@ -174,6 +173,7 @@ void TowerDefenseGame::run() {
     //set up any other initializing code here!!!
     sf::Event event;
     initialWordAssignments();
+    mPlayer1->displayWords();
 
     /* ***MAIN GAME LOOP START!!*** */
 
@@ -211,6 +211,9 @@ void TowerDefenseGame::run() {
 
 void TowerDefenseGame::processInput() {// -> for handling keyboard event process!
     
+    Bonus smallBonus = spawn1;
+    Bonus regularBonus = spawn5;
+    Bonus xtremeBonus = spawnBigGnome;
     int determineBonus = generateRandomNumber();
     int wordSolved = 0;
     wordSolved = mPlayer1->processPlayerInput();
@@ -221,7 +224,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
         if (determineBonus % 2 != 0) // if it's an odd number and small bonus 
         {
             // bonus tbd
-            
+            mapBonus(smallBonus);
         }
         else
         {
@@ -234,6 +237,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
     {
         if (determineBonus % 2 != 0) // if it's an odd number and larger bonus 
         {
+            mapBonus(regularBonus);
             // bonus tbd
         
         }
@@ -248,6 +252,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
     {
         if (determineBonus % 2 != 0) // if it's an odd number and x-treme bonus 
         {
+            mapBonus(xtremeBonus);
             // bonus tbd
          
         }
@@ -261,6 +266,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
     if (wordSolved > 0)
     {
         updateWords();
+        
     }
     
     wordSolved = 0;
@@ -270,6 +276,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
 void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
 
     assign3Words();
+    assignExtremeWord();
     mPlayer1->displayWords();
 
 }
@@ -277,22 +284,36 @@ void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
 // takes bonus enum and adds bonus entity(s) to master list
 void TowerDefenseGame::mapBonus(enum Bonus& bonus) {
     Entity* pNew = nullptr;
+    sf::Sprite gnomeSprite = spawner->getGnome();
+    sf::Sprite bigGnomeSprite = spawner->getBigGnome();
+    Entity target(1, sf::Sprite());
+    target.mBody.setPosition(BOTTOM_RIGHT);
 
     switch (bonus) {
-        case spawn1:// -> insert one gnome at back!
-            //pNew = new Entity(1, sf::CircleShape(5.f));
+        case spawn1:// -> insert one gnome at back!       
+            pNew = new Entity(1, gnomeSprite);
             if (pNew != nullptr) {
+                
+                pNew->mBody.setPosition(sf::Vector2f(100.f, 100.f));
+                sf::Vector2f direction = computeDirection(*pNew, target, 0.1f);
+                pNew->setDirection(direction);
                 this->mMasterList->push_back(pNew);
             }
             break;
         case spawn5:// -> make 5 gnomes and insert at back of list
             for(int i = 0; i < 5; i++) {
-                //pNew = new Entity(1, sf::CircleShape(5.f));
-                this->mMasterList->push_back(pNew);
+                pNew = new Entity(1, gnomeSprite);
+                if (pNew != nullptr){
+                    pNew->mBody.setPosition(sf::Vector2f(50.f * i, 100.f));
+                    sf::Vector2f direction = computeDirection(*pNew, target, 0.1f);
+                    pNew->setDirection(direction);
+                    this->mMasterList->push_back(pNew);
+                }
+                
             }
             break;
         case spawnBigGnome:// -> add one big gnome!
-            //pNew = new Entity(5, sf::CircleShape(10.f));
+            pNew = new Entity(5, bigGnomeSprite);
             this->mMasterList->push_back(pNew);
             break;
         default:
@@ -305,6 +326,9 @@ void TowerDefenseGame::updateEntities() {
 
     //over write screen for next iteration
     this->mGameWindow->clear(sf::Color::Black);
+
+    sf::Sprite grassSprite = this->spawner->getGrass();
+    this->mGameWindow->draw(grassSprite);
 
     //iterator???? :D
     for (// move through length of list and do stuff!

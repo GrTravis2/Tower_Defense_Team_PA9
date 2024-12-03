@@ -12,7 +12,8 @@ int main(void) {
 	//testCases t;
 	//t.runTests();
 
-	std::srand(std::time(nullptr)); // seed for random number
+	std::srand(std::time(NULL)); // seed for random number
+
 
 
 	/*testCases t;

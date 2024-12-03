@@ -45,6 +45,11 @@ void Entity::setHP(const int& newHP) {
     this->mHealthPoints = newHP;
 }
 
+void Entity::setDirection(const sf::Vector2f& direction)
+{
+    mDirection = direction;
+}
+
 //public
 //move function? -> should be in SFML class
 
