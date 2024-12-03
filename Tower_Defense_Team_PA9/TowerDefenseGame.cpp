@@ -76,6 +76,7 @@ Player* TowerDefenseGame::getPlayer(const int& playerID) const {
         // :D broke
         break;
     }
+
     return result;
 }
   
@@ -114,32 +115,21 @@ void TowerDefenseGame::assign3Words()
         string randomWord = generateRandomWord();
         mPlayer1->setWord(i, randomWord);
     }
-    //cout << "****Player 1 words:" << endl;
-    //mPlayer1->displayWords();
-
     for (int i = 0; i < 3; i++)
     {
         string randomWord = generateRandomWord();
         mPlayer2->setWord(i, randomWord);
     }
-    //cout << "***Player 2 words:" << endl;
-   // mPlayer2->displayWords();
-
     for (int i = 0; i < 3; i++)
     {
         string randomWord = generateRandomWord();
         mPlayer3->setWord(i, randomWord);
     }
-    //cout << "***Player 3 words:" << endl;
-    //mPlayer3->displayWords();
-
     for (int i = 0; i < 3; i++)
     {
         string randomWord = generateRandomWord();
         mPlayer4->setWord(i, randomWord);
     }
-    //cout << "***Player 4 words:" << endl;
-   // mPlayer4->displayWords();
 }
 
 void TowerDefenseGame::assignExtremeWord()
@@ -197,18 +187,13 @@ void TowerDefenseGame::run() {
             // this reads in continuous input 
             if (event.type == sf::Event::TextEntered)
             {
-
-                mPlayer1->updateInput();
-                this->processInput();
+                // the updating and processing has to stay in this loop so that it
+                // reads all the player input continuously
+                mPlayer1->updateInput(); // captures all the input for player 1
+                this->processInput(); // processes afformentioned input
             }
         }
        
-        //check for changes to word choices:
-        //can this also take care of word visuals?
-        //this->updateWords();
-
-        //read player input will modify list if word is complete:
-        //this->processInput();
 
         //step shape positions, checks for intersections and draws all
         this->updateEntities();
