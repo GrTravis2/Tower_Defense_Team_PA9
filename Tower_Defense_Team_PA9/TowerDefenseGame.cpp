@@ -76,6 +76,7 @@ Player* TowerDefenseGame::getPlayer(const int& playerID) const {
         // :D broke
         break;
     }
+
     return result;
 }
   
@@ -114,32 +115,21 @@ void TowerDefenseGame::assign3Words()
         string randomWord = generateRandomWord();
         mPlayer1->setWord(i, randomWord);
     }
-    //cout << "****Player 1 words:" << endl;
-    //mPlayer1->displayWords();
-
     for (int i = 0; i < 3; i++)
     {
         string randomWord = generateRandomWord();
         mPlayer2->setWord(i, randomWord);
     }
-    //cout << "***Player 2 words:" << endl;
-   // mPlayer2->displayWords();
-
     for (int i = 0; i < 3; i++)
     {
         string randomWord = generateRandomWord();
         mPlayer3->setWord(i, randomWord);
     }
-    //cout << "***Player 3 words:" << endl;
-    //mPlayer3->displayWords();
-
     for (int i = 0; i < 3; i++)
     {
         string randomWord = generateRandomWord();
         mPlayer4->setWord(i, randomWord);
     }
-    //cout << "***Player 4 words:" << endl;
-   // mPlayer4->displayWords();
 }
 
 void TowerDefenseGame::assignExtremeWord()
@@ -197,18 +187,13 @@ void TowerDefenseGame::run() {
             // this reads in continuous input 
             if (event.type == sf::Event::TextEntered)
             {
-
-                mPlayer1->updateInput();
-                this->processInput();
+                // the updating and processing has to stay in this loop so that it
+                // reads all the player input continuously
+                mPlayer1->updateInput(); // captures all the input for player 1
+                this->processInput(); // processes afformentioned input
             }
         }
        
-        //check for changes to word choices:
-        //can this also take care of word visuals?
-        //this->updateWords();
-
-        //read player input will modify list if word is complete:
-        //this->processInput();
 
         //step shape positions, checks for intersections and draws all
         this->updateEntities();
@@ -243,6 +228,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
         }
         else
         {
+            cout << "small hp bonus" << endl;
             // even number and small bonus 
             // bonus also tbd
             
@@ -258,6 +244,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
         }
         else
         {
+            cout << "reg hp bonus" << endl;
             // even number and larger bonus 
             // bonus also tbd
           
@@ -273,6 +260,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
         }
         else
         {
+            cout << "xtreme hp bonus" << endl;
             // even number and x-treme bonus 
             // bonus also tbd
            
@@ -284,7 +272,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
         
     }
     
-    wordSolved = 0;
+   
    
 }
 
@@ -302,7 +290,7 @@ void TowerDefenseGame::mapBonus(enum Bonus& bonus) {
     sf::Sprite gnomeSprite = spawner->getGnome();
     sf::Sprite bigGnomeSprite = spawner->getBigGnome();
     Entity target(1, sf::Sprite());
-    target.mBody.setPosition(BOTTOM_RIGHT);
+    target.mBody.setPosition(TOP_RIGHT);
 
     switch (bonus) {
         case spawn1:// -> insert one gnome at back!       
@@ -347,14 +335,22 @@ void TowerDefenseGame::updateEntities() {
 
     //iterator???? :D
     for (// move through length of list and do stuff!
-        std::list<Entity*>::iterator iter = this->mMasterList->begin();
+        std::list<Entity*>::iterator iter = this->mMasterList->begin(); 
         iter != this->mMasterList->end();
         ++iter
         ) {
         // check if element is already dead before processing
         if ((*iter)->isDead()) {
+<<<<<<< HEAD
             iter = this->mMasterList->erase(iter); // remove from list
             delete *iter; // deallocate memory
+=======
+            delete* iter; // deallocate memory
+            iter = this->mMasterList->erase(iter); // remove from list
+            
+            
+           
+>>>>>>> a727cb0f03f19867a92954bab3d65c5159b72ac6
         }
         else { // entity is not dead, needs to check conflict, move, and draw  
 
@@ -383,9 +379,10 @@ void TowerDefenseGame::updateEntities() {
             // loop if it makes the rendering of entities choppy!
             this->mGameWindow->draw((*iter)->mBody);// -> draw it and display at loop exit!
         }
+   
 
     }
-  
+    
     // output contents of list to screen!
     this->mGameWindow->display();
 }
