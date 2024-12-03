@@ -50,6 +50,22 @@ int Player::getPoints() const
 	return this->points;
 }
 
+sf::Vector2f Player::getPlayerPosition(int playerID)
+{
+	sf::Vector2f centerWindow(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	switch (playerID)
+	{
+	case 1:
+		return sf::Vector2f(centerWindow.x + P1_X, centerWindow.y + P1_Y);
+	case 2:
+		return sf::Vector2f(centerWindow.x + P2_X, centerWindow.y + P2_Y);
+	case 3:
+		return sf::Vector2f(centerWindow.x + P3_X, centerWindow.y + P3_Y);
+	case 4:
+		return sf::Vector2f(centerWindow.x + P4_X, centerWindow.y + P4_Y);
+	}
+}
+
 void Player::setPoints(int newPoints)
 {
 	this->points = newPoints;
@@ -71,23 +87,25 @@ int Player::processPlayerInput()
 
 	for (int i = 0; i < 3; i++)
 	{
-		if (currentInput == wordOptions[i] && currentInput.length() < 4) // small bonus word  
+		if (currentInput == wordOptions[0]) //target player 2 
 		{
-			cout << "Small word matched! 1 returned" << endl;
 			playerInput.clearInput();
 			return 1; 
 		}
-		else if (currentInput == wordOptions[i] && currentInput.length() > 4)
+		else if (currentInput == wordOptions[1]) // target player 3
 		{
-			cout << "Larger word matched! 2 returned" << endl;
 			playerInput.clearInput();
 			return 2;
 		}
-		else if (currentInput == wordOptions[3])
+		else if (currentInput == wordOptions[2]) // target player 4
 		{
-			cout << "X-treme word matched! 3 returned" << endl;
 			playerInput.clearInput();
 			return 3;
+		}
+		else if (currentInput == wordOptions[3]) // extreme word solved, random target?
+		{
+			playerInput.clearInput();
+			return 4;
 		}
 	}
 
