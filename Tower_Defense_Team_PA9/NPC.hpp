@@ -21,7 +21,7 @@ public:
 
 	//constructor
 	NPC(
-		const int& playerID,
+		const teamNumber& playerID,
 		const sf::Sprite& body,
 		const difficulty& diff
 		);

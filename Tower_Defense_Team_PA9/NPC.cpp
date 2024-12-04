@@ -2,7 +2,7 @@
 
 //constructor
 NPC::NPC (
-    const int& playerID,
+    const teamNumber& playerID,
     const sf::Sprite& body,
     const difficulty& diff
     ) : Player(playerID, 30, body) {

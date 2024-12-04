@@ -24,16 +24,16 @@ void TowerDefenseGame::setupGame() {
     std::cin >> choice;
     if (choice == 1) {//local game, 3 NPC
 
-        this->mPlayer1 = new Player(1, 30, this->spawner->getMushroomTower());
+        this->mPlayer1 = new Player(one, 30, this->spawner->getMushroomTower());
         this->mPlayer1->mBody.setPosition(sf::Vector2f(P1_X, P1_Y));
 
-        this->mPlayer2 = new NPC(2, this->spawner->getMushroomTower(), easy);
+        this->mPlayer2 = new NPC(two, this->spawner->getMushroomTower(), easy);
         this->mPlayer2->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P2_X, P2_Y));
 
-        this->mPlayer3 = new NPC(3, this->spawner->getMushroomTower(), easy);
+        this->mPlayer3 = new NPC(three, this->spawner->getMushroomTower(), easy);
         this->mPlayer3->mBody.setPosition(sf::Vector2f(P3_X,WINDOW_HEIGHT + P3_Y));
 
-        this->mPlayer4 = new NPC(4, this->spawner->getMushroomTower(), easy);
+        this->mPlayer4 = new NPC(four, this->spawner->getMushroomTower(), easy);
         this->mPlayer4->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P4_X,WINDOW_HEIGHT + P4_Y));
     }
     while (setupComplete != true) {
@@ -57,19 +57,19 @@ TowerDefenseGame::~TowerDefenseGame() {
 }
 
 //getters
-Player* TowerDefenseGame::getPlayer(const int& playerID) const {
+Player* TowerDefenseGame::getPlayer(const teamNumber& playerID) const {
     Player* result = nullptr;
     switch (playerID) {
-    case 1:
+    case one:
         result = this->mPlayer1;
         break;
-    case 2:
+    case two:
         result = this->mPlayer2;
         break;
-    case 3:
+    case three:
         result = this->mPlayer3;
         break;
-    case 4:
+    case four:
         result = this->mPlayer4;
         break;
     default:
@@ -79,30 +79,6 @@ Player* TowerDefenseGame::getPlayer(const int& playerID) const {
 
     return result;
 }
-  
-//getters
-//Player* TowerDefenseGame::getPlayer(const int& playerID) const {
-//      Player* result = nullptr;
-//      switch (playerID) {
-//          case 1:
-//              result = this->mPlayer1;
-//              break;
-//          case 2:
-//              result = this->mPlayer2;
-//              break;
-//          case 3:
-//              result = this->mPlayer3;
-//              break;
-//          case 4:
-//              result = this->mPlayer4;
-//              break;
-//          default:
-//              // :D broke
-//              break;
-//      }
-//
-//      return result; // Gavin I had to add this sorry if it ruins your day - Ingrid
-//  }
 
 Player* TowerDefenseGame::getHostPlayer() const {
     return this->mHostPlayer;
@@ -220,23 +196,20 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
     int determineBonus = generateRandomNumber();
     int wordSolved = 0;
     wordSolved = mPlayer1->processPlayerInput();
-    int randomPlayer = rand() % 4 + 1; 
 
     if (wordSolved == 1) // target is player 2
     {
-        if (determineBonus > 15) // much higher chances of getting a spawn bonus 
+        if (determineBonus % 2 != 0) // if it's an odd number 
         {
             // spawn bonus 
             determineBonus = generateRandomNumber();
-            if (determineBonus > 15) // small spawn bonus if odd number
+            if (determineBonus % 2 != 0) // small spawn bonus if odd number
             {
-                cout << "Aiming small bonus at p2" << endl;
-                mapBonus(smallBonus, 2);
+                mapBonus(smallBonus, one, two);
             }
             else // larger spawn bonus if even number 
             {
-                cout << "Aiming larger bonus at p2" << endl;
-                mapBonus(regularBonus, 2);
+                mapBonus(regularBonus, one, two);
             }
         }
         else
@@ -246,18 +219,16 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
     }
     else if (wordSolved == 2)
     {
-        if (determineBonus > 15) 
+        if (determineBonus % 2 != 0) 
         {
             determineBonus = generateRandomNumber();
-            if (determineBonus > 15) // small spawn bonus if odd number
+            if (determineBonus % 2 != 0) // small spawn bonus if odd number
             {
-                cout << "Aiming small bonus at p3" << endl;
-                mapBonus(smallBonus, 3);
+                mapBonus(smallBonus, one, three);
             }
             else // larger spawn bonus if even number 
             {
-                cout << "Aiming large bonus at p3" << endl;
-                mapBonus(regularBonus, 3);
+                mapBonus(regularBonus, one, three);
             }
         }
         else
@@ -267,37 +238,34 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
     }
     else if (wordSolved == 3)
     {
-        if (determineBonus > 15) 
+        if (determineBonus % 2 != 0) 
         {
             determineBonus = generateRandomNumber();
-            if (determineBonus > 15) // small spawn bonus if odd number
+            if (determineBonus % 2 != 0) // small spawn bonus if odd number
             {
-                cout << "Aiming small bonus at p4" << endl;
-                mapBonus(smallBonus, 3);
+                mapBonus(smallBonus, one, three);
             }
             else // larger spawn bonus if even number 
             {
-                cout << "Aiming larger bonus at p4" << endl;
-                mapBonus(regularBonus, 3);
+                mapBonus(regularBonus, one, three);
             }
-        }
-        else
-        {
-            
-            
-        }
-    }
-    else if (wordSolved == 4)
-    {
-        if (determineBonus > 15) 
-        {
-            cout << "Aiming xtreme bonus at random player" << endl;
-            mapBonus(xtremeBonus, randomPlayer);
-            
         }
         else
         {
             cout << "xtreme hp bonus" << endl;
+            // even number and x-treme bonus 
+            // bonus also tbd
+        }
+    }
+    else if (wordSolved == 4)
+    {
+        if (determineBonus % 2 != 0) 
+        {
+            //mapBonus(xtremeBonus);
+            // bonus tbd
+        }
+        else
+        {
             //cout << "xtreme hp bonus" << endl;
             // even number and x-treme bonus 
             // bonus also tbd
@@ -319,18 +287,16 @@ void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
 }
 
 // takes bonus enum and adds bonus entity(s) to master list
-void TowerDefenseGame::mapBonus(enum Bonus& bonus, int targetPlayerID) {
+void TowerDefenseGame::mapBonus(const Bonus& bonus, const teamNumber& startingPlayer, const teamNumber& targetPlayer) {
     Entity* pNew = nullptr;
-   
     sf::Sprite gnomeSprite = spawner->getGnome();
     sf::Sprite bigGnomeSprite = spawner->getBigGnome();
-    sf::Vector2f targetPos = getPlayer(targetPlayerID)->mBody.getPosition();
+    sf::Vector2f targetPos = getPlayer(targetPlayer)->mBody.getPosition();
     
 
     switch (bonus) {
         case spawn1:// -> insert one gnome at back!       
-            pNew = new Entity(1, gnomeSprite);
-            pNew->mBody.setPosition(200.f, 200.f);
+            pNew = new Entity(1, startingPlayer, gnomeSprite);
             if (pNew != nullptr) {
                 sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
                 pNew->setDirection(direction);
@@ -339,8 +305,7 @@ void TowerDefenseGame::mapBonus(enum Bonus& bonus, int targetPlayerID) {
             break;
         case spawn5:// -> make 5 gnomes and insert at back of list
             for(int i = 0; i < 5; i++) {
-                pNew = new Entity(1, gnomeSprite);
-                pNew->mBody.setPosition(100.f, 100.f);
+                pNew = new Entity(1, startingPlayer, gnomeSprite);
                 if (pNew != nullptr){
                     sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
                     pNew->setDirection(direction);
@@ -350,14 +315,7 @@ void TowerDefenseGame::mapBonus(enum Bonus& bonus, int targetPlayerID) {
             }
             break;
         case spawnBigGnome:// -> add one big gnome!
-            pNew = new Entity(5, bigGnomeSprite);
-            pNew->mBody.setPosition(100.f, 100.f);
-            if (pNew != nullptr)
-            {
-                sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
-                pNew->setDirection(direction);
-                this->mMasterList->push_back(pNew);
-            }
+            pNew = new Entity(5, startingPlayer, bigGnomeSprite);
             this->mMasterList->push_back(pNew);
             break;
         default:
@@ -407,7 +365,7 @@ void TowerDefenseGame::updateEntities() {
                 if (
                     (*iter)->mBody.getGlobalBounds().intersects((*j)->mBody.getGlobalBounds())
                     &&
-                    iter != j) {
+                    (*iter)->getTeamNumber() != (*j)->getTeamNumber()) {
                     attackUntilDead(**iter, **j);
                 }
                
@@ -419,7 +377,6 @@ void TowerDefenseGame::updateEntities() {
 
             // now draw element to screen, consider moving thru to another
             // loop if it makes the rendering of entities choppy!
-
             this->mGameWindow->draw((*iter)->mBody);// -> draw it and display at loop exit!
 
             ++iter; // only moves things forward if the entity is not dead 
