@@ -365,7 +365,7 @@ void TowerDefenseGame::updateEntities() {
                 if (
                     (*iter)->mBody.getGlobalBounds().intersects((*j)->mBody.getGlobalBounds())
                     &&
-                    iter != j) {
+                    (*iter)->getTeamNumber() != (*j)->getTeamNumber()) {
                     attackUntilDead(**iter, **j);
                 }
                
