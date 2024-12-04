@@ -61,7 +61,7 @@ public:
 	Player(const teamNumber& team, const int& HP, const sf::Sprite& body);
 
 	//destructor
-	~Player();
+	virtual ~Player();
 
 	//getters
 	std::string getInput();
@@ -88,5 +88,7 @@ enum Bonus {
 	spawnBigGnome,
 	plus5HP,
 	plus10HP,
-	plus15HP
+	plus15HP,
+	first = spawn1,
+	last = plus15HP
 };
