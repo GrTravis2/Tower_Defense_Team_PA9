@@ -1,8 +1,2 @@
-﻿  SpriteManager.cpp
-C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(43,27): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(43,21): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(51,27): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(51,21): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(59,27): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(59,21): warning C4305: 'argument': truncation from 'double' to 'float'
-  Tower_Defense_Team_PA9.vcxproj -> C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\x64\Debug\Tower_Defense_Team_PA9.exe
+﻿  TowerDefenseGame.cpp
+  Tower_Defense_Team_PA9.vcxproj -> C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\x64\Debug\Tower_Defense_Team_PA9.exe

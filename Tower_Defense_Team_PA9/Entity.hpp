@@ -65,4 +65,5 @@ public:
 
 //derives a vector that points between starting and ending entities
 //with magnitude speed!
-sf::Vector2f computeDirection(const Entity& start, const Entity& end, const float& speed);
+//sf::Vector2f computeDirection(const Entity& start, const Entity& end, const float& speed);
+sf::Vector2f computeDirection(const sf::Vector2f& start, const sf::Vector2f& end, const float& speed);

@@ -14,6 +14,7 @@
 
 //Game Constants!!
 
+// these are defined in the player class but I'm redefining them here 
 #define TOP_LEFT sf::Vector2f(0.f, 0.f)
 #define TOP_RIGHT sf::Vector2f(WINDOW_WIDTH, 0.f)
 #define BOTTOM_LEFT sf::Vector2f(0.f, WINDOW_HEIGHT)
@@ -87,13 +88,13 @@ public:
 	void updateWords();// -> for handling word and bonus options!
 
 	// takes bonus enum and adds bonus entity(s) to master list
-	void mapBonus(enum Bonus& bonus);
+	void mapBonus(enum Bonus& bonus, int targetPlayerID);
 
 	//updates shape positions, checks for intersections, and then draws all!
 	void updateEntities();
 
 	// word assignment stuff
-// dont look this is all really ugly 
+	// dont look this is all really ugly 
 
 // assigns all 4 players 3 regular value words
 	void assign3Words();

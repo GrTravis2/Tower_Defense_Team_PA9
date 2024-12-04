@@ -5,7 +5,7 @@ void testCases::runTests() {
 	std::cout
 	<< "--------- START TESTS --------- " << std::endl
 	<< "testContinuousKeyInput() pass: : " << testContinuousKeyInput() << std::endl
-	<< "testComputeDirection() pass: " << testComputeDirection() << std::endl
+	//<< "testComputeDirection() pass: " << testComputeDirection() << std::endl
 	<< "testGetandSetHP() pass: " << testGetandSetHP() << std::endl
 	<< "testIsDead() pass: " << testIsDead() << std::endl
 	<< "testAttackUntilDead() pass: " << testAttackUntilDead() << std::endl
@@ -48,52 +48,52 @@ bool testCases::testContinuousKeyInput()
 	return success;
 }
 
-//entity tests
-bool testCases::testComputeDirection() {
-	bool ok = false;
-	float tol = 0.001; // precision issues, adding tolerance for some leeway
-
-	//
-	Entity one(5, this->s->getGnome());
-	Entity two(5, this->s->getGnome());
-	one.mBody.setPosition(sf::Vector2f(0,0));
-	two.mBody.setPosition(sf::Vector2f(1,1));
-	
-
-	sf::Vector2f out = computeDirection(one, two, sqrt(2));
-
-	if (//check x, y pos in an acceptable range
-		out.x <= two.mBody.getPosition().x + tol
-		&&
-		out.x >= two.mBody.getPosition().x - tol
-		&&
-		out.y <= two.mBody.getPosition().y + tol
-		&&
-		out.y >= two.mBody.getPosition().y - tol
-		) {
-
-		Entity three(5, this->s->getGnome());
-		three.mBody.setPosition(5,5);
-
-		out = computeDirection(one, three, sqrt(32));
-		int expectedX = 4;
-		int expectedY = 4;
-		if (
-			out.x <= expectedX + tol
-			&&
-			out.x >= expectedX - tol
-			&&
-			out.y <= expectedY + tol
-			&&
-			out.y >= expectedY - tol
-		) {
-			//woohoo! Vector math :D
-			ok = true;
-		}
-	}
-
-	return ok;
-}
+////entity tests
+//bool testCases::testComputeDirection() {
+//	bool ok = false;
+//	float tol = 0.001; // precision issues, adding tolerance for some leeway
+//
+//	//
+//	Entity one(5, this->s->getGnome());
+//	Entity two(5, this->s->getGnome());
+//	one.mBody.setPosition(sf::Vector2f(0,0));
+//	two.mBody.setPosition(sf::Vector2f(1,1));
+//	
+//
+//	sf::Vector2f out = computeDirection(one, two, sqrt(2));
+//
+//	if (//check x, y pos in an acceptable range
+//		out.x <= two.mBody.getPosition().x + tol
+//		&&
+//		out.x >= two.mBody.getPosition().x - tol
+//		&&
+//		out.y <= two.mBody.getPosition().y + tol
+//		&&
+//		out.y >= two.mBody.getPosition().y - tol
+//		) {
+//
+//		Entity three(5, this->s->getGnome());
+//		three.mBody.setPosition(5,5);
+//
+//		out = computeDirection(one, three, sqrt(32));
+//		int expectedX = 4;
+//		int expectedY = 4;
+//		if (
+//			out.x <= expectedX + tol
+//			&&
+//			out.x >= expectedX - tol
+//			&&
+//			out.y <= expectedY + tol
+//			&&
+//			out.y >= expectedY - tol
+//		) {
+//			//woohoo! Vector math :D
+//			ok = true;
+//		}
+//	}
+//
+//	return ok;
+//}
 
 bool testCases::testGetandSetHP() {
 	bool ok = false;

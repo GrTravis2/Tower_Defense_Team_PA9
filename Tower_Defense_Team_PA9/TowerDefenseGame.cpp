@@ -211,69 +211,103 @@ void TowerDefenseGame::run() {
 
 void TowerDefenseGame::processInput() {// -> for handling keyboard event process!
     
-    Bonus smallBonus = spawn1;
-    Bonus regularBonus = spawn5;
-    Bonus xtremeBonus = spawnBigGnome;
+    Bonus smallBonus = spawn1,
+        regularBonus = spawn5,
+        xtremeBonus = spawnBigGnome,
+        add5 = plus5HP,
+        add10 = plus10HP,
+        add15 = plus15HP;
     int determineBonus = generateRandomNumber();
     int wordSolved = 0;
     wordSolved = mPlayer1->processPlayerInput();
+    int randomPlayer = rand() % 4 + 1; 
 
-  
-    if (wordSolved == 1)
+    if (wordSolved == 1) // target is player 2
     {
-        if (determineBonus % 2 != 0) // if it's an odd number and small bonus 
+        if (determineBonus > 15) // much higher chances of getting a spawn bonus 
         {
-            // bonus tbd
-            mapBonus(smallBonus);
+            // spawn bonus 
+            determineBonus = generateRandomNumber();
+            if (determineBonus > 15) // small spawn bonus if odd number
+            {
+                cout << "Aiming small bonus at p2" << endl;
+                mapBonus(smallBonus, 2);
+            }
+            else // larger spawn bonus if even number 
+            {
+                cout << "Aiming larger bonus at p2" << endl;
+                mapBonus(regularBonus, 2);
+            }
         }
         else
         {
             cout << "small hp bonus" << endl;
-            // even number and small bonus 
-            // bonus also tbd
-            
         }
     }
     else if (wordSolved == 2)
     {
-        if (determineBonus % 2 != 0) // if it's an odd number and larger bonus 
+        if (determineBonus > 15) 
         {
-            mapBonus(regularBonus);
-            // bonus tbd
-        
+            determineBonus = generateRandomNumber();
+            if (determineBonus > 15) // small spawn bonus if odd number
+            {
+                cout << "Aiming small bonus at p3" << endl;
+                mapBonus(smallBonus, 3);
+            }
+            else // larger spawn bonus if even number 
+            {
+                cout << "Aiming large bonus at p3" << endl;
+                mapBonus(regularBonus, 3);
+            }
         }
         else
         {
             cout << "reg hp bonus" << endl;
-            // even number and larger bonus 
-            // bonus also tbd
-          
         }
     }
     else if (wordSolved == 3)
     {
-        if (determineBonus % 2 != 0) // if it's an odd number and x-treme bonus 
+        if (determineBonus > 15) 
         {
-            mapBonus(xtremeBonus);
-            // bonus tbd
-         
+            determineBonus = generateRandomNumber();
+            if (determineBonus > 15) // small spawn bonus if odd number
+            {
+                cout << "Aiming small bonus at p4" << endl;
+                mapBonus(smallBonus, 3);
+            }
+            else // larger spawn bonus if even number 
+            {
+                cout << "Aiming larger bonus at p4" << endl;
+                mapBonus(regularBonus, 3);
+            }
+        }
+        else
+        {
+            
+            
+        }
+    }
+    else if (wordSolved == 4)
+    {
+        if (determineBonus > 15) 
+        {
+            cout << "Aiming xtreme bonus at random player" << endl;
+            mapBonus(xtremeBonus, randomPlayer);
+            
         }
         else
         {
             cout << "xtreme hp bonus" << endl;
+            //cout << "xtreme hp bonus" << endl;
             // even number and x-treme bonus 
             // bonus also tbd
-           
         }
-    }
+        }
     if (wordSolved > 0)
     {
         updateWords();
         
     }
-    
-   
-   
 }
 
 void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
@@ -285,20 +319,20 @@ void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
 }
 
 // takes bonus enum and adds bonus entity(s) to master list
-void TowerDefenseGame::mapBonus(enum Bonus& bonus) {
+void TowerDefenseGame::mapBonus(enum Bonus& bonus, int targetPlayerID) {
     Entity* pNew = nullptr;
+   
     sf::Sprite gnomeSprite = spawner->getGnome();
     sf::Sprite bigGnomeSprite = spawner->getBigGnome();
-    Entity target(1, sf::Sprite());
-    target.mBody.setPosition(TOP_RIGHT);
+    sf::Vector2f targetPos = getPlayer(targetPlayerID)->mBody.getPosition();
+    
 
     switch (bonus) {
         case spawn1:// -> insert one gnome at back!       
             pNew = new Entity(1, gnomeSprite);
+            pNew->mBody.setPosition(200.f, 200.f);
             if (pNew != nullptr) {
-                
-                pNew->mBody.setPosition(sf::Vector2f(100.f, 100.f));
-                sf::Vector2f direction = computeDirection(*pNew, target, 0.1f);
+                sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
                 pNew->setDirection(direction);
                 this->mMasterList->push_back(pNew);
             }
@@ -306,9 +340,9 @@ void TowerDefenseGame::mapBonus(enum Bonus& bonus) {
         case spawn5:// -> make 5 gnomes and insert at back of list
             for(int i = 0; i < 5; i++) {
                 pNew = new Entity(1, gnomeSprite);
+                pNew->mBody.setPosition(100.f, 100.f);
                 if (pNew != nullptr){
-                    pNew->mBody.setPosition(sf::Vector2f(50.f * i, 100.f));
-                    sf::Vector2f direction = computeDirection(*pNew, target, 0.1f);
+                    sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
                     pNew->setDirection(direction);
                     this->mMasterList->push_back(pNew);
                 }
@@ -317,6 +351,13 @@ void TowerDefenseGame::mapBonus(enum Bonus& bonus) {
             break;
         case spawnBigGnome:// -> add one big gnome!
             pNew = new Entity(5, bigGnomeSprite);
+            pNew->mBody.setPosition(100.f, 100.f);
+            if (pNew != nullptr)
+            {
+                sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
+                pNew->setDirection(direction);
+                this->mMasterList->push_back(pNew);
+            }
             this->mMasterList->push_back(pNew);
             break;
         default:
@@ -330,6 +371,7 @@ void TowerDefenseGame::updateEntities() {
     //over write screen for next iteration
     this->mGameWindow->clear(sf::Color::Black);
 
+    // load background
     sf::Sprite grassSprite = this->spawner->getGrass();
     this->mGameWindow->draw(grassSprite);
 
@@ -337,15 +379,19 @@ void TowerDefenseGame::updateEntities() {
     for (// move through length of list and do stuff!
         std::list<Entity*>::iterator iter = this->mMasterList->begin(); 
         iter != this->mMasterList->end();
-        ++iter
-        ) {
+        //++iter // the incrementation I think was messing with the loop so I put it down at the end - Ingrid
+        ) 
+        { // position vector determines if something is out of bounds and kills it if it is 
+        sf::Vector2f position = (*iter)->mBody.getPosition();
+        if ((position.x < -05.0f || position.x > WINDOW_WIDTH + 05.0f) ||
+            (position.y < -05.0f || position.y > WINDOW_HEIGHT + 05.0f)) {
+            (*iter)->setHP(0);
+        }
         // check if element is already dead before processing
         if ((*iter)->isDead()) {
             delete* iter; // deallocate memory
             iter = this->mMasterList->erase(iter); // remove from list
-            
-            
-           
+        
         }
         else { // entity is not dead, needs to check conflict, move, and draw  
 
@@ -364,6 +410,7 @@ void TowerDefenseGame::updateEntities() {
                     iter != j) {
                     attackUntilDead(**iter, **j);
                 }
+               
             }
 
             //move this element by mDirection vec!
@@ -372,7 +419,10 @@ void TowerDefenseGame::updateEntities() {
 
             // now draw element to screen, consider moving thru to another
             // loop if it makes the rendering of entities choppy!
+
             this->mGameWindow->draw((*iter)->mBody);// -> draw it and display at loop exit!
+
+            ++iter; // only moves things forward if the entity is not dead 
         }
    
 
