@@ -21,7 +21,7 @@ private:
 	bool testContinuousKeyInput();
 
 	//entity tests
-	//bool testComputeDirection();
+	bool testComputeDirection();
 	bool testGetandSetHP();
 	bool testIsDead();
 	bool testAttackUntilDead();
