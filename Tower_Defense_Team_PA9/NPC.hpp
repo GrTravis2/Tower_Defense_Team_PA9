@@ -1,5 +1,7 @@
 #pragma once
 
+#include <ctime>
+
 #include "Player.hpp"
 
 enum difficulty {
@@ -12,13 +14,13 @@ class NPC : public Player {
 
 private:
 	//what data should go here
-	int mWordsPerMinute; //set to spawn bonuses by time?
-	int mCountDown; //timer to spawn next bonus based on words
+	int mDelaySeconds; //set to spawn bonuses by time?
+	clock_t mNextBonusTime; // when past time spawn bonus!
 
 	//helpers
 
 public:
-
+	
 	//constructor
 	NPC(
 		const teamNumber& playerID,
@@ -30,10 +32,17 @@ public:
 	~NPC();
 
 	//getters
+	int getDelaySeconds() const;
 
 	//setters
+	void setNextBonusTime(const clock_t& newTime);
 
 	//public
+	bool isReady() const;// -> check if ready to send bonus
+
+	Bonus rollBonus() const;// -> generate a random bonus from pool
+
+
 
 };
 

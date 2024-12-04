@@ -90,6 +90,9 @@ public:
 	// takes bonus enum and adds bonus entity(s) to master list
 	void mapBonus(const Bonus& bonus, const teamNumber& startingPlayer, const teamNumber& targetPlayer);
 
+	//check all NPCs for their bonuses
+	void processNPCs();
+
 	//updates shape positions, checks for intersections, and then draws all!
 	void updateEntities();
 

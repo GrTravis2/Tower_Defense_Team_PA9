@@ -19,9 +19,9 @@ void TowerDefenseGame::setupGame() {
     bool setupComplete = false;
     int choice = -1;
     
-    this->printMultiplayerMenu();
+    //this->printMultiplayerMenu();
     choice = 1;
-    std::cin >> choice;
+    //std::cin >> choice;
     if (choice == 1) {//local game, 3 NPC
 
         this->mPlayer1 = new Player(one, 30, this->spawner->getMushroomTower());
@@ -169,10 +169,16 @@ void TowerDefenseGame::run() {
                 this->processInput(); // processes afformentioned input
             }
         }
+
+        //check for NPC input (time based check)
+        this->processNPCs();
        
 
         //step shape positions, checks for intersections and draws all
         this->updateEntities();
+
+        // output contents of list to screen!
+        this->mGameWindow->display();
        
     }
     cout << "Current input in player class: " << mPlayer1->getInput() << endl;
@@ -182,6 +188,36 @@ void TowerDefenseGame::run() {
     //clean up before returning to main:
 
     //so far nothing dynamic to clean up!
+
+}
+
+//check all NPCs for their bonuses
+void TowerDefenseGame::processNPCs() {
+    NPC* npc2 = dynamic_cast<NPC*>(this->mPlayer2);// -> cast players to NPCs
+    NPC* npc3 = dynamic_cast<NPC*>(this->mPlayer3);
+    NPC* npc4 = dynamic_cast<NPC*>(this->mPlayer4);
+    Bonus out = spawn1;// buffer enum
+    int randNum = (std::rand() % 4) + 1;
+
+    //check if all NPCs have a bonus ready to go
+    if(npc2->isReady()) {
+        out = npc2->rollBonus();
+        npc2->setNextBonusTime(clock() + (CLOCKS_PER_SEC * npc2->getDelaySeconds()));
+        while (randNum == 2) { randNum = (std::rand() % 4) + 1; }
+        this->mapBonus(out, npc2->getTeamNumber(), static_cast<teamNumber>(randNum));
+    }
+    if(npc3->isReady()) {
+        out = npc3->rollBonus();
+        npc3->setNextBonusTime(clock() + (CLOCKS_PER_SEC * npc3->getDelaySeconds()));
+        while (randNum == 3) { randNum = (std::rand() % 4) + 1; }
+        this->mapBonus(out, npc3->getTeamNumber(), static_cast<teamNumber>(randNum));
+    }
+    if(npc4->isReady()) {
+        out = npc4->rollBonus();
+        npc4->setNextBonusTime(clock() + (CLOCKS_PER_SEC * npc4->getDelaySeconds()));
+        while (randNum == 4) { randNum = (std::rand() % 4) + 1; }
+        this->mapBonus(out, npc4->getTeamNumber(), static_cast<teamNumber>(randNum));
+    }
 
 }
 
@@ -292,34 +328,35 @@ void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
 // takes bonus enum and adds bonus entity(s) to master list
 void TowerDefenseGame::mapBonus(const Bonus& bonus, const teamNumber& startingPlayer, const teamNumber& targetPlayer) {
     Entity* pNew = nullptr;
-    sf::Sprite gnomeSprite = spawner->getGnome();
-    sf::Sprite bigGnomeSprite = spawner->getBigGnome();
-    sf::Vector2f targetPos = getPlayer(targetPlayer)->mBody.getPosition();
+    Player* start = this->getPlayer(startingPlayer);
+    Player* end = this->getPlayer(targetPlayer);
+    //sf::Sprite gnomeSprite = spawner->getGnome();
+    //sf::Sprite bigGnomeSprite = spawner->getBigGnome();
+    //sf::Vector2f targetPos = getPlayer(targetPlayer)->mBody.getPosition();
+    sf::Vector2f shift = computeDirection(start->mBody.getPosition(), end->mBody.getPosition(), 1.f);
     
+
 
     switch (bonus) {
         case spawn1:// -> insert one gnome at back!       
-            pNew = new Entity(1, startingPlayer, gnomeSprite);
-            if (pNew != nullptr) {
-                sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
-                pNew->setDirection(direction);
-                this->mMasterList->push_back(pNew);
-            }
+            pNew = new Entity(1, startingPlayer, this->spawner->getGnome(), *start, *end, 0.001);
+            if (pNew != nullptr) {this->mMasterList->push_back(pNew);}
             break;
         case spawn5:// -> make 5 gnomes and insert at back of list
+
+            
             for(int i = 0; i < 5; i++) {
-                pNew = new Entity(1, startingPlayer, gnomeSprite);
-                if (pNew != nullptr){
-                    sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
-                    pNew->setDirection(direction);
+                pNew = new Entity(1, startingPlayer, this->spawner->getGnome(), *start, *end, 0.001);
+                if (pNew != nullptr) {
+                    shift += shift;
+                    pNew->mBody.setPosition(shift);
                     this->mMasterList->push_back(pNew);
                 }
-                
             }
             break;
         case spawnBigGnome:// -> add one big gnome!
-            pNew = new Entity(5, startingPlayer, bigGnomeSprite);
-            this->mMasterList->push_back(pNew);
+            pNew = new Entity(5, startingPlayer, this->spawner->getBigGnome(), *start, *end, 0.001);
+            if (pNew != nullptr) {this->mMasterList->push_back(pNew);}
             break;
         default:
             std::cout << "how did you do this??" << std::endl;
@@ -342,19 +379,21 @@ void TowerDefenseGame::updateEntities() {
         iter != this->mMasterList->end();
         //++iter // the incrementation I think was messing with the loop so I put it down at the end - Ingrid
         ) 
-        { // position vector determines if something is out of bounds and kills it if it is 
-        sf::Vector2f position = (*iter)->mBody.getPosition();
-        if ((position.x < -05.0f || position.x > WINDOW_WIDTH + 05.0f) ||
-            (position.y < -05.0f || position.y > WINDOW_HEIGHT + 05.0f)) {
-            (*iter)->setHP(0);
-        }
+        {
+        
         // check if element is already dead before processing
         if ((*iter)->isDead()) {
-            delete* iter; // deallocate memory
+            delete *iter; // deallocate memory
             iter = this->mMasterList->erase(iter); // remove from list
-        
         }
-        else { // entity is not dead, needs to check conflict, move, and draw  
+        else { // entity is not dead, needs to check conflict, move, and draw 
+
+            // position vector determines if something is out of bounds and kills it if it is 
+            sf::Vector2f position = (*iter)->mBody.getPosition();
+            if ((position.x < -05.0f || position.x > WINDOW_WIDTH + 05.0f) ||
+                (position.y < -05.0f || position.y > WINDOW_HEIGHT + 05.0f)) {
+                (*iter)->setHP(0);
+            }
 
             //first check for conflicting shapes, needs inner loop!
             for (
@@ -384,26 +423,21 @@ void TowerDefenseGame::updateEntities() {
 
             ++iter; // only moves things forward if the entity is not dead 
         }
-   
-
     }
-    
-    // output contents of list to screen!
-    this->mGameWindow->display();
 }
     
 //checks game conditions for if they are over
 bool TowerDefenseGame::GameComplete() const {
     bool done = false;
 
-    if (
+    if ( 
     this->mPlayer1->getHP() < 0
-    &&
-    this->mPlayer2->getHP() < 0
-    &&
-    this->mPlayer3->getHP() < 0
-    &&
-    this->mPlayer4->getHP() < 0
+    // &&
+    // this->mPlayer2->getHP() < 0
+    // &&
+    // this->mPlayer3->getHP() < 0
+    // &&
+    // this->mPlayer4->getHP() < 0
     ) 
     { done = true; }
 
