@@ -76,7 +76,7 @@ public:
 	~TowerDefenseGame();
 
 	//getters
-	Player* getPlayer(const int& playerID) const;
+	Player* getPlayer(const teamNumber& playerID) const;
 	Player* getHostPlayer() const;
 
 	//setters
@@ -88,7 +88,7 @@ public:
 	void updateWords();// -> for handling word and bonus options!
 
 	// takes bonus enum and adds bonus entity(s) to master list
-	void mapBonus(enum Bonus& bonus, int targetPlayerID);
+	void mapBonus(const Bonus& bonus, const teamNumber& startingPlayer, const teamNumber& targetPlayer);
 
 	//updates shape positions, checks for intersections, and then draws all!
 	void updateEntities();

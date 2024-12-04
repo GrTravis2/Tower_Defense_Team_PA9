@@ -4,13 +4,18 @@
 #include <SFML/Graphics.hpp>
 
 
-//const sf::Vector2f ZERO_VEC(0,0);
-
+enum teamNumber {
+	one,
+	two,
+	three,
+	four
+};
 
 class Entity {
 private:
 	int mHealthPoints; //create helper function that computes changes in HP.
 	sf::Vector2f mDirection;// -> controls direction and speed, set once at init!
+	teamNumber mTeamNumber;
 	
 
 	//helpers
@@ -27,10 +32,12 @@ public:
 	//constructor
 	Entity(// -> for static entities (players)
 		const int& HP,
+		const teamNumber& team,
 		const sf::Sprite& body
 	);
 	Entity(// -> for entities that move along a vector!
 		const int& HP, // -> obj HP, when it hits 0 will get deleted!
+		const teamNumber& team, // -> for ignoring friendly fire
 		const sf::Sprite& body,// -> pass shape constructor
 		const Entity& start,// -> spawning tower ref
 		const Entity& end,// -> target tower ref
@@ -44,10 +51,12 @@ public:
 	//getters
 	int getHP() const;
 	sf::Vector2f getDirection() const;
+	teamNumber getTeamNumber() const;
 
 	//setters
 	void setHP(const int& newHP);
 	void setDirection(const sf::Vector2f& direction);
+	void setTeamNumber(const teamNumber& newNumber);
 
 	//public
 	//move function? -> should be in SFML class
