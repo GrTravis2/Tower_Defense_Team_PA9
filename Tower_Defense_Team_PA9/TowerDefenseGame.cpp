@@ -209,6 +209,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
             }
             else // larger spawn bonus if even number 
             {
+                cout << "regular spawn bonus" << endl;
                 mapBonus(regularBonus, one, two);
             }
         }
@@ -217,17 +218,18 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
             cout << "small hp bonus" << endl;
         }
     }
-    else if (wordSolved == 2)
+    else if (wordSolved == 2) // target is player 3
     {
         if (determineBonus % 2 != 0) 
         {
             determineBonus = generateRandomNumber();
-            if (determineBonus % 2 != 0) // small spawn bonus if odd number
+            if (determineBonus > 15) // better odds of getting a spawn
             {
                 mapBonus(smallBonus, one, three);
             }
             else // larger spawn bonus if even number 
             {
+                cout << "regular spawn bonus" << endl;
                 mapBonus(regularBonus, one, three);
             }
         }
@@ -236,9 +238,9 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
             cout << "reg hp bonus" << endl;
         }
     }
-    else if (wordSolved == 3)
+    else if (wordSolved == 3) // target is random
     {
-        if (determineBonus % 2 != 0) 
+        if (determineBonus > 15)
         {
             determineBonus = generateRandomNumber();
             if (determineBonus % 2 != 0) // small spawn bonus if odd number
@@ -247,6 +249,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
             }
             else // larger spawn bonus if even number 
             {
+                cout << "regular spawn bonus" << endl;
                 mapBonus(regularBonus, one, three);
             }
         }
@@ -259,7 +262,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
     }
     else if (wordSolved == 4)
     {
-        if (determineBonus % 2 != 0) 
+        if (determineBonus > 15)
         {
             //mapBonus(xtremeBonus);
             // bonus tbd
