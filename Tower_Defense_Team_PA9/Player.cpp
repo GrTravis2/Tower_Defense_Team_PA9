@@ -22,7 +22,7 @@
 //
 //}
 
-Player::Player(const int& playerID, const int& HP, const sf::Sprite& body) : Entity(HP, body)
+Player::Player(const teamNumber& team, const int& HP, const sf::Sprite& body) : Entity(HP, team, body)
 {
 	this->playerInput.clearInput();
 	this->wordTimer = -1;
@@ -50,6 +50,9 @@ int Player::getPoints() const
 	return this->points;
 }
 
+// I think this code is redundent b/c player inherits from entity which
+// can call: entity->mBody->getPosition()!!! which is a tried and tested SFML function
+// if you already have it working though its not a big deal -Gavin
 sf::Vector2f Player::getPlayerPosition(int playerID)
 {
 	sf::Vector2f centerWindow(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
@@ -63,7 +66,11 @@ sf::Vector2f Player::getPlayerPosition(int playerID)
 		return sf::Vector2f(centerWindow.x + P3_X, centerWindow.y + P3_Y);
 	case 4:
 		return sf::Vector2f(centerWindow.x + P4_X, centerWindow.y + P4_Y);
+	default:
+		std::cout << "zoo-wee-mama" << std::endl;
+		return sf::Vector2f(0, 0);
 	}
+
 }
 
 void Player::setPoints(int newPoints)

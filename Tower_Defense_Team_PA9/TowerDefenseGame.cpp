@@ -24,16 +24,16 @@ void TowerDefenseGame::setupGame() {
     std::cin >> choice;
     if (choice == 1) {//local game, 3 NPC
 
-        this->mPlayer1 = new Player(1, 30, this->spawner->getMushroomTower());
+        this->mPlayer1 = new Player(one, 30, this->spawner->getMushroomTower());
         this->mPlayer1->mBody.setPosition(sf::Vector2f(P1_X, P1_Y));
 
-        this->mPlayer2 = new NPC(2, this->spawner->getMushroomTower(), easy);
+        this->mPlayer2 = new NPC(two, this->spawner->getMushroomTower(), easy);
         this->mPlayer2->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P2_X, P2_Y));
 
-        this->mPlayer3 = new NPC(3, this->spawner->getMushroomTower(), easy);
+        this->mPlayer3 = new NPC(three, this->spawner->getMushroomTower(), easy);
         this->mPlayer3->mBody.setPosition(sf::Vector2f(P3_X,WINDOW_HEIGHT + P3_Y));
 
-        this->mPlayer4 = new NPC(4, this->spawner->getMushroomTower(), easy);
+        this->mPlayer4 = new NPC(four, this->spawner->getMushroomTower(), easy);
         this->mPlayer4->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P4_X,WINDOW_HEIGHT + P4_Y));
     }
     while (setupComplete != true) {
@@ -57,19 +57,19 @@ TowerDefenseGame::~TowerDefenseGame() {
 }
 
 //getters
-Player* TowerDefenseGame::getPlayer(const int& playerID) const {
+Player* TowerDefenseGame::getPlayer(const teamNumber& playerID) const {
     Player* result = nullptr;
     switch (playerID) {
-    case 1:
+    case one:
         result = this->mPlayer1;
         break;
-    case 2:
+    case two:
         result = this->mPlayer2;
         break;
-    case 3:
+    case three:
         result = this->mPlayer3;
         break;
-    case 4:
+    case four:
         result = this->mPlayer4;
         break;
     default:
@@ -79,30 +79,6 @@ Player* TowerDefenseGame::getPlayer(const int& playerID) const {
 
     return result;
 }
-  
-//getters
-//Player* TowerDefenseGame::getPlayer(const int& playerID) const {
-//      Player* result = nullptr;
-//      switch (playerID) {
-//          case 1:
-//              result = this->mPlayer1;
-//              break;
-//          case 2:
-//              result = this->mPlayer2;
-//              break;
-//          case 3:
-//              result = this->mPlayer3;
-//              break;
-//          case 4:
-//              result = this->mPlayer4;
-//              break;
-//          default:
-//              // :D broke
-//              break;
-//      }
-//
-//      return result; // Gavin I had to add this sorry if it ruins your day - Ingrid
-//  }
 
 Player* TowerDefenseGame::getHostPlayer() const {
     return this->mHostPlayer;
@@ -229,11 +205,11 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
             determineBonus = generateRandomNumber();
             if (determineBonus % 2 != 0) // small spawn bonus if odd number
             {
-                mapBonus(smallBonus, 2);
+                mapBonus(smallBonus, one, two);
             }
             else // larger spawn bonus if even number 
             {
-                mapBonus(regularBonus, 2);
+                mapBonus(regularBonus, one, two);
             }
         }
         else
@@ -248,11 +224,11 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
             determineBonus = generateRandomNumber();
             if (determineBonus % 2 != 0) // small spawn bonus if odd number
             {
-                mapBonus(smallBonus, 3);
+                mapBonus(smallBonus, one, three);
             }
             else // larger spawn bonus if even number 
             {
-                mapBonus(regularBonus, 3);
+                mapBonus(regularBonus, one, three);
             }
         }
         else
@@ -267,11 +243,11 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
             determineBonus = generateRandomNumber();
             if (determineBonus % 2 != 0) // small spawn bonus if odd number
             {
-                mapBonus(smallBonus, 3);
+                mapBonus(smallBonus, one, three);
             }
             else // larger spawn bonus if even number 
             {
-                mapBonus(regularBonus, 3);
+                mapBonus(regularBonus, one, three);
             }
         }
         else
@@ -311,16 +287,16 @@ void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
 }
 
 // takes bonus enum and adds bonus entity(s) to master list
-void TowerDefenseGame::mapBonus(enum Bonus& bonus, int targetPlayerID) {
+void TowerDefenseGame::mapBonus(const Bonus& bonus, const teamNumber& startingPlayer, const teamNumber& targetPlayer) {
     Entity* pNew = nullptr;
     sf::Sprite gnomeSprite = spawner->getGnome();
     sf::Sprite bigGnomeSprite = spawner->getBigGnome();
-    sf::Vector2f targetPos = getPlayer(targetPlayerID)->mBody.getPosition();
+    sf::Vector2f targetPos = getPlayer(targetPlayer)->mBody.getPosition();
     
 
     switch (bonus) {
         case spawn1:// -> insert one gnome at back!       
-            pNew = new Entity(1, gnomeSprite);
+            pNew = new Entity(1, startingPlayer, gnomeSprite);
             if (pNew != nullptr) {
                 sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
                 pNew->setDirection(direction);
@@ -329,7 +305,7 @@ void TowerDefenseGame::mapBonus(enum Bonus& bonus, int targetPlayerID) {
             break;
         case spawn5:// -> make 5 gnomes and insert at back of list
             for(int i = 0; i < 5; i++) {
-                pNew = new Entity(1, gnomeSprite);
+                pNew = new Entity(1, startingPlayer, gnomeSprite);
                 if (pNew != nullptr){
                     sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
                     pNew->setDirection(direction);
@@ -339,7 +315,7 @@ void TowerDefenseGame::mapBonus(enum Bonus& bonus, int targetPlayerID) {
             }
             break;
         case spawnBigGnome:// -> add one big gnome!
-            pNew = new Entity(5, bigGnomeSprite);
+            pNew = new Entity(5, startingPlayer, bigGnomeSprite);
             this->mMasterList->push_back(pNew);
             break;
         default:

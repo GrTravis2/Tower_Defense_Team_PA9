@@ -48,8 +48,8 @@ public:
 
 
 	Player(
-		const int& playerID,
 		const int& HP,
+		const teamNumber& team,
 		const sf::Sprite& body,
 		const Entity& start,
 		const Entity& end,
@@ -58,7 +58,7 @@ public:
 
 	
 	//// added this because my compiler had an issue with the constructor 
-	Player(const int& playerID, const int& HP, const sf::Sprite& body);
+	Player(const teamNumber& team, const int& HP, const sf::Sprite& body);
 
 	//destructor
 	~Player();

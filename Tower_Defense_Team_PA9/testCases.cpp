@@ -98,7 +98,7 @@ bool testCases::testContinuousKeyInput()
 bool testCases::testGetandSetHP() {
 	bool ok = false;
 
-	Entity one(5, this->s->getGnome());
+	Entity one(5, three, this->s->getGnome());
 
 	if (one.getHP() == 5) {
 		one.setHP(25);
@@ -116,7 +116,7 @@ bool testCases::testGetandSetHP() {
 bool testCases::testIsDead() {
 	bool ok = false;
 
-	Entity one(5, this->s->getGnome());
+	Entity one(5, three, this->s->getGnome());
 
 	if (one.isDead() == false) {
 
@@ -137,8 +137,8 @@ bool testCases::testAttackUntilDead() {
 	bool ok = false;
 	
 
-	Entity one(5, this->s->getGnome());
-	Entity two(5, this->s->getGnome());
+	Entity one(5, three, this->s->getGnome());
+	Entity two(5, four, this->s->getGnome());
 
 	attackUntilDead(one, two);
 	if (one.isDead() && two.isDead()) {
