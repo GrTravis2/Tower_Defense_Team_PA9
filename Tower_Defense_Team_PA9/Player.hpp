@@ -61,7 +61,7 @@ public:
 	Player(const teamNumber& team, const int& HP, const sf::Sprite& body);
 
 	//destructor
-	virtual ~Player();
+	virtual ~Player(); // -> virtual for death sound/animation
 
 	//getters
 	std::string getInput();
@@ -89,6 +89,6 @@ enum Bonus {
 	plus5HP,
 	plus10HP,
 	plus15HP,
-	first = spawn1,
-	last = plus15HP
+	first = spawn1, // please update these if they change!!!
+	last = plus15HP // they are used for rolling all bonuses
 };

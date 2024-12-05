@@ -30,7 +30,7 @@ void TowerDefenseGame::setupGame() {
         this->mPlayer2 = new NPC(two, this->spawner->getMushroomTower(), easy);
         this->mPlayer2->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P2_X, P2_Y));
 
-        this->mPlayer3 = new NPC(three, this->spawner->getMushroomTower(), easy);
+        this->mPlayer3 = new NPC(three, this->spawner->getMushroomTower(), evil);
         this->mPlayer3->mBody.setPosition(sf::Vector2f(P3_X,WINDOW_HEIGHT + P3_Y));
 
         this->mPlayer4 = new NPC(four, this->spawner->getMushroomTower(), easy);
@@ -197,22 +197,22 @@ void TowerDefenseGame::processNPCs() {
     NPC* npc3 = dynamic_cast<NPC*>(this->mPlayer3);
     NPC* npc4 = dynamic_cast<NPC*>(this->mPlayer4);
     Bonus out = spawn1;// buffer enum
-    int randNum = (std::rand() % 4) + 1;
+    int randNum = (std::rand() % 4) + 1;// roll 1-4
 
     //check if all NPCs have a bonus ready to go
-    if(npc2->isReady()) {
+    if(npc2 != nullptr && npc2->isReady()) {
         out = npc2->rollBonus();
         npc2->setNextBonusTime(clock() + (CLOCKS_PER_SEC * npc2->getDelaySeconds()));
         while (randNum == 2) { randNum = (std::rand() % 4) + 1; }
         this->mapBonus(out, npc2->getTeamNumber(), static_cast<teamNumber>(randNum));
     }
-    if(npc3->isReady()) {
+    if(npc3 != nullptr && npc3->isReady()) {
         out = npc3->rollBonus();
         npc3->setNextBonusTime(clock() + (CLOCKS_PER_SEC * npc3->getDelaySeconds()));
         while (randNum == 3) { randNum = (std::rand() % 4) + 1; }
         this->mapBonus(out, npc3->getTeamNumber(), static_cast<teamNumber>(randNum));
     }
-    if(npc4->isReady()) {
+    if(npc4 != nullptr && npc4->isReady()) {
         out = npc4->rollBonus();
         npc4->setNextBonusTime(clock() + (CLOCKS_PER_SEC * npc4->getDelaySeconds()));
         while (randNum == 4) { randNum = (std::rand() % 4) + 1; }
@@ -380,7 +380,7 @@ void TowerDefenseGame::updateEntities() {
         
         // check if element is already dead before processing
         if ((*iter)->isDead()) {
-            delete *iter; // deallocate memory
+            delete *iter;// deallocate memory
             iter = this->mMasterList->erase(iter); // remove from list
         }
         else { // entity is not dead, needs to check conflict, move, and draw 
@@ -428,13 +428,13 @@ bool TowerDefenseGame::GameComplete() const {
     bool done = false;
 
     if ( 
-    this->mPlayer1->getHP() < 0
+    this->mPlayer1->getHP() < 1
     // &&
-    // this->mPlayer2->getHP() < 0
+    // this->mPlayer2->getHP() < 1
     // &&
-    // this->mPlayer3->getHP() < 0
+    // this->mPlayer3->getHP() < 1
     // &&
-    // this->mPlayer4->getHP() < 0
+    // this->mPlayer4->getHP() < 1
     ) 
     { done = true; }
 
