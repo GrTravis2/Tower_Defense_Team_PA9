@@ -14,7 +14,7 @@ class NPC : public Player {
 
 private:
 	//what data should go here
-	int mDelaySeconds; //set to spawn bonuses by time?
+	float mDelaySeconds; //set to spawn bonuses by time?
 	clock_t mNextBonusTime; // when past time spawn bonus!
 
 	//helpers
@@ -32,7 +32,7 @@ public:
 	~NPC();
 
 	//getters
-	int getDelaySeconds() const;
+	float getDelaySeconds() const;
 
 	//setters
 	void setNextBonusTime(const clock_t& newTime);

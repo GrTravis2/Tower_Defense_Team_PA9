@@ -30,7 +30,7 @@ void TowerDefenseGame::setupGame() {
         this->mPlayer2 = new NPC(two, this->spawner->getMushroomTower(), easy);
         this->mPlayer2->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P2_X, P2_Y));
 
-        this->mPlayer3 = new NPC(three, this->spawner->getMushroomTower(), easy);
+        this->mPlayer3 = new NPC(three, this->spawner->getMushroomTower(), evil);
         this->mPlayer3->mBody.setPosition(sf::Vector2f(P3_X,WINDOW_HEIGHT + P3_Y));
 
         this->mPlayer4 = new NPC(four, this->spawner->getMushroomTower(), easy);

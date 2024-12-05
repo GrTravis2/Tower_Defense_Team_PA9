@@ -23,7 +23,7 @@ NPC::NPC (
             break;
     }
 
-    this->mDelaySeconds = 60 / wordsPerMin; // -> evals to (seconds / word) time delay
+    this->mDelaySeconds = 60.f / wordsPerMin; // -> evals to (seconds / word) time delay
     this->mNextBonusTime = clock() + (CLOCKS_PER_SEC * this->mDelaySeconds);// -> next due
 }
 
@@ -33,7 +33,7 @@ NPC::~NPC() {
 }
 
 //getters
-int NPC::getDelaySeconds() const {
+float NPC::getDelaySeconds() const {
     return this->mDelaySeconds;
 }
 
@@ -53,7 +53,7 @@ bool NPC::isReady() const {
 
 Bonus NPC::rollBonus() const {// -> generate a random bonus from pool
 
-    //int bonus = std::rand() % spawnBigGnome;// -> set to last when all bonuses are written
+    //int bonus = (std::rand() % spawnBigGnome) + 1;// -> set to last when all bonuses are written
     int bonus = 0;
     return static_cast<Bonus>(bonus);// -> sketchy cast of rand int -> enum might break >:) -Arni
 }
