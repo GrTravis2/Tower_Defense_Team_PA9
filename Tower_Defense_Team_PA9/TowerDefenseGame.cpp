@@ -9,6 +9,7 @@ TowerDefenseGame::TowerDefenseGame() {// -> start default and add thru setters?
         "Tower Defense!!"
         );
     this->spawner = new SpriteManager();
+    this->wordDisplay = new WordDisplay();
 
     //figure out how many Players/NPCs
     this->setupGame();
@@ -21,20 +22,21 @@ void TowerDefenseGame::setupGame() {
     
     this->printMultiplayerMenu();
     choice = 1;
-    std::cin >> choice;
+    //std::cin >> choice;
     if (choice == 1) {//local game, 3 NPC
 
         this->mPlayer1 = new Player(1, 30, this->spawner->getMushroomTower());
-        this->mPlayer1->mBody.setPosition(sf::Vector2f(P1_X, P1_Y));
+        this->mPlayer1->setWordDisplay(this->wordDisplay); // Set WordDisplay after initializing mPlayer1
+        this->mPlayer1->mBody.setPosition(sf::Vector2f(P1_X, P1_Y + 100)); // Adjusted position
 
         this->mPlayer2 = new NPC(2, this->spawner->getMushroomTower(), easy);
-        this->mPlayer2->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P2_X, P2_Y));
+        this->mPlayer2->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P2_X, P2_Y + 100)); // Adjusted position
 
         this->mPlayer3 = new NPC(3, this->spawner->getMushroomTower(), easy);
-        this->mPlayer3->mBody.setPosition(sf::Vector2f(P3_X,WINDOW_HEIGHT + P3_Y));
+        this->mPlayer3->mBody.setPosition(sf::Vector2f(P3_X, WINDOW_HEIGHT + P3_Y + 100)); // Adjusted position
 
         this->mPlayer4 = new NPC(4, this->spawner->getMushroomTower(), easy);
-        this->mPlayer4->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P4_X,WINDOW_HEIGHT + P4_Y));
+        this->mPlayer4->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P4_X, WINDOW_HEIGHT + P4_Y + 100)); // Adjusted position
     }
     while (setupComplete != true) {
         setupComplete = true;// place holder, need adding player sequence
@@ -54,6 +56,7 @@ TowerDefenseGame::~TowerDefenseGame() {
     delete this->mPlayer4;
     delete this->mMasterList;
     delete this->mGameWindow;
+    delete this->wordDisplay;
 }
 
 //getters
@@ -115,7 +118,7 @@ void TowerDefenseGame::assign3Words()
         string randomWord = generateRandomWord();
         mPlayer1->setWord(i, randomWord);
     }
-    for (int i = 0; i < 3; i++)
+    /*for (int i = 0; i < 3; i++)
     {
         string randomWord = generateRandomWord();
         mPlayer2->setWord(i, randomWord);
@@ -129,7 +132,7 @@ void TowerDefenseGame::assign3Words()
     {
         string randomWord = generateRandomWord();
         mPlayer4->setWord(i, randomWord);
-    }
+    }*/
 }
 
 void TowerDefenseGame::assignExtremeWord()
@@ -144,10 +147,51 @@ void TowerDefenseGame::assignSingleWord(int index)
     mPlayer1->setWord(index, randomWord);
 }
 
+void TowerDefenseGame::initialRewardAssignments()
+{
+    for (int i = 0; i < 3; ++i) {
+        rewards[i] = generateReward(false);
+        switch (rewards[i]) {
+            case spawn1:
+                rewardArray[i] = "Spawn 1";
+                break;
+            case spawn5:
+                rewardArray[i] = "Spawn 5";
+                break;
+            case plus5HP:
+                rewardArray[i] = "Plus 5 HP";
+                break;
+            case plus10HP:
+                rewardArray[i] = "Plus 10 HP";
+                break;
+            default:
+                rewardArray[i] = "Unknown";
+                break;
+        }
+        //std::cout << "Initial reward " << i << ": " << rewardArray[i] << std::endl; // Debug output
+    }
+    // Generate reward for the extreme word
+    rewards[3] = generateReward(true);
+    switch (rewards[3]) {
+        case spawnBigGnome:
+            rewardArray[3] = "Spawn Big Gnome";
+            break;
+        case plus15HP:
+            rewardArray[3] = "Plus 15 HP";
+            break;
+        default:
+            rewardArray[3] = "Unknown";
+            break;
+    }
+    //std::cout << "Initial reward 3: " << rewardArray[3] << std::endl; // Debug output
+    wordDisplay->setRewards(rewardArray);
+}
+
 void TowerDefenseGame::initialWordAssignments()
 {
     assign3Words(); 
     assignExtremeWords();
+    initialRewardAssignments();
 }
 
 void TowerDefenseGame::assignExtremeWords()
@@ -173,7 +217,7 @@ void TowerDefenseGame::run() {
     //set up any other initializing code here!!!
     sf::Event event;
     initialWordAssignments();
-    mPlayer1->displayWords();
+    mPlayer1->displayWords(*mGameWindow);
 
     /* ***MAIN GAME LOOP START!!*** */
 
@@ -193,11 +237,10 @@ void TowerDefenseGame::run() {
                 this->processInput(); // processes afformentioned input
             }
         }
-       
 
         //step shape positions, checks for intersections and draws all
         this->updateEntities();
-       
+        wordDisplay->draw(*this->mGameWindow);
     }
     cout << "Current input in player class: " << mPlayer1->getInput() << endl;
 
@@ -211,102 +254,68 @@ void TowerDefenseGame::run() {
 
 void TowerDefenseGame::processInput() {// -> for handling keyboard event process!
     
-    Bonus smallBonus = spawn1,
-        regularBonus = spawn5,
-        xtremeBonus = spawnBigGnome,
-        add5 = plus5HP,
-        add10 = plus10HP,
-        add15 = plus15HP;
-    int determineBonus = generateRandomNumber();
     int wordSolved = 0;
     wordSolved = mPlayer1->processPlayerInput();
 
-    if (wordSolved == 1) // target is player 2
-    {
-        if (determineBonus % 2 != 0) // if it's an odd number 
-        {
-            // spawn bonus 
-            determineBonus = generateRandomNumber();
-            if (determineBonus % 2 != 0) // small spawn bonus if odd number
-            {
-                mapBonus(smallBonus, 2);
-            }
-            else // larger spawn bonus if even number 
-            {
-                mapBonus(regularBonus, 2);
-            }
-        }
-        else
-        {
-            cout << "small hp bonus" << endl;
-        }
-    }
-    else if (wordSolved == 2)
-    {
-        if (determineBonus % 2 != 0) 
-        {
-            determineBonus = generateRandomNumber();
-            if (determineBonus % 2 != 0) // small spawn bonus if odd number
-            {
-                mapBonus(smallBonus, 3);
-            }
-            else // larger spawn bonus if even number 
-            {
-                mapBonus(regularBonus, 3);
-            }
-        }
-        else
-        {
-            cout << "reg hp bonus" << endl;
-        }
-    }
-    else if (wordSolved == 3)
-    {
-        if (determineBonus % 2 != 0) 
-        {
-            determineBonus = generateRandomNumber();
-            if (determineBonus % 2 != 0) // small spawn bonus if odd number
-            {
-                mapBonus(smallBonus, 3);
-            }
-            else // larger spawn bonus if even number 
-            {
-                mapBonus(regularBonus, 3);
-            }
-        }
-        else
-        {
-            cout << "xtreme hp bonus" << endl;
-            // even number and x-treme bonus 
-            // bonus also tbd
-        }
-    }
-    else if (wordSolved == 4)
-    {
-        if (determineBonus % 2 != 0) 
-        {
-            //mapBonus(xtremeBonus);
-            // bonus tbd
-        }
-        else
-        {
-            //cout << "xtreme hp bonus" << endl;
-            // even number and x-treme bonus 
-            // bonus also tbd
-        }
-        }
-    if (wordSolved > 0)
-    {
+    if (wordSolved > 0) {
+        Bonus reward = rewards[wordSolved - 1];
+        mapBonus(reward, wordSolved); // Adjust target player ID based on word solved
         updateWords();
-        
+
+        // Figure out a way to randomize target when extreme word is solved?
     }
 }
 
 void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
 
-    assign3Words();
-    assignExtremeWord();
-    mPlayer1->displayWords();
+    std::string wordArray[4];
+    for (int i = 0; i < 3; ++i) {
+        wordArray[i] = generateRandomWord();
+        rewards[i] = generateReward(false);
+        switch (rewards[i]) {
+            case spawn1:
+                rewardArray[i] = "Spawn 1";
+                break;
+            case spawn5:
+                rewardArray[i] = "Spawn 5";
+                break;
+            case plus5HP:
+                rewardArray[i] = "Plus 5 HP";
+                break;
+            case plus10HP:
+                rewardArray[i] = "Plus 10 HP";
+                break;
+            default:
+                rewardArray[i] = "Unknown";
+                break;
+        }
+        //std::cout << "Generated word " << i << ": " << wordArray[i] << std::endl; // Debug output
+        //std::cout << "Generated reward " << i << ": " << rewardArray[i] << std::endl; // Debug output
+    }
+    // Generate reward for the extreme word
+    wordArray[3] = generateExtremeWord();
+    rewards[3] = generateReward(true);
+    switch (rewards[3]) {
+        case spawnBigGnome:
+            rewardArray[3] = "Spawn Big Gnome";
+            break;
+        case plus15HP:
+            rewardArray[3] = "Plus 15 HP";
+            break;
+        default:
+            rewardArray[3] = "Unknown";
+            break;
+    }
+    //std::cout << "Generated word 3: " << wordArray[3] << std::endl; // Debug output
+    //std::cout << "Generated reward 3: " << rewardArray[3] << std::endl; // Debug output
+
+    wordDisplay->setWords(wordArray);
+    wordDisplay->setRewards(rewardArray);
+    mPlayer1->setWord(0, wordArray[0]);
+    mPlayer1->setWord(1, wordArray[1]);
+    mPlayer1->setWord(2, wordArray[2]);
+    mPlayer1->setWord(3, wordArray[3]);
+    mPlayer1->displayWords(*this->mGameWindow);
 
 }
 
@@ -317,6 +326,9 @@ void TowerDefenseGame::mapBonus(enum Bonus& bonus, int targetPlayerID) {
     sf::Sprite bigGnomeSprite = spawner->getBigGnome();
     sf::Vector2f targetPos = getPlayer(targetPlayerID)->mBody.getPosition();
     
+    // Figure out a way to randomize target when extreme word is solved?
+
+    // Also what is done in mapBonus when the bonus is plus5HP, plus10HP, or plus15HP?
 
     switch (bonus) {
         case spawn1:// -> insert one gnome at back!       
@@ -356,6 +368,9 @@ void TowerDefenseGame::updateEntities() {
     // load background
     sf::Sprite grassSprite = this->spawner->getGrass();
     this->mGameWindow->draw(grassSprite);
+
+    // Draw the WordDisplay on top of the background but below the entities
+    wordDisplay->draw(*this->mGameWindow);
 
     //iterator???? :D
     for (// move through length of list and do stuff!
@@ -405,8 +420,6 @@ void TowerDefenseGame::updateEntities() {
 
             ++iter; // only moves things forward if the entity is not dead 
         }
-   
-
     }
     
     // output contents of list to screen!
@@ -453,17 +466,30 @@ int generateExtremeNumber()
     return randomNumber;
 }
 
-string generateRandomWord()
+std::string generateRandomWord()
 {
-    string randomWord = "";
+    std::string randomWord = "";
     randomWord = wordPool[generateRandomNumber()];
     return randomWord;
 }
 
-string generateExtremeWord()
+std::string generateExtremeWord()
 {
-    string extremeWord = "";
+    std::string extremeWord = "";
     extremeWord = extremePool[generateExtremeNumber()];
     return extremeWord;
+}
+
+Bonus TowerDefenseGame::generateReward(bool isExtreme) {
+    // Generate a random reward using the Bonus enum
+    if (isExtreme) {
+        // Rewards for extreme words
+        int randomIndex = rand() % 2; // There are 2 possible extreme bonuses
+        return static_cast<Bonus>(randomIndex + 4); // plus5HP and plus10HP are skipped
+    } else {
+        // Rewards for regular words
+        int randomIndex = rand() % 4; // There are 4 possible regular bonuses
+        return static_cast<Bonus>(randomIndex);
+    }
 }
 

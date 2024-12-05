@@ -1,26 +1,5 @@
 #include "Player.hpp"
-
-
-////constructor
-//Player::Player(
-//	const int& playerID,
-//	const int& HP,
-//	const sf::Sprite& body
-//) : Entity(HP, body) {
-//	this->mplayerID = playerID;
-//	
-//
-//	//filling extra values with garbage, set later!
-//	this->playerInput.clearInput();
-//	this->wordTimer = -1;
-//	this->wordTimerMax = -1;
-//	this->wordOptions[0] = "";
-//	this->wordOptions[1] = "";
-//	this->wordOptions[2] = "";
-//	this->wordOptions[3] = "";
-//	this->points = -1;
-//
-//}
+#include "WordDisplay.hpp"
 
 Player::Player(const int& playerID, const int& HP, const sf::Sprite& body) : Entity(HP, body)
 {
@@ -56,13 +35,13 @@ sf::Vector2f Player::getPlayerPosition(int playerID)
 	switch (playerID)
 	{
 	case 1:
-		return sf::Vector2f(centerWindow.x + P1_X, centerWindow.y + P1_Y);
+		return sf::Vector2f(centerWindow.x + P1_X, centerWindow.y + P1_Y + 100);
 	case 2:
-		return sf::Vector2f(centerWindow.x + P2_X, centerWindow.y + P2_Y);
+		return sf::Vector2f(centerWindow.x + P2_X, centerWindow.y + P2_Y + 100);
 	case 3:
-		return sf::Vector2f(centerWindow.x + P3_X, centerWindow.y + P3_Y);
+		return sf::Vector2f(centerWindow.x + P3_X, centerWindow.y + P3_Y + 100);
 	case 4:
-		return sf::Vector2f(centerWindow.x + P4_X, centerWindow.y + P4_Y);
+		return sf::Vector2f(centerWindow.x + P4_X, centerWindow.y + P4_Y + 100);
 	}
 }
 
@@ -117,12 +96,22 @@ void Player::setWord(int index, string newWord)
 	wordOptions[index] = newWord;
 }
 
-void Player::displayWords()
-{
-	for (int i = 0; i < 4; i++)
-	{	
-		cout << "Word #" << i + 1 << ":" << wordOptions[i] << endl;
-		cout << "\n";
-	}
+std::string Player::getWord(int index) const {
+    return wordOptions[index];
+}
+
+void Player::setWordDisplay(WordDisplay* wd) {
+    wordDisplay = wd;
+}
+
+void Player::displayWords(sf::RenderWindow& window) {
+    if (wordDisplay) {
+        wordDisplay->displayPlayerWords(window, this);
+    } else {
+        for (int i = 0; i < 4; i++) {
+            std::cout << "Word #" << i + 1 << ":" << wordOptions[i] << std::endl;
+            std::cout << "\n";
+        }
+    }
 }
 

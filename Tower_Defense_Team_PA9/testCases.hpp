@@ -1,9 +1,9 @@
-
 #include <ctime>
 
 #include "inputClass.hpp"
 #include "Entity.hpp"
 #include "SpriteManager.hpp"
+#include "WordDisplay.hpp"
 class testCases
 {
 public:
@@ -36,5 +36,6 @@ private:
 	bool testMapBonus();
 
 	void testProcessInput();
+	bool testWordDisplay();
 	
 };
