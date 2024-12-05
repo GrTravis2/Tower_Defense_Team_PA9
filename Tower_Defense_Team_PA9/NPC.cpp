@@ -53,7 +53,7 @@ bool NPC::isReady() const {
 
 Bonus NPC::rollBonus() const {// -> generate a random bonus from pool
 
-    //int bonus = (std::rand() % spawnBigGnome) + 1;// -> set to last when all bonuses are written
+    //int bonus = (std::rand() % spawn5) + 1;// -> set to last when all bonuses are written
     int bonus = 0;
     return static_cast<Bonus>(bonus);// -> sketchy cast of rand int -> enum might break >:) -Arni
 }
