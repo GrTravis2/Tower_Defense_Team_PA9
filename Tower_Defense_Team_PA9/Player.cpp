@@ -38,13 +38,13 @@ sf::Vector2f Player::getPlayerPosition(int playerID)
 	switch (playerID)
 	{
 	case 1:
-		return sf::Vector2f(centerWindow.x + P1_X, centerWindow.y + P1_Y + 100);
+		return sf::Vector2f(centerWindow.x + P1_X, centerWindow.y + P1_Y);
 	case 2:
-		return sf::Vector2f(centerWindow.x + P2_X, centerWindow.y + P2_Y + 100);
+		return sf::Vector2f(centerWindow.x + P2_X, centerWindow.y + P2_Y);
 	case 3:
-		return sf::Vector2f(centerWindow.x + P3_X, centerWindow.y + P3_Y + 100);
+		return sf::Vector2f(centerWindow.x + P3_X, centerWindow.y + P3_Y);
 	case 4:
-		return sf::Vector2f(centerWindow.x + P4_X, centerWindow.y + P4_Y + 100);
+		return sf::Vector2f(centerWindow.x + P4_X, centerWindow.y + P4_Y);
 	default:
 		std::cout << "zoo-wee-mama" << std::endl;
 		return sf::Vector2f(0, 0);
