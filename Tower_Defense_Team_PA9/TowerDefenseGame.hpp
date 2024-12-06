@@ -1,10 +1,8 @@
 #pragma once
-
 #include <list>
 #include <ctime>
 #include <iostream>
 #include <SFML/Graphics.hpp>
-
 #include "Player.hpp"
 #include "NPC.hpp"
 #include "Entity.hpp"
@@ -12,19 +10,8 @@
 #include "inputClass.hpp"
 #include "WordDisplay.hpp"
 
-
 //Game Constants!!
-
-// these are defined in the player class but I'm redefining them here 
-#define TOP_LEFT sf::Vector2f(0.f, 0.f)
-#define TOP_RIGHT sf::Vector2f(WINDOW_WIDTH, 0.f)
-#define BOTTOM_LEFT sf::Vector2f(0.f, WINDOW_HEIGHT)
-#define BOTTOM_RIGHT sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)
-
-//window size constants
-#define WINDOW_WIDTH 1500
-#define WINDOW_HEIGHT 1000
-
+// 
 // player info
 #define MAX_PLAYERS 4
 
@@ -134,10 +121,6 @@ public:
 };
 
 //non-member data
-/*
-We talked about having all of the word choices and bonuses here!
-I will start the arrays but we will have to fill as we go!
-*/
 
 const std::string wordPool[] = {
 	"walnut",
@@ -239,7 +222,6 @@ const string extremePool[] = {
 	"permutation",
 	"epistemology"
 };
-
 
 int generateRandomNumber();
 int generateExtremeNumber();

@@ -1,8 +1,6 @@
 #pragma once
-
 #include <math.h>
 #include <SFML/Graphics.hpp>
-
 
 enum teamNumber {
 	one = 1,
@@ -16,10 +14,6 @@ private:
 	int mHealthPoints; //create helper function that computes changes in HP.
 	sf::Vector2f mDirection;// -> controls direction and speed, set once at init!
 	teamNumber mTeamNumber;
-	
-
-	//helpers
-	
 
 public:
 
@@ -43,15 +37,14 @@ public:
 		const Entity& end,// -> target tower ref
 		const float& speed// -> define constant in wrapper by type
 		);
-	
 
 	//destructor
 	~Entity();
 
 	//getters
 	int getHP() const;
-	sf::Vector2f getDirection() const;
-	teamNumber getTeamNumber() const;
+	sf::Vector2f getDirection() const; 
+	teamNumber getTeamNumber() const; 
 
 	//setters
 	void setHP(const int& newHP);
@@ -59,20 +52,12 @@ public:
 	void setTeamNumber(const teamNumber& newNumber);
 
 	//public
-	//move function? -> should be in SFML class
-
 	bool isDead() const;// -> true if 0 or less HP
 
 	//when two shapes intersect have them subtract HP's from each other
 	//and "kill" one when it hits 0 HP
 	friend void attackUntilDead(Entity& lhs, Entity& rhs);
-
-
 };
 
 //non-member
-
-//derives a vector that points between starting and ending entities
-//with magnitude speed!
-//sf::Vector2f computeDirection(const Entity& start, const Entity& end, const float& speed);
 sf::Vector2f computeDirection(const sf::Vector2f& start, const sf::Vector2f& end, const float& speed);

@@ -1,7 +1,5 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
-
 #define GNOME_OFFSET_X 450
 #define GNOME_OFFSET_Y 325
 #define MUSHROOM_OFFSET_X 450
@@ -9,9 +7,6 @@
 
 class SpriteManager {
 private:
-    
-
-    //helpers
 
 public:
 
@@ -24,7 +19,6 @@ public:
 
     //destructor
     ~SpriteManager();
-
 
     /* Maker funcs that return
     ptr to new Entity on the heap!

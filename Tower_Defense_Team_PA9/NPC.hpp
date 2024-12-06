@@ -1,10 +1,8 @@
 #pragma once
-
 #include <ctime>
-
 #include "Player.hpp"
 
-enum difficulty {
+enum difficulty { 
 	easy,
 	medium,
 	hard,
@@ -16,8 +14,6 @@ private:
 	//what data should go here
 	float mDelaySeconds; //set to spawn bonuses by time?
 	clock_t mNextBonusTime; // when past time spawn bonus!
-
-	//helpers
 
 public:
 	
@@ -41,8 +37,5 @@ public:
 	bool isReady() const;// -> check if ready to send bonus
 
 	Bonus rollBonus() const;// -> generate a random bonus from pool
-
-
-
 };
 

@@ -216,6 +216,7 @@ imm32.lib</AdditionalDependencies>
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="testCases.cpp" />
     <ClCompile Include="TowerDefenseGame.cpp" />
+    <ClCompile Include="WordDisplay.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.hpp" />
@@ -225,6 +226,7 @@ imm32.lib</AdditionalDependencies>
     <ClInclude Include="SpriteManager.hpp" />
     <ClInclude Include="testCases.hpp" />
     <ClInclude Include="TowerDefenseGame.hpp" />
+    <ClInclude Include="WordDisplay.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

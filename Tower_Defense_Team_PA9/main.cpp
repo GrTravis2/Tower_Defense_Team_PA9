@@ -4,12 +4,10 @@
 #include "TowerDefenseGame.hpp"
 
 int main(void) {
+
     std::srand(std::time(NULL)); // seed for random number
-
-
-    //testCases t;
-    //t.runTests();
-
+  /*  testCases t;
+    t.runTests();*/
 	TowerDefenseGame app;
 	app.run();
 	

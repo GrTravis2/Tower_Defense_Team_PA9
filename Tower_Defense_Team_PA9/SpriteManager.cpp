@@ -44,7 +44,7 @@ sf::Sprite SpriteManager::getGnome() {
 sf::Sprite SpriteManager::getBigGnome() {
     sf::Sprite result((*this->gnome));
     result.setOrigin(GNOME_OFFSET_X, GNOME_OFFSET_Y);
-    result.setScale(0.6, 0.6);
+    result.setScale(0.25, 0.25);
 
     return result;
 }
