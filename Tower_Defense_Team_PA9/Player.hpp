@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 #include "inputClass.hpp"
 
+class WordDisplay; // Forward declaration
 
 #define PLAYER_BODY_WIDTH 10.f
 #define PLAYER_SPEED 0.f
@@ -40,6 +41,7 @@ private:
 	int points;//**What will this be doing?? -Gavin
 	
 	//helpers
+    WordDisplay* wordDisplay; // Reference to WordDisplay
 
 public:
 
@@ -70,13 +72,15 @@ public:
 
 	//setters
 	void setPoints(int newPoints);
+    void setWordDisplay(WordDisplay* wd); // Setter for WordDisplay
 
 	//public funcs
 	void updateInput();
 	void clearInput();
 	int processPlayerInput();
 	void setWord(int index, string newWord);
-	void displayWords();
+	void displayWords(sf::RenderWindow& window); // Updated to take window parameter
+	std::string getWord(int index) const;
 
 	
 };
@@ -85,9 +89,9 @@ public:
 enum Bonus {
 	spawn1,
 	spawn5,
-	spawnBigGnome,
 	plus5HP,
 	plus10HP,
+	spawnBigGnome,
 	plus15HP,
 	first = spawn1, // please update these if they change!!!
 	last = plus15HP // they are used for rolling all bonuses
