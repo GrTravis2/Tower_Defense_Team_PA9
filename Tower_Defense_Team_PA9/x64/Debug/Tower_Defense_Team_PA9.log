@@ -1,11 +1,88 @@
-﻿  SpriteManager.cpp
-C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(39,27): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(39,21): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(47,26): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(47,21): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(55,27): warning C4305: 'argument': truncation from 'double' to 'float'
-C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(55,21): warning C4305: 'argument': truncation from 'double' to 'float'
-sfml-graphics-s-d.lib(ImageLoader.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(ImageLoader.obj)' or at ''; linking object as if no debug info
-sfml-graphics-s-d.lib(RenderTarget.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(RenderTarget.obj)' or at ''; linking object as if no debug info
-sfml-window-s-d.lib(JoystickImpl.obj) : warning LNK4099: PDB '' was not found with 'sfml-window-s-d.lib(JoystickImpl.obj)' or at ''; linking object as if no debug info
-  Tower_Defense_Team_PA9.vcxproj -> C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\x64\Debug\Tower_Defense_Team_PA9.exe
+﻿  Entity.cpp
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Entity.cpp(27,93): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\Entity.cpp(102,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  inputClass.cpp
+  main.cpp
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\main.cpp(7,25): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  NPC.cpp
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\NPC.cpp(27,36): warning C4244: '=': conversion from 'float' to 'clock_t', possible loss of data
+  Player.cpp
+  SpriteManager.cpp
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(39,27): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(39,21): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(47,26): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(47,21): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(55,27): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(55,21): warning C4305: 'argument': truncation from 'double' to 'float'
+  testCases.cpp
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\testCases.cpp(54,12): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\testCases.cpp(63,92): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\testCases.cpp(78,82): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+  TowerDefenseGame.cpp
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(250,40): warning C4244: 'argument': conversion from 'float' to 'const clock_t', possible loss of data
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(256,40): warning C4244: 'argument': conversion from 'float' to 'const clock_t', possible loss of data
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(262,40): warning C4244: 'argument': conversion from 'float' to 'const clock_t', possible loss of data
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(274,1): error C2059: syntax error: '<<'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(275,25): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(278,1): error C2059: syntax error: '=='
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(280,5): error C2143: syntax error: missing ';' before '{'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(281,13): error C2065: 'determineBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(284,13): error C2065: 'determineBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(285,17): error C2065: 'determineBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(287,26): error C2065: 'smallBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(292,26): error C2065: 'regularBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(300,5): error C2181: illegal else without matching if
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(302,13): error C2065: 'determineBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(304,13): error C2065: 'determineBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(305,17): error C2065: 'determineBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(307,26): error C2065: 'smallBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(312,26): error C2065: 'regularBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(322,13): error C2065: 'determineBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(324,13): error C2065: 'determineBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(325,17): error C2065: 'determineBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(327,26): error C2065: 'smallBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(332,26): error C2065: 'regularBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(344,13): error C2065: 'determineBonus': undeclared identifier
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(358,1): error C2059: syntax error: '>>'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(365,24): error C2601: 'TowerDefenseGame::updateWords': local function definitions are illegal
+  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(269,39):
+  this line contains a '{' which has not yet been matched
+  
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(419,24): error C2601: 'TowerDefenseGame::mapBonus': local function definitions are illegal
+  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(269,39):
+  this line contains a '{' which has not yet been matched
+  
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(457,24): error C2601: 'TowerDefenseGame::updateEntities': local function definitions are illegal
+  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(269,39):
+  this line contains a '{' which has not yet been matched
+  
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(528,24): error C2601: 'TowerDefenseGame::GameComplete': local function definitions are illegal
+  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(269,39):
+  this line contains a '{' which has not yet been matched
+  
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(546,24): error C2601: 'TowerDefenseGame::printMultiplayerMenu': local function definitions are illegal
+  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(269,39):
+  this line contains a '{' which has not yet been matched
+  
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(553,5): error C2601: 'generateRandomNumber': local function definitions are illegal
+  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(269,39):
+  this line contains a '{' which has not yet been matched
+  
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(560,5): error C2601: 'generateExtremeNumber': local function definitions are illegal
+  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(269,39):
+  this line contains a '{' which has not yet been matched
+  
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(567,13): error C2601: 'generateRandomWord': local function definitions are illegal
+  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(269,39):
+  this line contains a '{' which has not yet been matched
+  
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(574,13): error C2601: 'generateExtremeWord': local function definitions are illegal
+  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(269,39):
+  this line contains a '{' which has not yet been matched
+  
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(581,25): error C2601: 'TowerDefenseGame::generateReward': local function definitions are illegal
+  C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(269,39):
+  this line contains a '{' which has not yet been matched
+  
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(269,39): error C1075: '{': no matching token found
+  Generating Code...
