@@ -18,7 +18,7 @@ public:
     WordDisplay();
     void setWords(const std::string wordArray[4]); // Update to handle four words
     void setRewards(const std::string rewardArray[4]); // Method to set rewards
-    void draw(sf::RenderWindow& window);
+    void draw(sf::RenderWindow& window, Player& player);
     void displayPlayerWords(sf::RenderWindow& window, Player* player); //display player's words
 };
 

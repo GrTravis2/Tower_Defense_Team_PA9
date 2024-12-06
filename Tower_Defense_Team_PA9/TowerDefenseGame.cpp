@@ -20,10 +20,10 @@ void TowerDefenseGame::setupGame() {
     bool setupComplete = false;
     int choice = -1;
     
-    //this->printMultiplayerMenu();
+    this->printMultiplayerMenu();
     choice = 1;
-    //std::cin >> choice;
-    //std::cin >> choice;
+    std::cin >> choice;
+
     if (choice == 1) {//local game, 3 NPC
 
         this->mPlayer1 = new Player(one, 30, this->spawner->getMushroomTower());
@@ -33,7 +33,7 @@ void TowerDefenseGame::setupGame() {
         this->mPlayer2 = new NPC(two, this->spawner->getMushroomTower(), easy);
         this->mPlayer2->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P2_X, P2_Y)); // Adjusted position
 
-        this->mPlayer3 = new NPC(three, this->spawner->getMushroomTower(), evil);
+        this->mPlayer3 = new NPC(three, this->spawner->getMushroomTower(), easy);
         this->mPlayer3->mBody.setPosition(sf::Vector2f(P3_X, WINDOW_HEIGHT + P3_Y)); // Adjusted position
 
         this->mPlayer4 = new NPC(four, this->spawner->getMushroomTower(), easy);
@@ -182,8 +182,6 @@ void TowerDefenseGame::assignExtremeWords()
     mPlayer4->displayWords();*/
 }
 
-
-
 //setters
 
 //public
@@ -208,10 +206,14 @@ void TowerDefenseGame::run() {
             // this reads in continuous input 
             if (event.type == sf::Event::TextEntered)
             {
+                char typedChar = static_cast<char>(event.text.unicode);
+                mPlayer1->updateInput(typedChar); // captures all the input for player 1
+              
                 // the updating and processing has to stay in this loop so that it
                 // reads all the player input continuously
-                mPlayer1->updateInput(); // captures all the input for player 1
+               
                 this->processInput(); // processes afformentioned input
+                
             }
         }
 
@@ -224,7 +226,7 @@ void TowerDefenseGame::run() {
 
         // output contents of list to screen!
         this->mGameWindow->display();
-        wordDisplay->draw(*this->mGameWindow);
+        wordDisplay->draw(*this->mGameWindow, *this->mPlayer1);
     }
     cout << "Current input in player class: " << mPlayer1->getInput() << endl;
 
@@ -267,16 +269,15 @@ void TowerDefenseGame::processNPCs() {
 }
 
 void TowerDefenseGame::processInput() {// -> for handling keyboard event process!
-    
+
     int wordSolved = 0;
     wordSolved = mPlayer1->processPlayerInput();
-
-    if (wordSolved > 0) {
-        Bonus reward = rewards[wordSolved - 1];
-        mapBonus(reward, one, static_cast<teamNumber>(wordSolved)); // Adjust target player ID based on word solved
+    if (wordSolved > 0)
+    {
+        int rewardIndex = wordSolved - 1;
+        Bonus reward = rewards[rewardIndex];
+        mapBonus(reward, one, static_cast<teamNumber>(rewardIndex + 2));
         updateWords();
-
-        // Figure out a way to randomize target when extreme word is solved?
     }
 }
 
@@ -351,8 +352,6 @@ void TowerDefenseGame::mapBonus(const Bonus& bonus, const teamNumber& startingPl
             if (pNew != nullptr) {this->mMasterList->push_back(pNew);}
             break;
         case spawn5:// -> make 5 gnomes and insert at back of list
-
-            
             for(int i = 0; i < 5; i++) {
                 pNew = new Entity(1, startingPlayer, this->spawner->getGnome(), *start, *end, 0.001);
                 if (pNew != nullptr) {
@@ -366,8 +365,8 @@ void TowerDefenseGame::mapBonus(const Bonus& bonus, const teamNumber& startingPl
             pNew = new Entity(5, startingPlayer, this->spawner->getBigGnome(), *start, *end, 0.001);
             if (pNew != nullptr) {this->mMasterList->push_back(pNew);}
             break;
-        default:
-            std::cout << "how did you do this??" << std::endl;
+        default:{}
+            //std::cout << "how did you do this??" << std::endl;
     }
 }
 
@@ -382,7 +381,7 @@ void TowerDefenseGame::updateEntities() {
     this->mGameWindow->draw(grassSprite);
 
     // Draw the WordDisplay on top of the background but below the entities
-    wordDisplay->draw(*this->mGameWindow);
+    wordDisplay->draw(*this->mGameWindow, *this->mPlayer1);
 
     //iterator???? :D
     for (// move through length of list and do stuff!

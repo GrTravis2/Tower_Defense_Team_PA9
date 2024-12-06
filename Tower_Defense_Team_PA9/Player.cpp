@@ -11,7 +11,6 @@ Player::Player(const teamNumber& team, const int& HP, const sf::Sprite& body) : 
 	this->wordOptions[2] = "";
 	this->wordOptions[3] = "";
 	this->points = -1;
-
 }
 
 //destructor
@@ -29,37 +28,14 @@ int Player::getPoints() const
 	return this->points;
 }
 
-// I think this code is redundent b/c player inherits from entity which
-// can call: entity->mBody->getPosition()!!! which is a tried and tested SFML function
-// if you already have it working though its not a big deal -Gavin
-sf::Vector2f Player::getPlayerPosition(int playerID)
-{
-	sf::Vector2f centerWindow(WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-	switch (playerID)
-	{
-	case 1:
-		return sf::Vector2f(centerWindow.x + P1_X, centerWindow.y + P1_Y);
-	case 2:
-		return sf::Vector2f(centerWindow.x + P2_X, centerWindow.y + P2_Y);
-	case 3:
-		return sf::Vector2f(centerWindow.x + P3_X, centerWindow.y + P3_Y);
-	case 4:
-		return sf::Vector2f(centerWindow.x + P4_X, centerWindow.y + P4_Y);
-	default:
-		std::cout << "zoo-wee-mama" << std::endl;
-		return sf::Vector2f(0, 0);
-	}
-
-}
-
 void Player::setPoints(int newPoints)
 {
 	this->points = newPoints;
 }
 
-void Player::updateInput()
+void Player::updateInput(char newChar)
 {
-	playerInput.updateInput();
+	playerInput.updateInput(newChar);
 }
 
 void Player::clearInput()
@@ -70,25 +46,27 @@ void Player::clearInput()
 int Player::processPlayerInput()
 {
 	string currentInput = playerInput.getCurrentInput();
-
+	cout << "Current input: " << currentInput << endl;
+	
 	for (int i = 0; i < 3; i++)
 	{
-		if (currentInput == wordOptions[0]) //target player 2 
+		
+		if (currentInput == wordOptions[0])
 		{
 			playerInput.clearInput();
 			return 1; 
 		}
-		else if (currentInput == wordOptions[1]) // target player 3
+		else if (currentInput == wordOptions[1]) 
 		{
 			playerInput.clearInput();
 			return 2;
 		}
-		else if (currentInput == wordOptions[2]) // target player 4
+		else if (currentInput == wordOptions[2]) 
 		{
 			playerInput.clearInput();
 			return 3;
 		}
-		else if (currentInput == wordOptions[3]) // extreme word solved, random target?
+		else if (currentInput == wordOptions[3])
 		{
 			playerInput.clearInput();
 			return 4;
@@ -105,6 +83,22 @@ void Player::setWord(int index, string newWord)
 
 std::string Player::getWord(int index) const {
     return wordOptions[index];
+}
+
+std::vector<bool> Player::validateInput()
+{
+	std::vector<bool> results(playerInput.getCurrentInput().length(), false);
+	for (int i = 0; i < playerInput.getCurrentInput().length(); i++)
+	{
+		for (auto& word : wordOptions)
+		{
+			if (word.size() > i && word[i] == playerInput.getCurrentInput()[i])
+			{
+				results[i] = true;
+			}
+		}
+	}
+	return results; 
 }
 
 void Player::setWordDisplay(WordDisplay* wd) {

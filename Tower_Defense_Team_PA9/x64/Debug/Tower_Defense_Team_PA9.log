@@ -1,0 +1,8 @@
+﻿  TowerDefenseGame.cpp
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(252,40): warning C4244: 'argument': conversion from 'float' to 'const clock_t', possible loss of data
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(258,40): warning C4244: 'argument': conversion from 'float' to 'const clock_t', possible loss of data
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(264,40): warning C4244: 'argument': conversion from 'float' to 'const clock_t', possible loss of data
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(351,91): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(356,95): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\TowerDefenseGame.cpp(365,94): warning C4305: 'argument': truncation from 'double' to 'const float'
+  Tower_Defense_Team_PA9.vcxproj -> C:\Users\Ingri\Desktop\122\Tower_Defense_Team_PA9\x64\Debug\Tower_Defense_Team_PA9.exe

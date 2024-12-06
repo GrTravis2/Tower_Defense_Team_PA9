@@ -1,9 +1,8 @@
 #pragma once
-
 #include <string>
 #include "Entity.hpp"
 #include "inputClass.hpp"
-
+using std::vector;
 class WordDisplay; // Forward declaration
 
 #define PLAYER_BODY_WIDTH 10.f
@@ -31,7 +30,6 @@ private:
 	int mplayerID;
 	//network stuff??
 	
-	
 	//typing specific data
 	inputClass playerInput; // current input class that holds string + state of keys/mouse
 
@@ -46,9 +44,6 @@ private:
 public:
 
 	//constructor
-	
-
-
 	Player(
 		const int& HP,
 		const teamNumber& team,
@@ -68,21 +63,19 @@ public:
 	//getters
 	std::string getInput();
 	int getPoints() const;
-	sf::Vector2f getPlayerPosition(int playerID);
 
 	//setters
 	void setPoints(int newPoints);
     void setWordDisplay(WordDisplay* wd); // Setter for WordDisplay
 
 	//public funcs
-	void updateInput();
+	void updateInput(char newChar);
 	void clearInput();
 	int processPlayerInput();
 	void setWord(int index, string newWord);
 	void displayWords(sf::RenderWindow& window); // Updated to take window parameter
-	std::string getWord(int index) const;
-
-	
+	string getWord(int index) const;
+	vector<bool> validateInput();
 };
 
 //we can give these more specific names when we lock down the bonuses

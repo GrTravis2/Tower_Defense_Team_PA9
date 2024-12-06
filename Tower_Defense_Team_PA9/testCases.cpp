@@ -27,14 +27,16 @@ testCases::~testCases() {
 
 bool testCases::testContinuousKeyInput()
 {
+    inputClass testInputClass;
     sf::Event event;
-    inputClass testInput;
+    char testInput;
     bool success = false;
 
     // simulating a key press 
     event.type = sf::Event::KeyPressed;
     event.key.code = sf::Keyboard::A;
-    testInput.updateInput();
+    testInput = static_cast<char>(event.key.code = sf::Keyboard::A);
+    testInputClass.updateInput(testInput);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
         success = true;
@@ -308,11 +310,5 @@ bool testCases::testMapBonus() {
     return false;
 }
 
-void testCases::testProcessInput()
-{
-
-    
-
-}
 
 

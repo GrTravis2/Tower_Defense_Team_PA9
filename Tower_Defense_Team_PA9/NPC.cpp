@@ -5,7 +5,7 @@ NPC::NPC (
     const teamNumber& playerID,
     const sf::Sprite& body,
     const difficulty& diff
-    ) : Player(playerID, 30, body) {
+    ) : Player(playerID, 50, body) {
 
         int wordsPerMin = -1;
     switch(diff) {
