@@ -10,10 +10,6 @@ SpriteManager::SpriteManager() {//loads all textures from file
     //init gnome data
     this->gnome = new sf::Texture();// -> get heap mem
     this->gnome->loadFromFile("assets/gnome2.png");// -> set image
-    if (this->gnome->loadFromFile("assets/gnome2.png"))
-    {
-        std::cout << "This loaded properly!" << std::endl;
-    }
 
     //init mushroomTower
     this->mushroomTower = new sf::Texture();// -> get heap mem
@@ -40,7 +36,7 @@ sf::Sprite SpriteManager::getGrass()
 sf::Sprite SpriteManager::getGnome() {
     sf::Sprite result((*this->gnome));
     result.setOrigin(GNOME_OFFSET_X, GNOME_OFFSET_Y);
-    result.setScale(0.05, 0.05);
+    result.setScale(0.18, 0.18);
 
     return result;
 }
@@ -48,7 +44,7 @@ sf::Sprite SpriteManager::getGnome() {
 sf::Sprite SpriteManager::getBigGnome() {
     sf::Sprite result((*this->gnome));
     result.setOrigin(GNOME_OFFSET_X, GNOME_OFFSET_Y);
-    result.setScale(0.15, 0.15);
+    result.setScale(0.6, 0.6);
 
     return result;
 }

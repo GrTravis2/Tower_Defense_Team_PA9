@@ -271,9 +271,91 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
     int wordSolved = 0;
     wordSolved = mPlayer1->processPlayerInput();
 
+<<<<<<< HEAD
     if (wordSolved > 0) {
         Bonus reward = rewards[wordSolved - 1];
         mapBonus(reward, one, static_cast<teamNumber>(wordSolved)); // Adjust target player ID based on word solved
+=======
+    if (wordSolved == 1) // target is player 2
+    {
+        if (determineBonus % 2 != 0) // if it's an odd number 
+        {
+            // spawn bonus 
+            determineBonus = generateRandomNumber();
+            if (determineBonus % 2 != 0) // small spawn bonus if odd number
+            {
+                mapBonus(smallBonus, one, two);
+            }
+            else // larger spawn bonus if even number 
+            {
+                cout << "regular spawn bonus" << endl;
+                mapBonus(regularBonus, one, two);
+            }
+        }
+        else
+        {
+            cout << "small hp bonus" << endl;
+        }
+    }
+    else if (wordSolved == 2) // target is player 3
+    {
+        if (determineBonus % 2 != 0) 
+        {
+            determineBonus = generateRandomNumber();
+            if (determineBonus > 15) // better odds of getting a spawn
+            {
+                mapBonus(smallBonus, one, three);
+            }
+            else // larger spawn bonus if even number 
+            {
+                cout << "regular spawn bonus" << endl;
+                mapBonus(regularBonus, one, three);
+            }
+        }
+        else
+        {
+            cout << "reg hp bonus" << endl;
+        }
+    }
+    else if (wordSolved == 3) // target is random
+    {
+        if (determineBonus > 15)
+        {
+            determineBonus = generateRandomNumber();
+            if (determineBonus % 2 != 0) // small spawn bonus if odd number
+            {
+                mapBonus(smallBonus, one, three);
+            }
+            else // larger spawn bonus if even number 
+            {
+                cout << "regular spawn bonus" << endl;
+                mapBonus(regularBonus, one, three);
+            }
+        }
+        else
+        {
+            cout << "xtreme hp bonus" << endl;
+            // even number and x-treme bonus 
+            // bonus also tbd
+        }
+    }
+    else if (wordSolved == 4)
+    {
+        if (determineBonus > 15)
+        {
+            //mapBonus(xtremeBonus);
+            // bonus tbd
+        }
+        else
+        {
+            //cout << "xtreme hp bonus" << endl;
+            // even number and x-treme bonus 
+            // bonus also tbd
+        }
+        }
+    if (wordSolved > 0)
+    {
+>>>>>>> 5bbd36e634a7f48fc8389ff92ae9557ca0d4a61b
         updateWords();
 
         // Figure out a way to randomize target when extreme word is solved?

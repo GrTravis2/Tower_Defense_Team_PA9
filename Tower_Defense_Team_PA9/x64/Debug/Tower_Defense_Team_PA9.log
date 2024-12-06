@@ -1,0 +1,11 @@
+﻿  SpriteManager.cpp
+C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(39,27): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(39,21): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(47,26): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(47,21): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(55,27): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\Tower_Defense_Team_PA9\SpriteManager.cpp(55,21): warning C4305: 'argument': truncation from 'double' to 'float'
+sfml-graphics-s-d.lib(ImageLoader.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(ImageLoader.obj)' or at ''; linking object as if no debug info
+sfml-graphics-s-d.lib(RenderTarget.obj) : warning LNK4099: PDB '' was not found with 'sfml-graphics-s-d.lib(RenderTarget.obj)' or at ''; linking object as if no debug info
+sfml-window-s-d.lib(JoystickImpl.obj) : warning LNK4099: PDB '' was not found with 'sfml-window-s-d.lib(JoystickImpl.obj)' or at ''; linking object as if no debug info
+  Tower_Defense_Team_PA9.vcxproj -> C:\Users\Ingri\OneDrive\Desktop\Fall 2024\Cpts 122\Tower_Defense_Team_PA9\x64\Debug\Tower_Defense_Team_PA9.exe
