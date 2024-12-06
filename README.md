@@ -9,6 +9,6 @@ Type the words at the top of the screen to spawn gnomes that attack enemy towers
 - Graphics Framework: SFML!!
 
 ## Team Members:
-- Ingrid llorente
+- Ingrid Llorente
 - Arni Thorvaldson
 - Gavin Travis
