@@ -10,6 +10,7 @@
 #include "Entity.hpp"
 #include "SpriteManager.hpp"
 #include "inputClass.hpp"
+#include "WordDisplay.hpp"
 
 
 //Game Constants!!
@@ -63,9 +64,13 @@ private:
 	std::list<Entity*>* mMasterList; // all objects to update
 	sf::RenderWindow* mGameWindow;// view window (does drawing)
 	SpriteManager* spawner; //spawns sprite types
+    WordDisplay* wordDisplay; // word display
+    Bonus rewards[4]; // Array to store rewards
+    std::string rewardArray[4]; // Array to store reward descriptions
 
 	//helpers
 	void printMultiplayerMenu() const;// for join/create game
+    Bonus generateReward(bool isExtreme); // Method to generate rewards
 	
 public:
 
@@ -76,7 +81,7 @@ public:
 	~TowerDefenseGame();
 
 	//getters
-	Player* getPlayer(const int& playerID) const;
+	Player* getPlayer(const teamNumber& playerID) const;
 	Player* getHostPlayer() const;
 
 	//setters
@@ -88,7 +93,10 @@ public:
 	void updateWords();// -> for handling word and bonus options!
 
 	// takes bonus enum and adds bonus entity(s) to master list
-	void mapBonus(enum Bonus& bonus, int targetPlayerID);
+	void mapBonus(const Bonus& bonus, const teamNumber& startingPlayer, const teamNumber& targetPlayer);
+
+	//check all NPCs for their bonuses
+	void processNPCs();
 
 	//updates shape positions, checks for intersections, and then draws all!
 	void updateEntities();
@@ -107,6 +115,9 @@ public:
 
 	// calls assign3Words()
 	void initialWordAssignments();
+
+	// assigns rewards to initial words and extreme word
+	void initialRewardAssignments();
 
 	// assigns all 4 players an extreme word
 	void assignExtremeWords();
@@ -232,6 +243,6 @@ const string extremePool[] = {
 
 int generateRandomNumber();
 int generateExtremeNumber();
-string generateRandomWord();
-string generateExtremeWord();
+std::string generateRandomWord();
+std::string generateExtremeWord();
 

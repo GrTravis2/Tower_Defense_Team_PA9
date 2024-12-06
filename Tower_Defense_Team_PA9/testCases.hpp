@@ -1,9 +1,9 @@
-
 #include <ctime>
 
 #include "inputClass.hpp"
 #include "Entity.hpp"
 #include "SpriteManager.hpp"
+#include "WordDisplay.hpp"
 class testCases
 {
 public:
@@ -21,7 +21,7 @@ private:
 	bool testContinuousKeyInput();
 
 	//entity tests
-	//bool testComputeDirection();
+	bool testComputeDirection();
 	bool testGetandSetHP();
 	bool testIsDead();
 	bool testAttackUntilDead();
@@ -36,5 +36,6 @@ private:
 	bool testMapBonus();
 
 	void testProcessInput();
+	bool testWordDisplay();
 	
 };

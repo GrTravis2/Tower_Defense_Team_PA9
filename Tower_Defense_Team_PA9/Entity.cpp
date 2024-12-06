@@ -1,25 +1,27 @@
 
 #include "Entity.hpp"
 
-//need to add before it will build :-)
-
 //constructor
 Entity::Entity(// -> for static entities (players)
 		const int& HP,
+        const teamNumber& team,
 		const sf::Sprite& body
 	) {
     this->mHealthPoints = HP;
+    this->mTeamNumber = team;
     this->mBody = body;
     this->mDirection = sf::Vector2f(0.0, 0.0);
 }
 Entity::Entity(
     const int& HP, // -> obj HP, when it hits 0 will get deleted!
+    const teamNumber& team, // -> for ignoring friendly fire
     const sf::Sprite& body,// -> pass shape constructor
     const Entity& start,// -> spawning tower ref
     const Entity& end,// -> target tower ref
     const float& speed// -> define constant in wrapper by type
     ) {
     this->mHealthPoints = HP;
+    this->mTeamNumber = team;
     this->mBody = body;//init body with reference to body
     this->mBody.setPosition(start.mBody.getPosition());// start at spawning player
     this->mDirection = computeDirection(start.mBody.getPosition(), end.mBody.getPosition(), 0.1); //set direction vec
@@ -41,6 +43,10 @@ sf::Vector2f Entity::getDirection() const {
     return this->mDirection;
 }
 
+teamNumber Entity::getTeamNumber() const {
+    return this->mTeamNumber;
+}
+
 //setters
 void Entity::setHP(const int& newHP) {
     this->mHealthPoints = newHP;
@@ -49,6 +55,10 @@ void Entity::setHP(const int& newHP) {
 void Entity::setDirection(const sf::Vector2f& direction)
 {
     mDirection = direction;
+}
+
+void Entity::setTeamNumber(const teamNumber& newNumber) {
+    this->mTeamNumber = newNumber;
 }
 
 //public
