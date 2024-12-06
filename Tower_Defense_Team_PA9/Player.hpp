@@ -50,8 +50,8 @@ public:
 
 
 	Player(
-		const int& playerID,
 		const int& HP,
+		const teamNumber& team,
 		const sf::Sprite& body,
 		const Entity& start,
 		const Entity& end,
@@ -60,10 +60,10 @@ public:
 
 	
 	//// added this because my compiler had an issue with the constructor 
-	Player(const int& playerID, const int& HP, const sf::Sprite& body);
+	Player(const teamNumber& team, const int& HP, const sf::Sprite& body);
 
 	//destructor
-	~Player();
+	virtual ~Player(); // -> virtual for death sound/animation
 
 	//getters
 	std::string getInput();
@@ -89,8 +89,10 @@ public:
 enum Bonus {
 	spawn1,
 	spawn5,
-	spawnBigGnome,
 	plus5HP,
 	plus10HP,
-	plus15HP
+	spawnBigGnome,
+	plus15HP,
+	first = spawn1, // please update these if they change!!!
+	last = plus15HP // they are used for rolling all bonuses
 };

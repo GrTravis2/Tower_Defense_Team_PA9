@@ -6,13 +6,13 @@
 int main(void) {
     std::srand(std::time(NULL)); // seed for random number
 
- 	TowerDefenseGame app;
 
     //testCases t;
     //t.runTests();
 
-   
-    app.run();
+	TowerDefenseGame app;
+	app.run();
+	
 
     return 0;
 }

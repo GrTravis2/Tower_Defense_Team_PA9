@@ -6,7 +6,7 @@ void testCases::runTests() {
     std::cout
     << "--------- START TESTS --------- " << std::endl
     << "testContinuousKeyInput() pass: : " << testContinuousKeyInput() << std::endl
-    //<< "testComputeDirection() pass: " << testComputeDirection() << std::endl
+    << "testComputeDirection() pass: " << testComputeDirection() << std::endl
     << "testGetandSetHP() pass: " << testGetandSetHP() << std::endl
     << "testIsDead() pass: " << testIsDead() << std::endl
     << "testAttackUntilDead() pass: " << testAttackUntilDead() << std::endl
@@ -48,57 +48,57 @@ bool testCases::testContinuousKeyInput()
     return success;
 }
 
-////entity tests
-//bool testCases::testComputeDirection() {
-//    bool ok = false;
-//    float tol = 0.001; // precision issues, adding tolerance for some leeway
-//
-//    //
-//    Entity one(5, this->s->getGnome());
-//    Entity two(5, this->s->getGnome());
-//    one.mBody.setPosition(sf::Vector2f(0,0));
-//    two.mBody.setPosition(sf::Vector2f(1,1));
-//    
-//
-//    sf::Vector2f out = computeDirection(one, two, sqrt(2));
-//
-//    if (//check x, y pos in an acceptable range
-//        out.x <= two.mBody.getPosition().x + tol
-//        &&
-//        out.x >= two.mBody.getPosition().x - tol
-//        &&
-//        out.y <= two.mBody.getPosition().y + tol
-//        &&
-//        out.y >= two.mBody.getPosition().y - tol
-//        ) {
-//
-//        Entity three(5, this->s->getGnome());
-//        three.mBody.setPosition(5,5);
-//
-//        out = computeDirection(one, three, sqrt(32));
-//        int expectedX = 4;
-//        int expectedY = 4;
-//        if (
-//            out.x <= expectedX + tol
-//            &&
-//            out.x >= expectedX - tol
-//            &&
-//            out.y <= expectedY + tol
-//            &&
-//            out.y >= expectedY - tol
-//        ) {
-//            //woohoo! Vector math :D
-//            ok = true;
-//        }
-//    }
-//
-//    return ok;
-//}
+//entity tests
+bool testCases::testComputeDirection() {
+	bool ok = false;
+	float tol = 0.001; // precision issues, adding tolerance for some leeway
+
+	//
+	Entity one(5, four, this->s->getGnome());
+	Entity two(5, four, this->s->getGnome());
+	one.mBody.setPosition(sf::Vector2f(0,0));
+	two.mBody.setPosition(sf::Vector2f(1,1));
+	
+
+	sf::Vector2f out = computeDirection(one.mBody.getPosition(), two.mBody.getPosition(), sqrt(2));
+
+	if (//check x, y pos in an acceptable range
+		out.x <= two.mBody.getPosition().x + tol
+		&&
+		out.x >= two.mBody.getPosition().x - tol
+		&&
+		out.y <= two.mBody.getPosition().y + tol
+		&&
+		out.y >= two.mBody.getPosition().y - tol
+		) {
+
+		Entity three(5, four, this->s->getGnome());
+		three.mBody.setPosition(5,5);
+
+		out = computeDirection(one.mBody.getPosition(), three.mBody.getPosition(), sqrt(32));
+		int expectedX = 4;
+		int expectedY = 4;
+		if (
+			out.x <= expectedX + tol
+			&&
+			out.x >= expectedX - tol
+			&&
+			out.y <= expectedY + tol
+			&&
+			out.y >= expectedY - tol
+		) {
+			//woohoo! Vector math :D
+			ok = true;
+		}
+	}
+
+	return ok;
+}
 
 bool testCases::testGetandSetHP() {
     bool ok = false;
 
-    Entity one(5, this->s->getGnome());
+	Entity one(5, three, this->s->getGnome());
 
     if (one.getHP() == 5) {
         one.setHP(25);
@@ -116,7 +116,7 @@ bool testCases::testGetandSetHP() {
 bool testCases::testIsDead() {
     bool ok = false;
 
-    Entity one(5, this->s->getGnome());
+	Entity one(5, three, this->s->getGnome());
 
     if (one.isDead() == false) {
 
@@ -137,8 +137,8 @@ bool testCases::testAttackUntilDead() {
     bool ok = false;
     
 
-    Entity one(5, this->s->getGnome());
-    Entity two(5, this->s->getGnome());
+	Entity one(5, three, this->s->getGnome());
+	Entity two(5, four, this->s->getGnome());
 
     attackUntilDead(one, two);
     if (one.isDead() && two.isDead()) {
@@ -208,8 +208,9 @@ bool testCases::testLoadSprite() {
     }
     window.create(sf::VideoMode(1000, 1000), "copy gnome sprite test");
 
-    // create sprite from loaded gnome!
-    sf::Sprite copyGnome(s.getGnome());
+	// create sprite from loaded gnome!
+	sf::Sprite copyGnome(s.getGnome());
+	copyGnome.setPosition(500, 500);
 
     while (window.isOpen()) {
 
@@ -265,7 +266,7 @@ bool testCases::testLoadSprite() {
 bool testCases::testWordDisplay() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Word Display Test");
     WordDisplay wordDisplay;
-    Player player1(1, 30, sf::Sprite());
+    Player player1(one, 30, sf::Sprite());
 
     // Set words for player1
     for (int i = 0; i < 3; ++i) {

@@ -20,23 +20,24 @@ void TowerDefenseGame::setupGame() {
     bool setupComplete = false;
     int choice = -1;
     
-    this->printMultiplayerMenu();
+    //this->printMultiplayerMenu();
     choice = 1;
+    //std::cin >> choice;
     //std::cin >> choice;
     if (choice == 1) {//local game, 3 NPC
 
-        this->mPlayer1 = new Player(1, 30, this->spawner->getMushroomTower());
+        this->mPlayer1 = new Player(one, 30, this->spawner->getMushroomTower());
         this->mPlayer1->setWordDisplay(this->wordDisplay); // Set WordDisplay after initializing mPlayer1
-        this->mPlayer1->mBody.setPosition(sf::Vector2f(P1_X, P1_Y + 100)); // Adjusted position
+        this->mPlayer1->mBody.setPosition(sf::Vector2f(P1_X, P1_Y)); // Adjusted position
 
-        this->mPlayer2 = new NPC(2, this->spawner->getMushroomTower(), easy);
-        this->mPlayer2->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P2_X, P2_Y + 100)); // Adjusted position
+        this->mPlayer2 = new NPC(two, this->spawner->getMushroomTower(), easy);
+        this->mPlayer2->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P2_X, P2_Y)); // Adjusted position
 
-        this->mPlayer3 = new NPC(3, this->spawner->getMushroomTower(), easy);
-        this->mPlayer3->mBody.setPosition(sf::Vector2f(P3_X, WINDOW_HEIGHT + P3_Y + 100)); // Adjusted position
+        this->mPlayer3 = new NPC(three, this->spawner->getMushroomTower(), evil);
+        this->mPlayer3->mBody.setPosition(sf::Vector2f(P3_X, WINDOW_HEIGHT + P3_Y)); // Adjusted position
 
-        this->mPlayer4 = new NPC(4, this->spawner->getMushroomTower(), easy);
-        this->mPlayer4->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P4_X, WINDOW_HEIGHT + P4_Y + 100)); // Adjusted position
+        this->mPlayer4 = new NPC(four, this->spawner->getMushroomTower(), easy);
+        this->mPlayer4->mBody.setPosition(sf::Vector2f(WINDOW_WIDTH + P4_X, WINDOW_HEIGHT + P4_Y)); // Adjusted position
     }
     while (setupComplete != true) {
         setupComplete = true;// place holder, need adding player sequence
@@ -60,19 +61,19 @@ TowerDefenseGame::~TowerDefenseGame() {
 }
 
 //getters
-Player* TowerDefenseGame::getPlayer(const int& playerID) const {
+Player* TowerDefenseGame::getPlayer(const teamNumber& playerID) const {
     Player* result = nullptr;
     switch (playerID) {
-    case 1:
+    case one:
         result = this->mPlayer1;
         break;
-    case 2:
+    case two:
         result = this->mPlayer2;
         break;
-    case 3:
+    case three:
         result = this->mPlayer3;
         break;
-    case 4:
+    case four:
         result = this->mPlayer4;
         break;
     default:
@@ -82,30 +83,6 @@ Player* TowerDefenseGame::getPlayer(const int& playerID) const {
 
     return result;
 }
-  
-//getters
-//Player* TowerDefenseGame::getPlayer(const int& playerID) const {
-//      Player* result = nullptr;
-//      switch (playerID) {
-//          case 1:
-//              result = this->mPlayer1;
-//              break;
-//          case 2:
-//              result = this->mPlayer2;
-//              break;
-//          case 3:
-//              result = this->mPlayer3;
-//              break;
-//          case 4:
-//              result = this->mPlayer4;
-//              break;
-//          default:
-//              // :D broke
-//              break;
-//      }
-//
-//      return result; // Gavin I had to add this sorry if it ruins your day - Ingrid
-//  }
 
 Player* TowerDefenseGame::getHostPlayer() const {
     return this->mHostPlayer;
@@ -238,8 +215,15 @@ void TowerDefenseGame::run() {
             }
         }
 
+        //check for NPC input (time based check)
+        this->processNPCs();
+       
+
         //step shape positions, checks for intersections and draws all
         this->updateEntities();
+
+        // output contents of list to screen!
+        this->mGameWindow->display();
         wordDisplay->draw(*this->mGameWindow);
     }
     cout << "Current input in player class: " << mPlayer1->getInput() << endl;
@@ -252,6 +236,36 @@ void TowerDefenseGame::run() {
 
 }
 
+//check all NPCs for their bonuses
+void TowerDefenseGame::processNPCs() {
+    NPC* npc2 = dynamic_cast<NPC*>(this->mPlayer2);// -> cast players to NPCs
+    NPC* npc3 = dynamic_cast<NPC*>(this->mPlayer3);
+    NPC* npc4 = dynamic_cast<NPC*>(this->mPlayer4);
+    Bonus out = spawn1;// buffer enum
+    int randNum = (std::rand() % 4) + 1;// roll 1-4
+
+    //check if all NPCs have a bonus ready to go
+    if(npc2 != nullptr && npc2->isReady()) {
+        out = npc2->rollBonus();
+        npc2->setNextBonusTime(clock() + (CLOCKS_PER_SEC * npc2->getDelaySeconds()));
+        while (randNum == 2) { randNum = (std::rand() % 4) + 1; }
+        this->mapBonus(out, npc2->getTeamNumber(), static_cast<teamNumber>(randNum));
+    }
+    if(npc3 != nullptr && npc3->isReady()) {
+        out = npc3->rollBonus();
+        npc3->setNextBonusTime(clock() + (CLOCKS_PER_SEC * npc3->getDelaySeconds()));
+        while (randNum == 3) { randNum = (std::rand() % 4) + 1; }
+        this->mapBonus(out, npc3->getTeamNumber(), static_cast<teamNumber>(randNum));
+    }
+    if(npc4 != nullptr && npc4->isReady()) {
+        out = npc4->rollBonus();
+        npc4->setNextBonusTime(clock() + (CLOCKS_PER_SEC * npc4->getDelaySeconds()));
+        while (randNum == 4) { randNum = (std::rand() % 4) + 1; }
+        this->mapBonus(out, npc4->getTeamNumber(), static_cast<teamNumber>(randNum));
+    }
+
+}
+
 void TowerDefenseGame::processInput() {// -> for handling keyboard event process!
     
     int wordSolved = 0;
@@ -259,7 +273,7 @@ void TowerDefenseGame::processInput() {// -> for handling keyboard event process
 
     if (wordSolved > 0) {
         Bonus reward = rewards[wordSolved - 1];
-        mapBonus(reward, wordSolved); // Adjust target player ID based on word solved
+        mapBonus(reward, one, static_cast<teamNumber>(wordSolved)); // Adjust target player ID based on word solved
         updateWords();
 
         // Figure out a way to randomize target when extreme word is solved?
@@ -320,39 +334,37 @@ void TowerDefenseGame::updateWords() {// -> for handling word and bonus options!
 }
 
 // takes bonus enum and adds bonus entity(s) to master list
-void TowerDefenseGame::mapBonus(enum Bonus& bonus, int targetPlayerID) {
+void TowerDefenseGame::mapBonus(const Bonus& bonus, const teamNumber& startingPlayer, const teamNumber& targetPlayer) {
     Entity* pNew = nullptr;
-    sf::Sprite gnomeSprite = spawner->getGnome();
-    sf::Sprite bigGnomeSprite = spawner->getBigGnome();
-    sf::Vector2f targetPos = getPlayer(targetPlayerID)->mBody.getPosition();
+    Player* start = this->getPlayer(startingPlayer);
+    Player* end = this->getPlayer(targetPlayer);
+    //sf::Sprite gnomeSprite = spawner->getGnome();
+    //sf::Sprite bigGnomeSprite = spawner->getBigGnome();
+    //sf::Vector2f targetPos = getPlayer(targetPlayer)->mBody.getPosition();
+    sf::Vector2f shift = computeDirection(start->mBody.getPosition(), end->mBody.getPosition(), 1.f);
     
-    // Figure out a way to randomize target when extreme word is solved?
 
-    // Also what is done in mapBonus when the bonus is plus5HP, plus10HP, or plus15HP?
 
     switch (bonus) {
         case spawn1:// -> insert one gnome at back!       
-            pNew = new Entity(1, gnomeSprite);
-            if (pNew != nullptr) {
-                sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
-                pNew->setDirection(direction);
-                this->mMasterList->push_back(pNew);
-            }
+            pNew = new Entity(1, startingPlayer, this->spawner->getGnome(), *start, *end, 0.001);
+            if (pNew != nullptr) {this->mMasterList->push_back(pNew);}
             break;
         case spawn5:// -> make 5 gnomes and insert at back of list
+
+            
             for(int i = 0; i < 5; i++) {
-                pNew = new Entity(1, gnomeSprite);
-                if (pNew != nullptr){
-                    sf::Vector2f direction = computeDirection(pNew->mBody.getPosition(), targetPos, 0.1f);
-                    pNew->setDirection(direction);
+                pNew = new Entity(1, startingPlayer, this->spawner->getGnome(), *start, *end, 0.001);
+                if (pNew != nullptr) {
+                    shift += shift;
+                    pNew->mBody.setPosition(shift);
                     this->mMasterList->push_back(pNew);
                 }
-                
             }
             break;
         case spawnBigGnome:// -> add one big gnome!
-            pNew = new Entity(5, bigGnomeSprite);
-            this->mMasterList->push_back(pNew);
+            pNew = new Entity(5, startingPlayer, this->spawner->getBigGnome(), *start, *end, 0.001);
+            if (pNew != nullptr) {this->mMasterList->push_back(pNew);}
             break;
         default:
             std::cout << "how did you do this??" << std::endl;
@@ -376,21 +388,25 @@ void TowerDefenseGame::updateEntities() {
     for (// move through length of list and do stuff!
         std::list<Entity*>::iterator iter = this->mMasterList->begin(); 
         iter != this->mMasterList->end();
-        //++iter // the incrementation I think was messing with the loop so I put it down at the end - Ingrid
+        //iter // the incrementation I think was messing with the loop so I put it down at the end - Ingrid
         ) 
-        { // position vector determines if something is out of bounds and kills it if it is 
-        sf::Vector2f position = (*iter)->mBody.getPosition();
-        if ((position.x < -05.0f || position.x > WINDOW_WIDTH + 05.0f) ||
-            (position.y < -05.0f || position.y > WINDOW_HEIGHT + 05.0f)) {
-            (*iter)->setHP(0);
-        }
+        {
+        
         // check if element is already dead before processing
         if ((*iter)->isDead()) {
-            delete* iter; // deallocate memory
+            //std::cout << "Deleting entity: " << (*iter)->getTeamNumber() << std::endl; //Debugging statement
+            delete *iter;// deallocate memory       
             iter = this->mMasterList->erase(iter); // remove from list
-        
         }
-        else { // entity is not dead, needs to check conflict, move, and draw  
+        else { // entity is not dead, needs to check conflict, move, and draw 
+
+            // position vector determines if something is out of bounds and kills it if it is 
+            sf::Vector2f position = (*iter)->mBody.getPosition();
+            if ((position.x < -05.0f || position.x > WINDOW_WIDTH + 05.0f) ||
+                (position.y < -05.0f || position.y > WINDOW_HEIGHT + 05.0f)) {
+                //std::cout << "Entity out of bounds: " << (*iter)->getTeamNumber() << std::endl; //Debugging statement
+                (*iter)->setHP(0);
+            }
 
             //first check for conflicting shapes, needs inner loop!
             for (
@@ -404,7 +420,9 @@ void TowerDefenseGame::updateEntities() {
                 if (
                     (*iter)->mBody.getGlobalBounds().intersects((*j)->mBody.getGlobalBounds())
                     &&
-                    iter != j) {
+                    (*iter)->getTeamNumber() != (*j)->getTeamNumber()) {
+                    //std::cout << "Attacking entities: " << (*iter)->getTeamNumber() << " and " << (*j)->getTeamNumber() << std::endl;
+                    //Debugging statement
                     attackUntilDead(**iter, **j);
                 }
                
@@ -412,6 +430,7 @@ void TowerDefenseGame::updateEntities() {
 
             //move this element by mDirection vec!
 
+            //std::cout << "Moving entity: " << (*iter)->getTeamNumber() << std::endl; //Debugging statement
             (*iter)->mBody.move((*iter)->getDirection());
 
             // now draw element to screen, consider moving thru to another
@@ -421,23 +440,20 @@ void TowerDefenseGame::updateEntities() {
             ++iter; // only moves things forward if the entity is not dead 
         }
     }
-    
-    // output contents of list to screen!
-    this->mGameWindow->display();
 }
     
 //checks game conditions for if they are over
 bool TowerDefenseGame::GameComplete() const {
     bool done = false;
 
-    if (
-    this->mPlayer1->getHP() < 0
-    &&
-    this->mPlayer2->getHP() < 0
-    &&
-    this->mPlayer3->getHP() < 0
-    &&
-    this->mPlayer4->getHP() < 0
+    if ( 
+    this->mPlayer1->getHP() < 1
+    // &&
+    // this->mPlayer2->getHP() < 1
+    // &&
+    // this->mPlayer3->getHP() < 1
+    // &&
+    // this->mPlayer4->getHP() < 1
     ) 
     { done = true; }
 
